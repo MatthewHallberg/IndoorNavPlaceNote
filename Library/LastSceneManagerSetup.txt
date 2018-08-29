@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Placenote/Scenes/SampleScene.unity
+  isLoaded: 1
+  isActive: 1

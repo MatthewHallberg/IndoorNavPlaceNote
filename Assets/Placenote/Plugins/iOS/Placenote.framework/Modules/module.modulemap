@@ -1,0 +1,6 @@
+framework module Placenote {
+  umbrella header "Placenote.h"
+
+  export *
+  module * { export * }
+}
