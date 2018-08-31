@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{8B989C36-26F1-5FB3-F6A0-53482E421BBB}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Placenote/LibPlacenote/LibPlacenote.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MapService.cs">
     <Files>
-      <File FileName="Assets/Placenote/Examples/PlacenoteSampleView.cs" Line="283" Column="34" />
-      <File FileName="Assets/Placenote/LibPlacenote/LibPlacenote.cs" Line="1252" Column="14" />
+      <File FileName="Assets/Scripts/MapService.cs" Line="30" Column="3" />
+      <File FileName="Assets/GameSparks/Platforms/PlatformBase.cs" Line="295" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

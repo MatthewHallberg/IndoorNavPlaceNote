@@ -61,6 +61,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameSparks\GameSparksRTUnity.cs" />
+    <Compile Include="Assets\GameSparks\GameSparksSettings.cs" />
+    <Compile Include="Assets\GameSparks\GameSparksUnity.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\DefaultPlatform.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\IControlledTimer.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\IControlledWebSocket.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\Native\detail\GameSparksNative.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\Native\detail\GameSparksNativePINVOKE.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\Native\detail\NativeWebSocket.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\Native\NativePlatform.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\Native\NativeWebSocket.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\PlatformBase.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\TimerController.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\UnityTimer.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\WebGL\SimpleJson2.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\WebGL\WebGLPlatform.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\WebGL\WebGLWebSocket.cs" />
+    <Compile Include="Assets\GameSparks\Platforms\WebSocketController.cs" />
+    <Compile Include="Assets\GameSparks\TestUI\GameSparksTestUI.cs" />
     <Compile Include="Assets\Placenote\Examples\KeyboardMover.cs" />
     <Compile Include="Assets\Placenote\Examples\MapInfoElement.cs" />
     <Compile Include="Assets\Placenote\Examples\PlacenoteARAnchorManager.cs" />
@@ -80,6 +99,10 @@
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteCameraManager.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteListener.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PNUtility.cs" />
+    <Compile Include="Assets\Scripts\DeviceAuthentication.cs" />
+    <Compile Include="Assets\Scripts\GameSparksManager.cs" />
+    <Compile Include="Assets\Scripts\MapService.cs" />
+    <Compile Include="Assets\Scripts\SceneService.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitFaceTrackingRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ConnectionMessageIds.cs" />
@@ -141,12 +164,17 @@
     <Compile Include="Assets\WanzyeeStudio\Scripts\Basic\Json\Vector3Converter.cs" />
     <Compile Include="Assets\WanzyeeStudio\Scripts\Basic\Json\Vector4Converter.cs" />
     <Compile Include="Assets\WanzyeeStudio\Scripts\Basic\Utility\JsonNetUtility.cs" />
+    <None Include="Assets\GameSparks\Plugins\GameSparksRT.xml" />
+    <None Include="Assets\GameSparks\Plugins\Metro\GameSparksRT.xml" />
     <None Include="Assets\WanzyeeStudio\ThirdParty\SaladLab\Json.Net.Unity3D\link.xml" />
     <None Include="Assets\WanzyeeStudio\ThirdParty\SaladLab\Json.Net.Unity3D\LICENSE.txt" />
+    <None Include="Assets\GameSparks\README.txt" />
     <None Include="Assets\UnityARKitPlugin\ARKitRemote\ARKITREMOTE.txt" />
     <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\YUVShaderLinear.shader" />
+    <None Include="Assets\Scripts\cloudCode.txt" />
     <None Include="Assets\Placenote\Shaders\PointCloud.shader" />
     <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\YUVShader.shader" />
+    <None Include="Assets\GameSparks\link.xml" />
     <None Include="Assets\Placenote\Shaders\VertexColorPointCloud.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/matthew/Desktop/Placenote/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
@@ -357,6 +385,18 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparks.Api">
+      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparksRT">
+      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparksRT.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSparks">
+      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparks.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle_GameSparks">
+      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>/Users/matthew/Desktop/Placenote/Assets/WanzyeeStudio/ThirdParty/SaladLab/Json.Net.Unity3D/Plugins/Newtonsoft.Json.dll</HintPath>
