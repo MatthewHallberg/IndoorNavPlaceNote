@@ -23,7 +23,6 @@ public class ShapeInfo
     public int shapeType;
 }
 
-
 [System.Serializable]
 public class ShapeList
 {
@@ -41,92 +40,6 @@ public class ShapeManager : MonoBehaviour {
     public List<GameObject> shapeObjList = new List<GameObject>();
     public Material mShapeMaterial;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
-    //-----------------------------------
-    // The HitTest to Add a Marker
-    //-----------------------------------
-
-    bool HitTestWithResultType(ARPoint point, ARHitTestResultType resultTypes)
-    {
-        List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultTypes);
-
-        if (hitResults.Count > 0)
-        {
-            foreach (var hitResult in hitResults)
-            {
-
-                Debug.Log("Got hit!");
-
-                // get hit test position
-                Vector3 hitPosition = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
-                Quaternion hitRotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
-
-                // add shape
-                AddShape(hitPosition, hitRotation);
-
-
-                return true;
-            }
-        }
-        return false;
-    }
-	
-
-    //-----------------------------------
-    // Update function checks for hittest
-    //-----------------------------------
-
-    void Update()
-    {
-
-        // Check if the screen is touched
-        //-----------------------------------
-
-        if (Input.touchCount > 0)
-        {
-            var touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                if (EventSystem.current.currentSelectedGameObject == null)
-                {
-
-                    Debug.Log("Not touching a UI button. Moving on.");
-
-                    // add new shape
-                    var screenPosition = Camera.main.ScreenToViewportPoint(touch.position);
-                    ARPoint point = new ARPoint
-                    {
-                        x = screenPosition.x,
-                        y = screenPosition.y
-                    };
-
-                    // prioritize reults types
-                    ARHitTestResultType[] resultTypes = {
-                        //ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
-                        //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-                        //ARHitTestResultType.ARHitTestResultTypeEstimatedHorizontalPlane,
-                        //ARHitTestResultType.ARHitTestResultTypeEstimatedVerticalPlane,
-                        ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-                    };
-
-                    foreach (ARHitTestResultType resultType in resultTypes)
-                    {
-                        if (HitTestWithResultType(point, resultType))
-                        {
-                            Debug.Log("Found a hit test result");
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-
     //-------------------------------------------------
     // All shape management functions (add shapes, save shapes to metadata etc.
     //-------------------------------------------------
@@ -134,7 +47,7 @@ public class ShapeManager : MonoBehaviour {
     public void AddShape(Vector3 shapePosition, Quaternion shapeRotation)
     {
         System.Random rnd = new System.Random();
-        PrimitiveType type = (PrimitiveType)rnd.Next(0, 3);
+        PrimitiveType type = (PrimitiveType)1;//use capsule shape
 
         ShapeInfo shapeInfo = new ShapeInfo();
         shapeInfo.px = shapePosition.x;
@@ -149,15 +62,16 @@ public class ShapeManager : MonoBehaviour {
 
         GameObject shape = ShapeFromInfo(shapeInfo);
         shapeObjList.Add(shape);
+		Debug.Log ("ADDING NEW WAYPOINT!!!!");
     }
-
 
     public GameObject ShapeFromInfo(ShapeInfo info)
     {
         GameObject shape = GameObject.CreatePrimitive((PrimitiveType)info.shapeType);
+		shape.tag = "waypoint";
         shape.transform.position = new Vector3(info.px, info.py, info.pz);
         shape.transform.rotation = new Quaternion(info.qx, info.qy, info.qz, info.qw);
-        shape.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        shape.transform.localScale = new Vector3(.3f, .3f, .3f);
         shape.GetComponent<MeshRenderer>().material = mShapeMaterial;
 
         return shape;
@@ -206,7 +120,4 @@ public class ShapeManager : MonoBehaviour {
             }
         }
     }
-
-
-
 }

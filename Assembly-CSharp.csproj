@@ -99,9 +99,11 @@
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteCameraManager.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteListener.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PNUtility.cs" />
+    <Compile Include="Assets\Scripts\CreateMap.cs" />
     <Compile Include="Assets\Scripts\DeviceAuthentication.cs" />
     <Compile Include="Assets\Scripts\GameSparksManager.cs" />
     <Compile Include="Assets\Scripts\MapService.cs" />
+    <Compile Include="Assets\Scripts\ReadMap.cs" />
     <Compile Include="Assets\Scripts\SceneService.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitFaceTrackingRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitRemoteConnection.cs" />

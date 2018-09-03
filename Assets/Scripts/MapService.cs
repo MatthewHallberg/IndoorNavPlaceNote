@@ -1,8 +1,8 @@
-﻿
-	using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameSparks.Core;
+using System;
 
 public class MapService : MonoBehaviour {
 
@@ -14,10 +14,6 @@ public class MapService : MonoBehaviour {
 	private static MapService _instance;
 	public static MapService Instance { get { return _instance; } } 
 
-	public Transform mapRootTransform;
-
-	public GameObject messagePrefabAR;
-
 	void Awake(){
 		//this object is not destroyed
 		_instance = this;
@@ -25,12 +21,10 @@ public class MapService : MonoBehaviour {
 
 	IEnumerator Start () {
 		yield return new WaitForSeconds (1f);
-//		SaveMap ("blah", "tits");
-//		yield return new WaitForSeconds (2f);
-//		LoadMap ("blah");
 	}
 
-	public void LoadMap(string name){
+	public string LoadMap(string name, Action<String> callback){
+		string mapID = string.Empty;
 		new GameSparks.Api.Requests.LogEventRequest()
 		              
 		     .SetEventKey("LOAD_MAP")
@@ -39,12 +33,14 @@ public class MapService : MonoBehaviour {
 			
 			if (!response.HasErrors) {
 				Debug.Log("Received Player Data From GameSparks...");
-				string data = response.ScriptData.GetString ("PLACENOTE_ID");
-				Debug.Log ("MAP: " + data);
+				mapID = response.ScriptData.GetString ("PLACENOTE_ID");
+				print ("ID FROM GAMESPARKS: " + mapID);
+				callback (mapID);
 			} else {
 				Debug.Log("Error Loading Message Data...");
 			}
 		});
+		return mapID;
 	}
 
 	public void SaveMap(string name, string placenoteID){

@@ -9,7 +9,6 @@ public class DeviceAuthentication : MonoBehaviour {
 	/// and load initial messages. 
 	/// </summary>
 
-	public UnityEvent authenticatedEvent;
 	public UnityEvent failureEvent;
 
 	void Start () {
@@ -21,11 +20,7 @@ public class DeviceAuthentication : MonoBehaviour {
 		yield return new WaitForSeconds (1f);
 
 		new GameSparks.Api.Requests.DeviceAuthenticationRequest ().Send ((response) => {
-			if (!response.HasErrors) {
-				Debug.Log ("Device Authenticated...");
-				//enable UI if authenticated
-				authenticatedEvent.Invoke ();
-			} else {
+			if (response.HasErrors) {
 				Debug.Log ("Error Authenticating Device...");
 				failureEvent.Invoke ();
 			}

@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{8B989C36-26F1-5FB3-F6A0-53482E421BBB}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MapService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ReadMap.cs">
     <Files>
-      <File FileName="Assets/Scripts/MapService.cs" Line="30" Column="3" />
-      <File FileName="Assets/GameSparks/Platforms/PlatformBase.cs" Line="295" Column="1" />
+      <File FileName="Assets/Scripts/ReadMap.cs" Line="115" Column="43" />
+      <File FileName="Assets/Scripts/MapService.cs" Line="38" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

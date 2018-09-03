@@ -31,9 +31,6 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	private UnityARImageFrameData mImage = null;
 	private UnityARCamera mARCamera;
 	private bool mARKitInit = false;
-
-	//private List<ShapeInfo> shapeInfoList = new List<ShapeInfo> ();
-	//private List<GameObject> shapeObjList = new List<GameObject> ();
 	
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
 

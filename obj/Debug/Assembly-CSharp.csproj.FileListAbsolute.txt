@@ -265,3 +265,6 @@
 /Users/matthew/Desktop/Placenote/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
 /Users/matthew/Desktop/Placenote/obj/Debug/Assembly-CSharp.dll
 /Users/matthew/Desktop/Placenote/obj/Debug/Assembly-CSharp.pdb
+/Users/matthew/Desktop/Placenote/Temp/bin/Debug/UnityEditor.UI.dll
+/Users/matthew/Desktop/Placenote/Temp/bin/Debug/UnityEditor.UI.dll.mdb
+/Users/matthew/Desktop/Placenote/Temp/bin/Debug/UnityEditor.UI.xml
