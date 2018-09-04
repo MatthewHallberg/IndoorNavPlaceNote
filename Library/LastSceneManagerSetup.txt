@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CreateMap.unity
+- path: Assets/Scenes/ReadMap.unity
   isLoaded: 1
   isActive: 1

@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{8B989C36-26F1-5FB3-F6A0-53482E421BBB}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ReadMap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Placenote/LibPlacenote/FeaturesVisualizer.cs">
     <Files>
-      <File FileName="Assets/Scripts/ReadMap.cs" Line="115" Column="43" />
+      <File FileName="Assets/Scripts/ReadMap.cs" Line="85" Column="41" />
+      <File FileName="Assets/Scripts/CreateMap.cs" Line="137" Column="53" />
       <File FileName="Assets/Scripts/MapService.cs" Line="38" Column="22" />
+      <File FileName="Assets/Placenote/LibPlacenote/FeaturesVisualizer.cs" Line="90" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

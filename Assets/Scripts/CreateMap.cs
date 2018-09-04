@@ -34,6 +34,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
 	// Use this for initialization
 	void Start () {
+		
 		shapeManager = GetComponent<ShapeManager> ();
 
 		Input.location.Start ();
@@ -45,6 +46,10 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 		LibPlacenote.Instance.RegisterListener (this);
 	}
 
+	void OnDisable () {
+		UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
+		FeaturesVisualizer.clearPointcloud ();
+	}
 
 	private void ARFrameUpdated (UnityARCamera camera) {
 		mFrameUpdated = true;
@@ -137,13 +142,13 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 				Vector3 pos = player.position;
 				Debug.Log (player.position);
 				pos.y = 0;
-				shapeManager.AddShape (pos, Quaternion.Euler (Vector3.zero));
+				shapeManager.AddShape (pos, Quaternion.Euler (Vector3.zero),false);
 			}
 		}
 	}
 
 	void StartSavingMap () {
-		ConfigureSession (false);
+		ConfigureSession ();
 
 		if (!LibPlacenote.Instance.Initialized ()) {
 			Debug.Log ("SDK not yet initialized");
@@ -171,11 +176,11 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 	private void StartARKit () {
 		Debug.Log("Initializing ARKit");
 		Application.targetFrameRate = 60;
-		ConfigureSession (false);
+		ConfigureSession ();
 	}
 
 
-	private void ConfigureSession (bool clearPlanes) {
+	private void ConfigureSession () {
 #if !UNITY_EDITOR
 		ARKitWorldTrackingSessionConfiguration config = new ARKitWorldTrackingSessionConfiguration ();
 

@@ -34,6 +34,7 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 
 	// Use this for initialization
 	void Start () {
+		
 		Input.location.Start ();
 
 		mSession = UnityARSessionNativeInterface.GetARSessionNativeInterface ();
@@ -41,6 +42,11 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 		StartARKit ();
 		FeaturesVisualizer.EnablePointcloud ();
 		LibPlacenote.Instance.RegisterListener (this);
+	}
+
+	void OnDisable () {
+		UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
+		FeaturesVisualizer.clearPointcloud ();
 	}
 
 	private void ARFrameUpdated (UnityARCamera camera) {
@@ -77,6 +83,7 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 
 			if (mARCamera.trackingState == ARTrackingState.ARTrackingStateNotAvailable) {
 				// ARKit pose is not yet initialized
+				Debug.Log ("POSE NOT INITIALIZED>>>>");
 				return;
 			} else if (!mARKitInit && LibPlacenote.Instance.Initialized ()) {
 				mARKitInit = true;

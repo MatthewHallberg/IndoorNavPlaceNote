@@ -36,18 +36,21 @@ public class ShapeList
 
 public class ShapeManager : MonoBehaviour {
 
+	public List<GameObject> ShapePrefabs = new List<GameObject> ();
+	[HideInInspector]
     public List<ShapeInfo> shapeInfoList = new List<ShapeInfo>();
+	[HideInInspector]
     public List<GameObject> shapeObjList = new List<GameObject>();
-    public Material mShapeMaterial;
 
     //-------------------------------------------------
     // All shape management functions (add shapes, save shapes to metadata etc.
     //-------------------------------------------------
 
-    public void AddShape(Vector3 shapePosition, Quaternion shapeRotation)
+    public void AddShape(Vector3 shapePosition, Quaternion shapeRotation, bool isDestination)
     {
         System.Random rnd = new System.Random();
-        PrimitiveType type = (PrimitiveType)1;//use capsule shape
+		int typeIndex = 0;//sphere
+		if (isDestination) typeIndex = 1;//diamond
 
         ShapeInfo shapeInfo = new ShapeInfo();
         shapeInfo.px = shapePosition.x;
@@ -57,7 +60,7 @@ public class ShapeManager : MonoBehaviour {
         shapeInfo.qy = shapeRotation.y;
         shapeInfo.qz = shapeRotation.z;
         shapeInfo.qw = shapeRotation.w;
-        shapeInfo.shapeType = type.GetHashCode();
+		shapeInfo.shapeType = typeIndex;
         shapeInfoList.Add(shapeInfo);
 
         GameObject shape = ShapeFromInfo(shapeInfo);
@@ -67,12 +70,11 @@ public class ShapeManager : MonoBehaviour {
 
     public GameObject ShapeFromInfo(ShapeInfo info)
     {
-        GameObject shape = GameObject.CreatePrimitive((PrimitiveType)info.shapeType);
+		GameObject shape = Instantiate(ShapePrefabs[info.shapeType]);
 		shape.tag = "waypoint";
         shape.transform.position = new Vector3(info.px, info.py, info.pz);
         shape.transform.rotation = new Quaternion(info.qx, info.qy, info.qz, info.qw);
         shape.transform.localScale = new Vector3(.3f, .3f, .3f);
-        shape.GetComponent<MeshRenderer>().material = mShapeMaterial;
 
         return shape;
     }
