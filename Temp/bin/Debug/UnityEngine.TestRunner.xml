@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<doc>
+  <members>
+    <assembly>
+      <name>UnityEngine.TestRunner</name>
+    </assembly>
+    <member name="?:UnityEngine.TestTools.IMonoBehaviourTest">
+      <summary>
+        <para>A MonoBehaviour test needs to implement this interface.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.TestTools.IMonoBehaviourTest.IsTestFinished">
+      <summary>
+        <para>Indicates when the test is considered finished.</para>
+      </summary>
+    </member>
+    <member name="?:UnityEngine.TestTools.IPostBuildCleanup">
+      <summary>
+        <para>Interface for the method that implements the postbuild step.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.IPostBuildCleanup.Cleanup">
+      <summary>
+        <para>Cleanup method that is automatically called after all the test have run.</para>
+      </summary>
+    </member>
+    <member name="?:UnityEngine.TestTools.IPrebuildSetup">
+      <summary>
+        <para>Interface for the method that implements the prebuild step.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.IPrebuildSetup.Setup">
+      <summary>
+        <para>Setup method that is automatically called before the test run.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.LogAssert">
+      <summary>
+        <para>LogAssert allows you to expect Unity log messages that would normally cause the test to fail.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.TestTools.LogAssert.ignoreFailingMessages">
+      <summary>
+        <para>Set this property to true to prevent unexpected error log messages from triggering an assertion. This property is set to false by default.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType,System.String)">
+      <summary>
+        <para>Expect a log message of a specfic type. If an error, assertion or exception log is expected, the test will not fail. The test will fail if a log message is expected but does not appear.</para>
+      </summary>
+      <param name="type">Log type.</param>
+      <param name="message">Log message to expect.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType,System.Text.RegularExpressions.Regex)">
+      <summary>
+        <para>Expect a log message of a specfic type. If an error, assertion or exception log is expected, the test will not fail. The test will fail if a log message is expected but does not appear.</para>
+      </summary>
+      <param name="type">Log type.</param>
+      <param name="message">Log message to expect.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.LogAssert.NoUnexpectedReceived">
+      <summary>
+        <para>Triggers an assert if any logs have been received that were not expected. Returns without asserting if all logs received so far have been registered as expected.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.MonoBehaviourTest`1">
+      <summary>
+        <para>Wrapper for running tests that are imlpemented as MonoBehaviours.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.TestTools.MonoBehaviourTest_1.component">
+      <summary>
+        <para>The test component attached this object.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.TestTools.MonoBehaviourTest_1.gameObject">
+      <summary>
+        <para>The GameObject that hold test component.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.PostBuildCleanupAttribute">
+      <summary>
+        <para>Allows you to define a cleanup method for the test that is invoked after all tests are run.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.PostBuildCleanupAttribute.#ctor(System.Type)">
+      <summary>
+        <para>Points to a class that implements TestTools.IPostbuildCleanup. The method from TestTools.IPostbuildCleanup is executed after all tests are run.</para>
+      </summary>
+      <param name="targetClass">Type of the class implementing TestTools.IPostbuildCleanup.</param>
+      <param name="targetClassName">Name of the class implementing TestTools.IPostbuildCleanup.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.PostBuildCleanupAttribute.#ctor(System.String)">
+      <summary>
+        <para>Points to a class that implements TestTools.IPostbuildCleanup. The method from TestTools.IPostbuildCleanup is executed after all tests are run.</para>
+      </summary>
+      <param name="targetClass">Type of the class implementing TestTools.IPostbuildCleanup.</param>
+      <param name="targetClassName">Name of the class implementing TestTools.IPostbuildCleanup.</param>
+    </member>
+    <member name="T:UnityEngine.TestTools.PrebuildSetupAttribute">
+      <summary>
+        <para>Allows to define a setup method for the test that will be invoked before the test run is started.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.PrebuildSetupAttribute.#ctor(System.Type)">
+      <summary>
+        <para>Points to a class that implements TestTools.IPrebuildSetup. The method from TestTools.IPrebuildSetup is executed before the test run is initiated.</para>
+      </summary>
+      <param name="targetClass">Type of the class implementing TestTools.IPrebuildSetup.</param>
+      <param name="targetClassName">Name of the class implementing TestTools.IPrebuildSetup.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.PrebuildSetupAttribute.#ctor(System.String)">
+      <summary>
+        <para>Points to a class that implements TestTools.IPrebuildSetup. The method from TestTools.IPrebuildSetup is executed before the test run is initiated.</para>
+      </summary>
+      <param name="targetClass">Type of the class implementing TestTools.IPrebuildSetup.</param>
+      <param name="targetClassName">Name of the class implementing TestTools.IPrebuildSetup.</param>
+    </member>
+    <member name="T:UnityEngine.TestTools.TestPlatform">
+      <summary>
+        <para>Platforms the tests can run on.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.UnityPlatformAttribute">
+      <summary>
+        <para>For specifying platforms to run on.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.TestTools.UnityPlatformAttribute.exclude">
+      <summary>
+        <para>Excluded platforms.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEngine.TestTools.UnityPlatformAttribute.include">
+      <summary>
+        <para>Included platforms.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.UnitySetUpAttribute">
+      <summary>
+        <para>Special type of a SetUp that allows to yield before the test is running.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.UnityTearDownAttribute">
+      <summary>
+        <para>Special type of a TearDown that allows to yield after the test is running.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.UnityTestAttribute">
+      <summary>
+        <para>Special type of a unit test that allows to yield from test in order to skip frames when the test is running.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.ColorEqualityComparer">
+      <summary>
+        <para>Compares two Color objects for equality within the given tolerance.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.ColorEqualityComparer.#ctor(System.Single)">
+      <summary>
+        <para>Creates an instance with a custom error value.</para>
+      </summary>
+      <param name="error">The absolute error tolerance to be considered while comparing r, g, b, a atributes.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.ColorEqualityComparer.Equals(UnityEngine.Color,UnityEngine.Color)">
+      <summary>
+        <para>Compares the actual and expected Color objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Color object.</param>
+      <param name="actual">Actual Color object to be compared with expected.</param>
+      <returns>
+        <para>Returns true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.ColorEqualityComparer.GetHashCode(UnityEngine.Color)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Color objects.</para>
+      </summary>
+      <param name="color">The Color object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.ColorEqualityComparer.Instance">
+      <summary>
+        <para>A comparer instance with default error 0.01f.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.FloatEqualityComparer">
+      <summary>
+        <para>Float value comparer to work with NUnit constraints.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.FloatEqualityComparer.#ctor(System.Single)">
+      <summary>
+        <para>Create an instance with a custom error value.</para>
+      </summary>
+      <param name="allowedError">The relative error to be considered while comparing the float values.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.FloatEqualityComparer.Equals(System.Single,System.Single)">
+      <summary>
+        <para>Compare the actual and expected float values for equality.</para>
+      </summary>
+      <param name="actual">Actual float value to be compared with expected.</param>
+      <param name="expected">Expected float value.</param>
+      <returns>
+        <para>Return true if expected and actual values are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.FloatEqualityComparer.GetHashCode(System.Single)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal float values.</para>
+      </summary>
+      <param name="value">The float value for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.FloatEqualityComparer.Instance">
+      <summary>
+        <para>A comparer instance with default error 0.0001f.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.QuaternionEqualityComparer">
+      <summary>
+        <para>Utility to compare two Quaternion objects for equality with NUnit assertion constraints.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.QuaternionEqualityComparer.#ctor(System.Single)">
+      <summary>
+        <para>Creates an instance with a custom error value.</para>
+      </summary>
+      <param name="allowedError">The allowed error tolerance to be used for comparison.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.QuaternionEqualityComparer.Equals(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+      <summary>
+        <para>Compares the actual and expected Quaternion objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Quaternion object.</param>
+      <param name="actual">Actual Quaternion object to be compared with expected.</param>
+      <returns>
+        <para>Returns true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.QuaternionEqualityComparer.GetHashCode(UnityEngine.Quaternion)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Quaternion objects.</para>
+      </summary>
+      <param name="quaternion">The Quaternion object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.QuaternionEqualityComparer.Instance">
+      <summary>
+        <para>A comparer instance with default error 0.00001f.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.Utils">
+      <summary>
+        <para>Contains utility functions like comparing float values.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Utils.AreFloatsEqual(System.Single,System.Single,System.Single)">
+      <summary>
+        <para>Relative epsilon comparison of two float values for equality.</para>
+      </summary>
+      <param name="expected">The expected value.</param>
+      <param name="actual">Actual value to be compared with the expected value.</param>
+      <param name="allowedRelativeError">The relative error to be used in relative epsilon comparison.</param>
+      <returns>
+        <para>Returns true if the actual value is equaivalent to the expected value.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Utils.AreFloatsEqualAbsoluteError(System.Single,System.Single,System.Single)">
+      <summary>
+        <para>Compares two float values for equality.</para>
+      </summary>
+      <param name="expected">The expected value.</param>
+      <param name="actual">Actual value to be compared with the expected value.</param>
+      <param name="allowedAbsoluteError">The permissible tolerance.</param>
+      <returns>
+        <para>Returns true if the actual value is equaivalent to the expected value under the given tolerance.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Utils.CreatePrimitive(UnityEngine.PrimitiveType)">
+      <summary>
+        <para>Creates a GameObject with a primitive mesh renderer.</para>
+      </summary>
+      <param name="type">The primitive type of the required GameObject.</param>
+      <returns>
+        <para>A GameObject with primitive mesh renderer and collider.</para>
+      </returns>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.Vector2ComparerWithEqualsOperator">
+      <summary>
+        <para>Compares two Vector2 objects for equality using overloaded == operator.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector2ComparerWithEqualsOperator.Equals(UnityEngine.Vector2,UnityEngine.Vector2)">
+      <summary>
+        <para>Compares the actual and expected Vector2 objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Vector2 object.</param>
+      <param name="actual">Actual Vector2 object to be compared with expected.</param>
+      <returns>
+        <para>Returns true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector2ComparerWithEqualsOperator.GetHashCode(UnityEngine.Vector2)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Vector2 objects.</para>
+      </summary>
+      <param name="vec2">The Vector2 object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.Vector2ComparerWithEqualsOperator.Instance">
+      <summary>
+        <para>A comparer instance to be used with NUnit constrants.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.Vector2EqualityComparer">
+      <summary>
+        <para>Compares two Vector2 objects for equality within given tolerance.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector2EqualityComparer.#ctor(System.Single)">
+      <summary>
+        <para>Creates an instance with a custom error value.</para>
+      </summary>
+      <param name="error">The allowed error tolerance to be used for comparison.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector2EqualityComparer.Equals(UnityEngine.Vector2,UnityEngine.Vector2)">
+      <summary>
+        <para>Compares the actual and expected Vector2 objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Vector2 object.</param>
+      <param name="actual">Actual Vector2 object to be compared with expected.</param>
+      <returns>
+        <para>Returns true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector2EqualityComparer.GetHashCode(UnityEngine.Vector2)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Vector2 objects.</para>
+      </summary>
+      <param name="vec2">The Vector2 object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.Vector2EqualityComparer.Instance">
+      <summary>
+        <para>A comparer instance with default error 0.0001f.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.Vector3ComparerWithEqualsOperator">
+      <summary>
+        <para>Compare two Vector3 objects for equality using overloaded == operator.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector3ComparerWithEqualsOperator.Equals(UnityEngine.Vector3,UnityEngine.Vector3)">
+      <summary>
+        <para>Compare the actual and expected Vector3 objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Vector3 object.</param>
+      <param name="actual">Actual Vector3 object to be compared with expected.</param>
+      <returns>
+        <para>Return true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector3ComparerWithEqualsOperator.GetHashCode(UnityEngine.Vector3)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Vector3 objects.</para>
+      </summary>
+      <param name="vec3">The Vector3 object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.Vector3ComparerWithEqualsOperator.Instance">
+      <summary>
+        <para>A comparer instance to be used with NUnit constrants.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.Vector3EqualityComparer">
+      <summary>
+        <para>Compares two Vector3 objects for equality within given tolerance.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector3EqualityComparer.#ctor(System.Single)">
+      <summary>
+        <para>Creates an instance with a custom error value.</para>
+      </summary>
+      <param name="allowedError">The allowed error tolerance to be used for comparison.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector3EqualityComparer.Equals(UnityEngine.Vector3,UnityEngine.Vector3)">
+      <summary>
+        <para>Compares the actual and expected Vector3 objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Vector3 object.</param>
+      <param name="actual">Actual Vector3 object to be compared with expected.</param>
+      <returns>
+        <para>Returns true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector3EqualityComparer.GetHashCode(UnityEngine.Vector3)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Vector3 objects.</para>
+      </summary>
+      <param name="vec3">The Vector3 object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.Vector3EqualityComparer.Instance">
+      <summary>
+        <para>A comparer instance with default error 0.0001f.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.Vector4ComparerWithEqualsOperator">
+      <summary>
+        <para>Compares two Vector4 objects for equality using overloaded == operator.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector4ComparerWithEqualsOperator.Equals(UnityEngine.Vector4,UnityEngine.Vector4)">
+      <summary>
+        <para>Compares the actual and expected Vector4 objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Vector4 object.</param>
+      <param name="actual">Actual Vector4 object to be compared with expected.</param>
+      <returns>
+        <para>Returns true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector4ComparerWithEqualsOperator.GetHashCode(UnityEngine.Vector4)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Vector4 objects.</para>
+      </summary>
+      <param name="vec4">The Vector4 object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.Vector4ComparerWithEqualsOperator.Instance">
+      <summary>
+        <para>A comparer instance to be used with NUnit constrants.</para>
+      </summary>
+    </member>
+    <member name="T:UnityEngine.TestTools.Utils.Vector4EqualityComparer">
+      <summary>
+        <para>Compares two Vector4 objects for equality within given tolerance.</para>
+      </summary>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector4EqualityComparer.#ctor(System.Single)">
+      <summary>
+        <para>Creates an instance with a custom error value.</para>
+      </summary>
+      <param name="allowedError">The allowed error tolerance to be used for comparison.</param>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector4EqualityComparer.Equals(UnityEngine.Vector4,UnityEngine.Vector4)">
+      <summary>
+        <para>Compares the actual and expected Vector4 objects for equality.</para>
+      </summary>
+      <param name="expected">Expected Vector4 object.</param>
+      <param name="actual">Actual Vector4 object to be compared with expected.</param>
+      <returns>
+        <para>Returns true if expected and actual objects are equal, else false.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.TestTools.Utils.Vector4EqualityComparer.GetHashCode(UnityEngine.Vector4)">
+      <summary>
+        <para>Hash code implementation which returns same hash code for all equal Vector4 objects.</para>
+      </summary>
+      <param name="vec4">The Vector4 object for which the hash code is to be computed.</param>
+      <returns>
+        <para>The hash code.</para>
+      </returns>
+    </member>
+    <member name="P:UnityEngine.TestTools.Utils.Vector4EqualityComparer.Instance">
+      <summary>
+        <para>A comparer instance with default error 0.0001f.</para>
+      </summary>
+    </member>
+  </members>
+</doc>

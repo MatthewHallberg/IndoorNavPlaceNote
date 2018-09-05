@@ -439,7 +439,6 @@ public class LibPlacenote : MonoBehaviour
 	/// <param name="listener">A listener to be added to the subscriber list.</param>
 	public void RegisterListener (PlacenoteListener listener)
 	{
-		listeners.Clear ();
 		listeners.Add (listener);
 	}
 

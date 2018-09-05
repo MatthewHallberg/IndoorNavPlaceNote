@@ -99,16 +99,13 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 	}
 
 	void FindMap () {
-		ConfigureSession (false);
-		LibPlacenote.Instance.StartSession ();
-
 		//get metadata
 		LibPlacenote.Instance.SearchMaps (MAP_NAME, (LibPlacenote.MapInfo [] obj) => {
 			foreach (LibPlacenote.MapInfo map in obj) {
 				if (map.metadata.name == MAP_NAME) {
 					mSelectedMapInfo = map;
-					Debug.Log ("Loaded MAP INFO!!!!!: " + mSelectedMapInfo.metadata.userdata);
 					Debug.Log ("FOUND MAP: " + mSelectedMapInfo.placeId);
+					LoadMap ();
 					return;
 				}
 			}
@@ -116,10 +113,12 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 	}
 
 	void LoadMap () {
+		ConfigureSession (false);
+
 		LibPlacenote.Instance.LoadMap (mSelectedMapInfo.placeId,
 			(completed, faulted, percentage) => {
 				if (completed) {
-					LibPlacenote.Instance.StartSession (true);
+				
 					if (mReportDebug) {
 						LibPlacenote.Instance.StartRecordDataset (
 							(datasetCompleted, datasetFaulted, datasetPercentage) => {
@@ -135,8 +134,10 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 						Debug.Log ("Started Debug Report");
 					}
 
-					Debug.Log ("Loaded ID: " + mSelectedMapInfo.placeId + "LOADING SHAPES");
-					GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
+					Debug.Log ("Loaded ID: " + mSelectedMapInfo.placeId + "...Starting session");
+
+					LibPlacenote.Instance.StartSession (true);
+
 				} else if (faulted) {
 					Debug.Log ("Failed to load ID: " + mSelectedMapInfo.placeId);
 				} else {
@@ -169,7 +170,7 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 		Debug.Log ("prevStatus: " + prevStatus.ToString () + " currStatus: " + currStatus.ToString ());
 		if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST) {
 			Debug.Log("Localized: " + mSelectedMapInfo.metadata.userdata);
-			LoadMap ();//LEFT OFF HERE!!!! Make sure this gets called!!!
+			GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
 		} else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
 			Debug.Log ("Mapping");
 		} else if (currStatus == LibPlacenote.MappingStatus.LOST) {

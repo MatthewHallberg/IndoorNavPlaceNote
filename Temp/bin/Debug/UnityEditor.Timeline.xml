@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<doc>
+  <members>
+    <assembly>
+      <name>UnityEditor.Timeline</name>
+    </assembly>
+    <member name="T:UnityEditor.Timeline.TimelineEditor">
+      <summary>
+        <para>Information currently being edited in the Timeline Editor Window.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEditor.Timeline.TimelineEditor.inspectedAsset">
+      <summary>
+        <para>The TimelineAsset currently being shown in the Timeline window.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEditor.Timeline.TimelineEditor.inspectedDirector">
+      <summary>
+        <para>The PlayableDirector associated with the timeline currently being shown in the Timeline window.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEditor.Timeline.TimelineEditor.masterAsset">
+      <summary>
+        <para>The TimelineAsset at the root of the hierarchy currently being shown in the Timeline window.</para>
+      </summary>
+    </member>
+    <member name="P:UnityEditor.Timeline.TimelineEditor.masterDirector">
+      <summary>
+        <para>The PlayableDirector responsible for the playback of the timeline currently being shown in the Timeline window.</para>
+      </summary>
+    </member>
+  </members>
+</doc>
