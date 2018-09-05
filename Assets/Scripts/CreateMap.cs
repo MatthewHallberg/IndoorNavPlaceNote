@@ -17,6 +17,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 	private ShapeManager shapeManager;
 
 	private bool shouldRecordWaypoints = false;
+	private bool shouldSaveMap = true;
 
 	private UnityARSessionNativeInterface mSession;
 	private bool mFrameUpdated = false;
@@ -48,7 +49,6 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
 	void OnDisable () {
 		UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
-		FeaturesVisualizer.clearPointcloud ();
 	}
 
 	private void ARFrameUpdated (UnityARCamera camera) {
@@ -74,34 +74,6 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 		mImage.vu.stride = (ulong)mARCamera.videoParams.yWidth;
 
 		mSession.SetCapturePixelData (true, mImage.y.data, mImage.vu.data);
-	}
-
-	public void DeleteMaps () {
-		if (!LibPlacenote.Instance.Initialized ()) {
-			Debug.Log ("SDK not yet initialized");
-			ToastManager.ShowToast ("SDK not yet initialized", 2f);
-			return;
-		}
-
-		//get map id from gamesparks
-		MapService.Instance.LoadMap (MAP_NAME,DeleteAllMaps);
-	}
-
-	void DeleteAllMaps (string mapID) {
-		//delete all maps
-		LibPlacenote.Instance.SearchMaps (MAP_NAME, (LibPlacenote.MapInfo [] obj) => {
-			foreach (LibPlacenote.MapInfo map in obj) {
-				if (map.metadata.name == MAP_NAME) {
-					LibPlacenote.Instance.DeleteMap (mapID, (deleted, errMsg) => {
-						if (deleted) {
-							Debug.Log ("Deleted ID: " + mapID);
-						} else {
-							Debug.Log ("Failed to delete ID: " + mapID);
-						}
-					});
-				}
-			}
-		});
 	}
 
 	// Update is called once per frame
@@ -204,52 +176,84 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 	}
 
 	public void OnSaveMapClick () {
+		DeleteMaps ();
+	}
+
+	void DeleteMaps () {
 		if (!LibPlacenote.Instance.Initialized ()) {
 			Debug.Log ("SDK not yet initialized");
 			ToastManager.ShowToast ("SDK not yet initialized", 2f);
 			return;
 		}
-
-		bool useLocation = Input.location.status == LocationServiceStatus.Running;
-		LocationInfo locationInfo = Input.location.lastData;
-
-		Debug.Log("Saving...");
-		LibPlacenote.Instance.SaveMap (
-			(mapId) => {
-			LibPlacenote.Instance.StopSession ();
-
-				LibPlacenote.MapMetadataSettable metadata = new LibPlacenote.MapMetadataSettable ();
-				metadata.name = MAP_NAME;
-				//save name and ID to gamesparks
-				MapService.Instance.SaveMap ("MattsMap", mapId);
-				Debug.Log ("Saved Map Name: " + metadata.name);
-
-				JObject userdata = new JObject ();
-				metadata.userdata = userdata;
-
-				JObject shapeList = GetComponent<ShapeManager> ().Shapes2JSON ();
-
-				userdata ["shapeList"] = shapeList;
-
-				if (useLocation) {
-					metadata.location = new LibPlacenote.MapLocation ();
-					metadata.location.latitude = locationInfo.latitude;
-					metadata.location.longitude = locationInfo.longitude;
-					metadata.location.altitude = locationInfo.altitude;
-				}
-				LibPlacenote.Instance.SetMetadata (mapId, metadata);
-				mCurrMapDetails = metadata;
-			},
-			(completed, faulted, percentage) => {
-				if (completed) {
-					Debug.Log("Upload Complete:" + mCurrMapDetails.name);
-				} else if (faulted) {
-					Debug.Log ("Upload of Map Named: " + mCurrMapDetails.name + "faulted");
-				} else {
-					Debug.Log ("Uploading Map Named: " + mCurrMapDetails.name + "(" + percentage.ToString ("F2") + "/1.0)");
+		//delete all maps
+		LibPlacenote.Instance.SearchMaps (MAP_NAME, (LibPlacenote.MapInfo [] obj) => {
+			foreach (LibPlacenote.MapInfo map in obj) {
+				if (map.metadata.name == MAP_NAME) {
+					LibPlacenote.Instance.DeleteMap (map.placeId, (deleted, errMsg) => {
+						if (deleted) {
+							Debug.Log ("Deleted ID: " + map.placeId);
+							SaveCurrentMap ();
+							return;
+						} else {
+							Debug.Log ("Failed to delete ID: " + map.placeId);
+							return;
+						}
+					});
 				}
 			}
-		);
+		});
+		SaveCurrentMap ();
+	}
+
+	void SaveCurrentMap () {
+		if (shouldSaveMap) {
+			shouldSaveMap = false;
+
+			if (!LibPlacenote.Instance.Initialized ()) {
+				Debug.Log ("SDK not yet initialized");
+				ToastManager.ShowToast ("SDK not yet initialized", 2f);
+				return;
+			}
+
+			bool useLocation = Input.location.status == LocationServiceStatus.Running;
+			LocationInfo locationInfo = Input.location.lastData;
+
+			Debug.Log ("Saving...");
+			LibPlacenote.Instance.SaveMap (
+				(mapId) => {
+					LibPlacenote.Instance.StopSession ();
+
+					LibPlacenote.MapMetadataSettable metadata = new LibPlacenote.MapMetadataSettable ();
+					metadata.name = MAP_NAME;
+					Debug.Log ("Saved Map Name: " + metadata.name);
+
+					JObject userdata = new JObject ();
+					metadata.userdata = userdata;
+
+					JObject shapeList = GetComponent<ShapeManager> ().Shapes2JSON ();
+
+					userdata ["shapeList"] = shapeList;
+
+					if (useLocation) {
+						metadata.location = new LibPlacenote.MapLocation ();
+						metadata.location.latitude = locationInfo.latitude;
+						metadata.location.longitude = locationInfo.longitude;
+						metadata.location.altitude = locationInfo.altitude;
+					}
+					LibPlacenote.Instance.SetMetadata (mapId, metadata);
+					mCurrMapDetails = metadata;
+				},
+				(completed, faulted, percentage) => {
+					if (completed) {
+						Debug.Log ("Upload Complete:" + mCurrMapDetails.name);
+					} else if (faulted) {
+						Debug.Log ("Upload of Map Named: " + mCurrMapDetails.name + "faulted");
+					} else {
+						Debug.Log ("Uploading Map Named: " + mCurrMapDetails.name + "(" + percentage.ToString ("F2") + "/1.0)");
+					}
+				}
+			);
+		}
 	}
 
 	public void OnPose (Matrix4x4 outputPose, Matrix4x4 arkitPose) { }

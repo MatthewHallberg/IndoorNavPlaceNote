@@ -62,25 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_MK\MKGlowFree\MKGlowFree.cs" />
-    <Compile Include="Assets\GameSparks\GameSparksRTUnity.cs" />
-    <Compile Include="Assets\GameSparks\GameSparksSettings.cs" />
-    <Compile Include="Assets\GameSparks\GameSparksUnity.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\DefaultPlatform.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\IControlledTimer.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\IControlledWebSocket.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\Native\detail\GameSparksNative.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\Native\detail\GameSparksNativePINVOKE.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\Native\detail\NativeWebSocket.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\Native\NativePlatform.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\Native\NativeWebSocket.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\PlatformBase.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\TimerController.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\UnityTimer.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\WebGL\SimpleJson2.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\WebGL\WebGLPlatform.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\WebGL\WebGLWebSocket.cs" />
-    <Compile Include="Assets\GameSparks\Platforms\WebSocketController.cs" />
-    <Compile Include="Assets\GameSparks\TestUI\GameSparksTestUI.cs" />
     <Compile Include="Assets\Placenote\Examples\KeyboardMover.cs" />
     <Compile Include="Assets\Placenote\Examples\MapInfoElement.cs" />
     <Compile Include="Assets\Placenote\Examples\PlacenoteARAnchorManager.cs" />
@@ -101,10 +82,7 @@
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteListener.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PNUtility.cs" />
     <Compile Include="Assets\Scripts\CreateMap.cs" />
-    <Compile Include="Assets\Scripts\DeviceAuthentication.cs" />
     <Compile Include="Assets\Scripts\DiamonBehavior.cs" />
-    <Compile Include="Assets\Scripts\GameSparksManager.cs" />
-    <Compile Include="Assets\Scripts\MapService.cs" />
     <Compile Include="Assets\Scripts\ReadMap.cs" />
     <Compile Include="Assets\Scripts\SceneService.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitFaceTrackingRemoteConnection.cs" />
@@ -168,11 +146,9 @@
     <Compile Include="Assets\WanzyeeStudio\Scripts\Basic\Json\Vector3Converter.cs" />
     <Compile Include="Assets\WanzyeeStudio\Scripts\Basic\Json\Vector4Converter.cs" />
     <Compile Include="Assets\WanzyeeStudio\Scripts\Basic\Utility\JsonNetUtility.cs" />
-    <None Include="Assets\GameSparks\Plugins\GameSparksRT.xml" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Illumin\MK_Illumin-Glossy.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Render\MKGlowBlurInc.cginc" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Cutout\MK_Cutout-Glossy.shader" />
-    <None Include="Assets\GameSparks\Plugins\Metro\GameSparksRT.xml" />
     <None Include="Assets\WanzyeeStudio\ThirdParty\SaladLab\Json.Net.Unity3D\link.xml" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Sprites\MK_Sprite-Default.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Particle\MK_Particle AddMultiply.shader" />
@@ -191,7 +167,6 @@
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Cutout\MK_Cutout-DiffuseBumpSpec.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Illumin\MK_Illumin-DiffuseBumpSpec.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Sprites\MK_Sprite-Diffuse.shader" />
-    <None Include="Assets\GameSparks\README.txt" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Illumin\MK_Illumin-DiffuseBumped.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Normal\MK_Normal-Glossy.shader" />
     <None Include="Assets\UnityARKitPlugin\ARKitRemote\ARKITREMOTE.txt" />
@@ -201,10 +176,8 @@
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Other\MK_Mobile-Diffuse.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\UI\MK_UI_Default.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Normal\MK_Normal-Diffuse.shader" />
-    <None Include="Assets\Scripts\cloudCode.txt" />
     <None Include="Assets\Placenote\Shaders\PointCloud.shader" />
     <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\YUVShader.shader" />
-    <None Include="Assets\GameSparks\link.xml" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Illumin\MK_Illumin-Diffuse.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Transparent\MK_Transparent-Glossy.shader" />
     <None Include="Assets\_MK\MKGlowFree\Shader\Variants_SelectiveMode\Cutout\MK_Cutout-Diffuse.shader" />
@@ -421,18 +394,6 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparks.Api">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparksRT">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparksRT.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparks">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparks.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle_GameSparks">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>/Users/matthew/Desktop/Placenote/Assets/WanzyeeStudio/ThirdParty/SaladLab/Json.Net.Unity3D/Plugins/Newtonsoft.Json.dll</HintPath>

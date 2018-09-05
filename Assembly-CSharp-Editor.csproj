@@ -62,12 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_MK\MKGlowFree\Editor\MKGlowFreeEditor.cs" />
-    <Compile Include="Assets\GameSparks\Editor\GameSparksEditorFormUpload.cs" />
-    <Compile Include="Assets\GameSparks\Editor\GameSparksPopUp.cs" />
-    <Compile Include="Assets\GameSparks\Editor\GameSparksRestApi.cs" />
-    <Compile Include="Assets\GameSparks\Editor\GameSparksRestWindow.cs" />
-    <Compile Include="Assets\GameSparks\Editor\GameSparksSettingsEditor.cs" />
-    <Compile Include="Assets\GameSparks\Editor\GameSparksUnityInspector.cs" />
     <Compile Include="Assets\Placenote\Editor\APIKeyCheck.cs" />
     <Compile Include="Assets\Placenote\Editor\LibraryCheck.cs" />
     <Compile Include="Assets\Placenote\Editor\PlacenoteVersionInfo.cs" />
@@ -337,18 +331,6 @@
     </Reference>
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
       <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparks.Api">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparks.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparksRT">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparksRT.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSparks">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/GameSparks.dll</HintPath>
-    </Reference>
-    <Reference Include="BouncyCastle_GameSparks">
-      <HintPath>/Users/matthew/Desktop/Placenote/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>/Users/matthew/Desktop/Placenote/Assets/WanzyeeStudio/ThirdParty/SaladLab/Json.Net.Unity3D/Plugins/Newtonsoft.Json.dll</HintPath>

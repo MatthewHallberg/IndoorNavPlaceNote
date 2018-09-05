@@ -46,7 +46,6 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 
 	void OnDisable () {
 		UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
-		FeaturesVisualizer.clearPointcloud ();
 	}
 
 	private void ARFrameUpdated (UnityARCamera camera) {
@@ -83,12 +82,11 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 
 			if (mARCamera.trackingState == ARTrackingState.ARTrackingStateNotAvailable) {
 				// ARKit pose is not yet initialized
-				Debug.Log ("POSE NOT INITIALIZED>>>>");
 				return;
 			} else if (!mARKitInit && LibPlacenote.Instance.Initialized ()) {
 				mARKitInit = true;
 				Debug.Log("ARKit Initialized: LOADING MAP!!!!!");
-				LoadMapByName ();
+				FindMap ();
 			}
 
 			Matrix4x4 matrix = mSession.GetCameraPose ();
@@ -100,36 +98,28 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 		}
 	}
 
-	void LoadMapByName () {
+	void FindMap () {
 		ConfigureSession (false);
+		LibPlacenote.Instance.StartSession ();
 
-		if (!LibPlacenote.Instance.Initialized ()) {
-			Debug.Log ("SDK not yet initialized");
-			ToastManager.ShowToast ("SDK not yet initialized", 2f);
-			return;
-		}
-
-		//get map id from gamesparks
-		MapService.Instance.LoadMap (MAP_NAME,LoadMap);
-	}
-
-	void LoadMap (string mapID) {
 		//get metadata
 		LibPlacenote.Instance.SearchMaps (MAP_NAME, (LibPlacenote.MapInfo [] obj) => {
 			foreach (LibPlacenote.MapInfo map in obj) {
 				if (map.metadata.name == MAP_NAME) {
 					mSelectedMapInfo = map;
-					Debug.Log ("FOUND MAP: " + MAP_NAME);
+					Debug.Log ("Loaded MAP INFO!!!!!: " + mSelectedMapInfo.metadata.userdata);
+					Debug.Log ("FOUND MAP: " + mSelectedMapInfo.placeId);
+					return;
 				}
 			}
 		});
-		Debug.Log ("Loading Map ID: " + mapID);
-		LibPlacenote.Instance.LoadMap (mapID,
+	}
+
+	void LoadMap () {
+		LibPlacenote.Instance.LoadMap (mSelectedMapInfo.placeId,
 			(completed, faulted, percentage) => {
 				if (completed) {
-
 					LibPlacenote.Instance.StartSession (true);
-
 					if (mReportDebug) {
 						LibPlacenote.Instance.StartRecordDataset (
 							(datasetCompleted, datasetFaulted, datasetPercentage) => {
@@ -145,9 +135,10 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 						Debug.Log ("Started Debug Report");
 					}
 
-					Debug.Log ("Loaded ID: " + mapID);
+					Debug.Log ("Loaded ID: " + mSelectedMapInfo.placeId + "LOADING SHAPES");
+					GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
 				} else if (faulted) {
-					Debug.Log ("Failed to load ID: " + mapID);
+					Debug.Log ("Failed to load ID: " + mSelectedMapInfo.placeId);
 				} else {
 					Debug.Log ("Map Download: " + percentage.ToString ("F2") + "/1.0");
 				}
@@ -162,14 +153,14 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 	}
 
 	private void ConfigureSession (bool clearPlanes) {
-//#if !UNITY_EDITOR
+#if !UNITY_EDITOR
 		ARKitWorldTrackingSessionConfiguration config = new ARKitWorldTrackingSessionConfiguration ();
-
+		config.planeDetection = UnityARPlaneDetection.None;
 		config.alignment = UnityARAlignment.UnityARAlignmentGravity;
 		config.getPointCloudData = true;
 		config.enableLightEstimation = true;
 		mSession.RunWithConfig (config);
-//#endif
+#endif
 	}
 
 	public void OnPose (Matrix4x4 outputPose, Matrix4x4 arkitPose) { }
@@ -177,8 +168,8 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 	public void OnStatusChange (LibPlacenote.MappingStatus prevStatus, LibPlacenote.MappingStatus currStatus) {
 		Debug.Log ("prevStatus: " + prevStatus.ToString () + " currStatus: " + currStatus.ToString ());
 		if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST) {
-			Debug.Log("Localized");
-			GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
+			Debug.Log("Localized: " + mSelectedMapInfo.metadata.userdata);
+			LoadMap ();//LEFT OFF HERE!!!! Make sure this gets called!!!
 		} else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
 			Debug.Log ("Mapping");
 		} else if (currStatus == LibPlacenote.MappingStatus.LOST) {

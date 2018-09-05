@@ -48,7 +48,6 @@ public class ShapeManager : MonoBehaviour {
 
     public void AddShape(Vector3 shapePosition, Quaternion shapeRotation, bool isDestination)
     {
-        System.Random rnd = new System.Random();
 		int typeIndex = 0;//sphere
 		if (isDestination) typeIndex = 1;//diamond
 
@@ -60,7 +59,7 @@ public class ShapeManager : MonoBehaviour {
         shapeInfo.qy = shapeRotation.y;
         shapeInfo.qz = shapeRotation.z;
         shapeInfo.qw = shapeRotation.w;
-		shapeInfo.shapeType = typeIndex;
+		shapeInfo.shapeType = typeIndex.GetHashCode();
         shapeInfoList.Add(shapeInfo);
 
         GameObject shape = ShapeFromInfo(shapeInfo);
@@ -70,6 +69,7 @@ public class ShapeManager : MonoBehaviour {
 
     public GameObject ShapeFromInfo(ShapeInfo info)
     {
+		Debug.Log ("SHAPE NUMBER!!!!! " + info.shapeType);
 		GameObject shape = Instantiate(ShapePrefabs[info.shapeType]);
 		shape.tag = "waypoint";
         shape.transform.position = new Vector3(info.px, info.py, info.pz);
@@ -104,7 +104,6 @@ public class ShapeManager : MonoBehaviour {
 
     public void LoadShapesJSON(JToken mapMetadata)
     {
-        ClearShapes();
         if (mapMetadata is JObject && mapMetadata["shapeList"] is JObject)
         {
             ShapeList shapeList = mapMetadata["shapeList"].ToObject<ShapeList>();
