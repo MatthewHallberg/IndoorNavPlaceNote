@@ -2522,26 +2522,6 @@ public:
 #pragma clang diagnostic pop
 #endif
 #endif // INTERNAL_ARANCHORREMOVED_T3371657877_H
-#ifndef INTERNAL_ARANCHORUPDATED_T2645242205_H
-#define INTERNAL_ARANCHORUPDATED_T2645242205_H
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-
-// UnityEngine.XR.iOS.UnityARSessionNativeInterface/internal_ARAnchorUpdated
-struct  internal_ARAnchorUpdated_t2645242205  : public MulticastDelegate_t
-{
-public:
-
-public:
-};
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#endif // INTERNAL_ARANCHORUPDATED_T2645242205_H
 #ifndef INTERNAL_ARFACEANCHORADDED_T1021040265_H
 #define INTERNAL_ARFACEANCHORADDED_T1021040265_H
 #ifdef __clang__
@@ -2861,55 +2841,54 @@ public:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2600 = { sizeof (internal_ARAnchorUpdated_t2645242205), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2601 = { sizeof (internal_ARAnchorRemoved_t3371657877), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2602 = { sizeof (internal_ARUserAnchorAdded_t3285282493), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2603 = { sizeof (internal_ARUserAnchorUpdated_t3964727538), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2604 = { sizeof (internal_ARUserAnchorRemoved_t386858594), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2605 = { sizeof (internal_ARFaceAnchorAdded_t1021040265), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2606 = { sizeof (internal_ARFaceAnchorUpdated_t3423900432), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2607 = { sizeof (internal_ARFaceAnchorRemoved_t2563439402), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2608 = { sizeof (internal_ARImageAnchorAdded_t958088978), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2609 = { sizeof (internal_ARImageAnchorUpdated_t294417830), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2610 = { sizeof (internal_ARImageAnchorRemoved_t1751104571), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2611 = { sizeof (internal_ARSessionTrackingChanged_t1988849735), sizeof(Il2CppMethodPointer), 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2612 = { sizeof (UnityARKitPluginSettings_t2201217663), -1, 0, 0 };
-extern const int32_t g_FieldOffsetTable2612[2] = 
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2600 = { sizeof (internal_ARAnchorRemoved_t3371657877), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2601 = { sizeof (internal_ARUserAnchorAdded_t3285282493), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2602 = { sizeof (internal_ARUserAnchorUpdated_t3964727538), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2603 = { sizeof (internal_ARUserAnchorRemoved_t386858594), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2604 = { sizeof (internal_ARFaceAnchorAdded_t1021040265), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2605 = { sizeof (internal_ARFaceAnchorUpdated_t3423900432), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2606 = { sizeof (internal_ARFaceAnchorRemoved_t2563439402), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2607 = { sizeof (internal_ARImageAnchorAdded_t958088978), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2608 = { sizeof (internal_ARImageAnchorUpdated_t294417830), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2609 = { sizeof (internal_ARImageAnchorRemoved_t1751104571), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2610 = { sizeof (internal_ARSessionTrackingChanged_t1988849735), sizeof(Il2CppMethodPointer), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2611 = { sizeof (UnityARKitPluginSettings_t2201217663), -1, 0, 0 };
+extern const int32_t g_FieldOffsetTable2611[2] = 
 {
 	UnityARKitPluginSettings_t2201217663::get_offset_of_m_ARKitUsesFacetracking_4(),
 	UnityARKitPluginSettings_t2201217663::get_offset_of_AppRequiresARKit_5(),
 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2613 = { sizeof (BoundsConverter_t1483037059), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2614 = { sizeof (ColorConverter_t4014552458), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2615 = { sizeof (DictionaryConverter_t7137714), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2616 = { sizeof (Matrix4x4Converter_t508213184), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2617 = { sizeof (U3CGetPropertyNamesU3Ec__AnonStorey0_t4043093094), -1, 0, 0 };
-extern const int32_t g_FieldOffsetTable2617[1] = 
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2612 = { sizeof (BoundsConverter_t1483037059), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2613 = { sizeof (ColorConverter_t4014552458), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2614 = { sizeof (DictionaryConverter_t7137714), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2615 = { sizeof (Matrix4x4Converter_t508213184), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2616 = { sizeof (U3CGetPropertyNamesU3Ec__AnonStorey0_t4043093094), -1, 0, 0 };
+extern const int32_t g_FieldOffsetTable2616[1] = 
 {
 	U3CGetPropertyNamesU3Ec__AnonStorey0_t4043093094::get_offset_of__indexes_0(),
 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2618 = { sizeof (U3CGetPropertyNamesU3Ec__AnonStorey1_t1312421259), -1, 0, 0 };
-extern const int32_t g_FieldOffsetTable2618[2] = 
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2617 = { sizeof (U3CGetPropertyNamesU3Ec__AnonStorey1_t1312421259), -1, 0, 0 };
+extern const int32_t g_FieldOffsetTable2617[2] = 
 {
 	U3CGetPropertyNamesU3Ec__AnonStorey1_t1312421259::get_offset_of_row_0(),
 	U3CGetPropertyNamesU3Ec__AnonStorey1_t1312421259::get_offset_of_U3CU3Ef__refU240_1(),
 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2619 = { 0, 0, 0, 0 };
-extern const int32_t g_FieldOffsetTable2619[4] = 
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2618 = { 0, 0, 0, 0 };
+extern const int32_t g_FieldOffsetTable2618[4] = 
 {
 	0,
 	0,
 	0,
 	0,
 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2620 = { sizeof (QuaternionConverter_t3259427960), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2621 = { sizeof (RectConverter_t4262382057), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2622 = { sizeof (RectOffsetConverter_t2231315732), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2623 = { sizeof (Vector2Converter_t2200582663), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2624 = { sizeof (Vector3Converter_t1714108935), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2625 = { sizeof (Vector4Converter_t2360097287), -1, 0, 0 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2626 = { sizeof (JsonNetUtility_t2004755263), -1, sizeof(JsonNetUtility_t2004755263_StaticFields), 0 };
-extern const int32_t g_FieldOffsetTable2626[10] = 
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2619 = { sizeof (QuaternionConverter_t3259427960), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2620 = { sizeof (RectConverter_t4262382057), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2621 = { sizeof (RectOffsetConverter_t2231315732), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2622 = { sizeof (Vector2Converter_t2200582663), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2623 = { sizeof (Vector3Converter_t1714108935), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2624 = { sizeof (Vector4Converter_t2360097287), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2625 = { sizeof (JsonNetUtility_t2004755263), -1, sizeof(JsonNetUtility_t2004755263_StaticFields), 0 };
+extern const int32_t g_FieldOffsetTable2625[10] = 
 {
 	JsonNetUtility_t2004755263_StaticFields::get_offset_of_defaultSettings_0(),
 	JsonNetUtility_t2004755263_StaticFields::get_offset_of_U3CU3Ef__amU24cache0_1(),
@@ -2922,12 +2901,12 @@ extern const int32_t g_FieldOffsetTable2626[10] =
 	JsonNetUtility_t2004755263_StaticFields::get_offset_of_U3CU3Ef__amU24cache6_8(),
 	JsonNetUtility_t2004755263_StaticFields::get_offset_of_U3CU3Ef__amU24cache7_9(),
 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2627 = { sizeof (U3CPrivateImplementationDetailsU3E_t3057255367), -1, sizeof(U3CPrivateImplementationDetailsU3E_t3057255367_StaticFields), 0 };
-extern const int32_t g_FieldOffsetTable2627[1] = 
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2626 = { sizeof (U3CPrivateImplementationDetailsU3E_t3057255367), -1, sizeof(U3CPrivateImplementationDetailsU3E_t3057255367_StaticFields), 0 };
+extern const int32_t g_FieldOffsetTable2626[1] = 
 {
 	U3CPrivateImplementationDetailsU3E_t3057255367_StaticFields::get_offset_of_U24fieldU2D9E9626CE335E3388398C6289FE13AEB5F7604824_0(),
 };
-extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2628 = { sizeof (U24ArrayTypeU3D44_t3630306107)+ sizeof (RuntimeObject), sizeof(U24ArrayTypeU3D44_t3630306107 ), 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize2627 = { sizeof (U24ArrayTypeU3D44_t3630306107)+ sizeof (RuntimeObject), sizeof(U24ArrayTypeU3D44_t3630306107 ), 0, 0 };
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif

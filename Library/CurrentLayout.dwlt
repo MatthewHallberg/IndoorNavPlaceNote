@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 5
+    x: 4
     y: 45
     width: 1377
     height: 855
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 29
+  controlID: 98
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 583, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 88
+  controlID: 95
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -178,7 +178,7 @@ MonoBehaviour:
     y: 0
     width: 1377
     height: 855
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &9
 MonoBehaviour:
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 583, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 89
+  controlID: 96
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_MinSize: {x: 306, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 90
+  controlID: 97
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -424,7 +424,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 256
+    x: 255
     y: 94
     width: 774
     height: 431
@@ -503,7 +503,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 5
+    x: 4
     y: 94
     width: 247
     height: 431
@@ -512,7 +512,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: aecbfeff72ccfeffeecefeff1acffeff28cffeffb2d7feff76d8fefff2dafeff1edbfeff2cdbfeffd8e2feff9ce3feff18e6feff44e6feff52e6feffa8edfeff6ceefeffe8f0feff14f1feff22f1feff44fafeff0efbfeff8afdfeffb6fdfeffc4fdfeff440fffff0e10ffff8a12ffffb612ffffc412fffffe1affffc81bffff441effff701effff7e1effff9a26ffff6427ffffe029ffff0c2affff1a2affff2e32fffff832ffff7435ffffa035ffffae35ffffc041ffffca42ffff4253ffff1266ffffe066ffff7069ffffb069ffffbc69ffffd479ffff7e84ffff3a85ffffc287ffffea87fffffe87ffff8caaffff64b8ffff0eb9ffff94bbffffc0bbffffd4bbffffdaebffff96ecffff1cefffff48efffff5cefffffe6fbffff0000000030380000d63b000018400000c04a0000
+    m_ExpandedIDs: d0d2ffff92d3ffff0ed6ffff3ad6ffff48d6ffff54e3ffff18e4ffff94e6ffffc0e6ffffcee6ffff66f0ffff2af1ffffaaf3ffffdaf3ffffecf3ffffe6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -635,7 +635,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 5
+    x: 4
     y: 546
     width: 1025
     height: 332
@@ -652,20 +652,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Placenote
+    - Assets/Placenote/Examples
   m_ViewMode: 1
   m_StartGridSize: 41
   m_LastFolders:
-  - Assets/Placenote
+  - Assets/Placenote/Examples
   m_LastFoldersGridSize: 41
   m_LastProjectPath: /Users/matthew/Desktop/Placenote
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f02d0000
-    m_LastClickedID: 11760
-    m_ExpandedIDs: 00000000f42c0000ce2e0000da2f000014300000
+    m_SelectedIDs: 8c2c0000
+    m_LastClickedID: 11404
+    m_ExpandedIDs: 00000000802c0000282e0000202f0000582f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -693,7 +693,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f42c00002e2e0000ce2e0000da2f000014300000
+    m_ExpandedIDs: 00000000802c0000282e0000202f0000582f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: b6430000164a00004c4500008c6a0000de2f0000364b00007443000034590000ca580000d4530000925200001a4700007a5a0000ea32000044460000ce290000c0070000ea070000989103004808000066f700008035000072330000060a0000004b0000304900006a43000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -768,7 +768,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 41
+    x: 4
     y: 546
     width: 1025
     height: 332
@@ -793,7 +793,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1034
+    x: 1033
     y: 94
     width: 348
     height: 784

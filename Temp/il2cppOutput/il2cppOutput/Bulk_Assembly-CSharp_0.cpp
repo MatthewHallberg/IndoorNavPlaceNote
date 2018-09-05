@@ -328,8 +328,6 @@ struct PointCloudParticleExample_t182386800;
 struct RandomName_t1718735515;
 // ReadMap
 struct ReadMap_t290114252;
-// ReadMap/<StartSesh>c__Iterator0
-struct U3CStartSeshU3Ec__Iterator0_t3054984384;
 // SceneService
 struct SceneService_t1369683201;
 // ShapeInfo
@@ -482,8 +480,6 @@ struct ColliderU5BU5D_t4234922487;
 struct ColorU5BU5D_t941916413;
 // UnityEngine.Component
 struct Component_t1923634451;
-// UnityEngine.Coroutine
-struct Coroutine_t3829159415;
 // UnityEngine.Events.InvokableCallList
 struct InvokableCallList_t2498835369;
 // UnityEngine.Events.PersistentCallGroup
@@ -827,7 +823,6 @@ extern RuntimeClass* U3COnPoseInvokeRepeatU3Ec__Iterator0_t1482259050_il2cpp_Typ
 extern RuntimeClass* U3COnPoseU3Ec__AnonStorey1_t1901961347_il2cpp_TypeInfo_var;
 extern RuntimeClass* U3COnSaveMapClickU3Ec__AnonStorey1_t1562371194_il2cpp_TypeInfo_var;
 extern RuntimeClass* U3CSaveCurrentMapU3Ec__AnonStorey1_t2497599089_il2cpp_TypeInfo_var;
-extern RuntimeClass* U3CStartSeshU3Ec__Iterator0_t3054984384_il2cpp_TypeInfo_var;
 extern RuntimeClass* UnityARImageFrameData_t1567504118_il2cpp_TypeInfo_var;
 extern RuntimeClass* UnityARSessionNativeInterface_t3929719369_il2cpp_TypeInfo_var;
 extern RuntimeClass* UnityAction_1_t1755411925_il2cpp_TypeInfo_var;
@@ -1371,7 +1366,6 @@ extern String_t* _stringLiteral2327634417;
 extern String_t* _stringLiteral2328155858;
 extern String_t* _stringLiteral233369228;
 extern String_t* _stringLiteral2334136589;
-extern String_t* _stringLiteral2336323174;
 extern String_t* _stringLiteral2336633449;
 extern String_t* _stringLiteral2338853921;
 extern String_t* _stringLiteral2343844380;
@@ -1539,7 +1533,6 @@ extern String_t* _stringLiteral2698620216;
 extern String_t* _stringLiteral2699192751;
 extern String_t* _stringLiteral2699595194;
 extern String_t* _stringLiteral2700782615;
-extern String_t* _stringLiteral2702008094;
 extern String_t* _stringLiteral2703862323;
 extern String_t* _stringLiteral2704949355;
 extern String_t* _stringLiteral2705711170;
@@ -1671,6 +1664,7 @@ extern String_t* _stringLiteral2984908384;
 extern String_t* _stringLiteral298575823;
 extern String_t* _stringLiteral2992434502;
 extern String_t* _stringLiteral3012212126;
+extern String_t* _stringLiteral3014281418;
 extern String_t* _stringLiteral3015967135;
 extern String_t* _stringLiteral3017714391;
 extern String_t* _stringLiteral3019008402;
@@ -1990,6 +1984,7 @@ extern String_t* _stringLiteral3684010733;
 extern String_t* _stringLiteral3685060628;
 extern String_t* _stringLiteral3685278532;
 extern String_t* _stringLiteral3693898086;
+extern String_t* _stringLiteral3694148624;
 extern String_t* _stringLiteral3695293086;
 extern String_t* _stringLiteral369629850;
 extern String_t* _stringLiteral370620675;
@@ -2659,7 +2654,6 @@ extern const RuntimeMethod* U3COnSaveMapClickU3Ec__AnonStorey1_U3CU3Em__0_m29345
 extern const RuntimeMethod* U3COnSaveMapClickU3Ec__AnonStorey1_U3CU3Em__1_m2042732193_RuntimeMethod_var;
 extern const RuntimeMethod* U3CSaveCurrentMapU3Ec__AnonStorey1_U3CU3Em__0_m2883237111_RuntimeMethod_var;
 extern const RuntimeMethod* U3CSaveCurrentMapU3Ec__AnonStorey1_U3CU3Em__1_m1122211108_RuntimeMethod_var;
-extern const RuntimeMethod* U3CStartSeshU3Ec__Iterator0_Reset_m228479561_RuntimeMethod_var;
 extern const RuntimeMethod* UnityARAmbient_UpdateLightEstimation_m2713847691_RuntimeMethod_var;
 extern const RuntimeMethod* UnityARCameraManager_FirstFrameUpdate_m4059259399_RuntimeMethod_var;
 extern const RuntimeMethod* UnityARKitLightManager_UpdateLightEstimations_m3658331493_RuntimeMethod_var;
@@ -2838,13 +2832,13 @@ extern const uint32_t ReadMap_LoadMap_m521434602_MetadataUsageId;
 extern const uint32_t ReadMap_OnDisable_m1645451303_MetadataUsageId;
 extern const uint32_t ReadMap_OnStatusChange_m762627917_MetadataUsageId;
 extern const uint32_t ReadMap_StartARKit_m1130144496_MetadataUsageId;
-extern const uint32_t ReadMap_StartSesh_m3144996065_MetadataUsageId;
 extern const uint32_t ReadMap_Start_m994284138_MetadataUsageId;
 extern const uint32_t ReadMap_U3CFindMapU3Em__0_m3230922823_MetadataUsageId;
 extern const uint32_t ReadMap_U3CLoadMapU3Em__1_m1523733024_MetadataUsageId;
 extern const uint32_t ReadMap_U3CLoadMapU3Em__2_m2276003870_MetadataUsageId;
 extern const uint32_t ReadMap_Update_m3700734195_MetadataUsageId;
 extern const uint32_t ReadMap__ctor_m489687578_MetadataUsageId;
+extern const uint32_t ShapeManager_AddDestinationShape_m1662079598_MetadataUsageId;
 extern const uint32_t ShapeManager_AddShape_m2474626662_MetadataUsageId;
 extern const uint32_t ShapeManager_ClearShapes_m538170962_MetadataUsageId;
 extern const uint32_t ShapeManager_LoadShapesJSON_m1728565777_MetadataUsageId;
@@ -2871,8 +2865,6 @@ extern const uint32_t U3COnSaveMapClickU3Ec__AnonStorey1_U3CU3Em__0_m2934588525_
 extern const uint32_t U3COnSaveMapClickU3Ec__AnonStorey1_U3CU3Em__1_m2042732193_MetadataUsageId;
 extern const uint32_t U3CSaveCurrentMapU3Ec__AnonStorey1_U3CU3Em__0_m2883237111_MetadataUsageId;
 extern const uint32_t U3CSaveCurrentMapU3Ec__AnonStorey1_U3CU3Em__1_m1122211108_MetadataUsageId;
-extern const uint32_t U3CStartSeshU3Ec__Iterator0_MoveNext_m130801765_MetadataUsageId;
-extern const uint32_t U3CStartSeshU3Ec__Iterator0_Reset_m228479561_MetadataUsageId;
 extern const uint32_t UnityARAmbient_OnDestroy_m3572932530_MetadataUsageId;
 extern const uint32_t UnityARAmbient_Start_m4109030088_MetadataUsageId;
 extern const uint32_t UnityARAnchorData_get_identifierStr_m291226870_MetadataUsageId;
@@ -3680,56 +3672,6 @@ public:
 #pragma clang diagnostic pop
 #endif
 #endif // RANDOMNAME_T1718735515_H
-#ifndef U3CSTARTSESHU3EC__ITERATOR0_T3054984384_H
-#define U3CSTARTSESHU3EC__ITERATOR0_T3054984384_H
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-
-// ReadMap/<StartSesh>c__Iterator0
-struct  U3CStartSeshU3Ec__Iterator0_t3054984384  : public RuntimeObject
-{
-public:
-	// System.Object ReadMap/<StartSesh>c__Iterator0::$current
-	RuntimeObject * ___U24current_0;
-	// System.Boolean ReadMap/<StartSesh>c__Iterator0::$disposing
-	bool ___U24disposing_1;
-	// System.Int32 ReadMap/<StartSesh>c__Iterator0::$PC
-	int32_t ___U24PC_2;
-
-public:
-	inline static int32_t get_offset_of_U24current_0() { return static_cast<int32_t>(offsetof(U3CStartSeshU3Ec__Iterator0_t3054984384, ___U24current_0)); }
-	inline RuntimeObject * get_U24current_0() const { return ___U24current_0; }
-	inline RuntimeObject ** get_address_of_U24current_0() { return &___U24current_0; }
-	inline void set_U24current_0(RuntimeObject * value)
-	{
-		___U24current_0 = value;
-		Il2CppCodeGenWriteBarrier((&___U24current_0), value);
-	}
-
-	inline static int32_t get_offset_of_U24disposing_1() { return static_cast<int32_t>(offsetof(U3CStartSeshU3Ec__Iterator0_t3054984384, ___U24disposing_1)); }
-	inline bool get_U24disposing_1() const { return ___U24disposing_1; }
-	inline bool* get_address_of_U24disposing_1() { return &___U24disposing_1; }
-	inline void set_U24disposing_1(bool value)
-	{
-		___U24disposing_1 = value;
-	}
-
-	inline static int32_t get_offset_of_U24PC_2() { return static_cast<int32_t>(offsetof(U3CStartSeshU3Ec__Iterator0_t3054984384, ___U24PC_2)); }
-	inline int32_t get_U24PC_2() const { return ___U24PC_2; }
-	inline int32_t* get_address_of_U24PC_2() { return &___U24PC_2; }
-	inline void set_U24PC_2(int32_t value)
-	{
-		___U24PC_2 = value;
-	}
-};
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#endif // U3CSTARTSESHU3EC__ITERATOR0_T3054984384_H
 #ifndef SHAPEINFO_T3821637623_H
 #define SHAPEINFO_T3821637623_H
 #ifdef __clang__
@@ -9423,45 +9365,6 @@ public:
 #pragma clang diagnostic pop
 #endif
 #endif // CAMERACLEARFLAGS_T2362496923_H
-#ifndef COROUTINE_T3829159415_H
-#define COROUTINE_T3829159415_H
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-
-// UnityEngine.Coroutine
-struct  Coroutine_t3829159415  : public YieldInstruction_t403091072
-{
-public:
-	// System.IntPtr UnityEngine.Coroutine::m_Ptr
-	intptr_t ___m_Ptr_0;
-
-public:
-	inline static int32_t get_offset_of_m_Ptr_0() { return static_cast<int32_t>(offsetof(Coroutine_t3829159415, ___m_Ptr_0)); }
-	inline intptr_t get_m_Ptr_0() const { return ___m_Ptr_0; }
-	inline intptr_t* get_address_of_m_Ptr_0() { return &___m_Ptr_0; }
-	inline void set_m_Ptr_0(intptr_t value)
-	{
-		___m_Ptr_0 = value;
-	}
-};
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-// Native definition for P/Invoke marshalling of UnityEngine.Coroutine
-struct Coroutine_t3829159415_marshaled_pinvoke : public YieldInstruction_t403091072_marshaled_pinvoke
-{
-	intptr_t ___m_Ptr_0;
-};
-// Native definition for COM marshalling of UnityEngine.Coroutine
-struct Coroutine_t3829159415_marshaled_com : public YieldInstruction_t403091072_marshaled_com
-{
-	intptr_t ___m_Ptr_0;
-};
-#endif // COROUTINE_T3829159415_H
 #ifndef DEPTHTEXTUREMODE_T4161834719_H
 #define DEPTHTEXTUREMODE_T4161834719_H
 #ifdef __clang__
@@ -16323,6 +16226,8 @@ public:
 	List_1_t998745069 * ___shapeInfoList_5;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> ShapeManager::shapeObjList
 	List_1_t2585711361 * ___shapeObjList_6;
+	// UnityEngine.GameObject ShapeManager::lastShape
+	GameObject_t1113636619 * ___lastShape_7;
 
 public:
 	inline static int32_t get_offset_of_ShapePrefabs_4() { return static_cast<int32_t>(offsetof(ShapeManager_t3761008781, ___ShapePrefabs_4)); }
@@ -16350,6 +16255,15 @@ public:
 	{
 		___shapeObjList_6 = value;
 		Il2CppCodeGenWriteBarrier((&___shapeObjList_6), value);
+	}
+
+	inline static int32_t get_offset_of_lastShape_7() { return static_cast<int32_t>(offsetof(ShapeManager_t3761008781, ___lastShape_7)); }
+	inline GameObject_t1113636619 * get_lastShape_7() const { return ___lastShape_7; }
+	inline GameObject_t1113636619 ** get_address_of_lastShape_7() { return &___lastShape_7; }
+	inline void set_lastShape_7(GameObject_t1113636619 * value)
+	{
+		___lastShape_7 = value;
+		Il2CppCodeGenWriteBarrier((&___lastShape_7), value);
 	}
 };
 
@@ -18707,6 +18621,8 @@ extern "C" IL2CPP_METHOD_ATTR Vector3_t3722313464  Vector3_get_zero_m1409827619 
 extern "C" IL2CPP_METHOD_ATTR Quaternion_t2301928331  Quaternion_Euler_m1803555822 (RuntimeObject * __this /* static, unused */, Vector3_t3722313464  p0, const RuntimeMethod* method);
 // System.Void ShapeManager::AddShape(UnityEngine.Vector3,UnityEngine.Quaternion,System.Boolean)
 extern "C" IL2CPP_METHOD_ATTR void ShapeManager_AddShape_m2474626662 (ShapeManager_t3761008781 * __this, Vector3_t3722313464  ___shapePosition0, Quaternion_t2301928331  ___shapeRotation1, bool ___isDestination2, const RuntimeMethod* method);
+// System.Void ShapeManager::AddDestinationShape()
+extern "C" IL2CPP_METHOD_ATTR void ShapeManager_AddDestinationShape_m1662079598 (ShapeManager_t3761008781 * __this, const RuntimeMethod* method);
 // System.Void CreateMap::ConfigureSession()
 extern "C" IL2CPP_METHOD_ATTR void CreateMap_ConfigureSession_m3133104256 (CreateMap_t442281535 * __this, const RuntimeMethod* method);
 // System.Void LibPlacenote::StartSession(System.Boolean)
@@ -19467,14 +19383,8 @@ extern "C" IL2CPP_METHOD_ATTR void ReadMap_InitARFrameBuffer_m165176934 (ReadMap
 extern "C" IL2CPP_METHOD_ATTR void ReadMap_FindMap_m558168200 (ReadMap_t290114252 * __this, const RuntimeMethod* method);
 // System.Void ReadMap::ConfigureSession(System.Boolean)
 extern "C" IL2CPP_METHOD_ATTR void ReadMap_ConfigureSession_m3946661447 (ReadMap_t290114252 * __this, bool ___clearPlanes0, const RuntimeMethod* method);
-// System.Void ReadMap/<StartSesh>c__Iterator0::.ctor()
-extern "C" IL2CPP_METHOD_ATTR void U3CStartSeshU3Ec__Iterator0__ctor_m2205825137 (U3CStartSeshU3Ec__Iterator0_t3054984384 * __this, const RuntimeMethod* method);
 // System.Void ReadMap::LoadMap()
 extern "C" IL2CPP_METHOD_ATTR void ReadMap_LoadMap_m521434602 (ReadMap_t290114252 * __this, const RuntimeMethod* method);
-// System.Collections.IEnumerator ReadMap::StartSesh()
-extern "C" IL2CPP_METHOD_ATTR RuntimeObject* ReadMap_StartSesh_m3144996065 (ReadMap_t290114252 * __this, const RuntimeMethod* method);
-// UnityEngine.Coroutine UnityEngine.MonoBehaviour::StartCoroutine(System.Collections.IEnumerator)
-extern "C" IL2CPP_METHOD_ATTR Coroutine_t3829159415 * MonoBehaviour_StartCoroutine_m3411253000 (MonoBehaviour_t3962482529 * __this, RuntimeObject* p0, const RuntimeMethod* method);
 // System.Void UnityEngine.SceneManagement.SceneManager::LoadScene(System.String)
 extern "C" IL2CPP_METHOD_ATTR void SceneManager_LoadScene_m1758133949 (RuntimeObject * __this /* static, unused */, String_t* p0, const RuntimeMethod* method);
 // System.Void System.Collections.Generic.List`1<UnityEngine.GameObject>::.ctor()
@@ -19502,6 +19412,16 @@ extern "C" IL2CPP_METHOD_ATTR GameObject_t1113636619 * ShapeManager_ShapeFromInf
 inline void List_1_Add_m2765963565 (List_1_t2585711361 * __this, GameObject_t1113636619 * p0, const RuntimeMethod* method)
 {
 	((  void (*) (List_1_t2585711361 *, GameObject_t1113636619 *, const RuntimeMethod*))List_1_Add_m3338814081_gshared)(__this, p0, method);
+}
+// System.Int32 System.Collections.Generic.List`1<ShapeInfo>::get_Count()
+inline int32_t List_1_get_Count_m2333381810 (List_1_t998745069 * __this, const RuntimeMethod* method)
+{
+	return ((  int32_t (*) (List_1_t998745069 *, const RuntimeMethod*))List_1_get_Count_m2934127733_gshared)(__this, method);
+}
+// !0 System.Collections.Generic.List`1<ShapeInfo>::get_Item(System.Int32)
+inline ShapeInfo_t3821637623 * List_1_get_Item_m375661478 (List_1_t998745069 * __this, int32_t p0, const RuntimeMethod* method)
+{
+	return ((  ShapeInfo_t3821637623 * (*) (List_1_t998745069 *, int32_t, const RuntimeMethod*))List_1_get_Item_m2287542950_gshared)(__this, p0, method);
 }
 // !0 System.Collections.Generic.List`1<UnityEngine.GameObject>::get_Item(System.Int32)
 inline GameObject_t1113636619 * List_1_get_Item_m3743125852 (List_1_t2585711361 * __this, int32_t p0, const RuntimeMethod* method)
@@ -19544,16 +19464,6 @@ inline void List_1_Clear_m1461996215 (List_1_t998745069 * __this, const RuntimeM
 }
 // System.Void ShapeList::.ctor()
 extern "C" IL2CPP_METHOD_ATTR void ShapeList__ctor_m126036271 (ShapeList_t1786196507 * __this, const RuntimeMethod* method);
-// System.Int32 System.Collections.Generic.List`1<ShapeInfo>::get_Count()
-inline int32_t List_1_get_Count_m2333381810 (List_1_t998745069 * __this, const RuntimeMethod* method)
-{
-	return ((  int32_t (*) (List_1_t998745069 *, const RuntimeMethod*))List_1_get_Count_m2934127733_gshared)(__this, method);
-}
-// !0 System.Collections.Generic.List`1<ShapeInfo>::get_Item(System.Int32)
-inline ShapeInfo_t3821637623 * List_1_get_Item_m375661478 (List_1_t998745069 * __this, int32_t p0, const RuntimeMethod* method)
-{
-	return ((  ShapeInfo_t3821637623 * (*) (List_1_t998745069 *, int32_t, const RuntimeMethod*))List_1_get_Item_m2287542950_gshared)(__this, p0, method);
-}
 // Newtonsoft.Json.Linq.JObject Newtonsoft.Json.Linq.JObject::FromObject(System.Object)
 extern "C" IL2CPP_METHOD_ATTR JObject_t2059125928 * JObject_FromObject_m308093546 (RuntimeObject * __this /* static, unused */, RuntimeObject * p0, const RuntimeMethod* method);
 // !!0 Newtonsoft.Json.Linq.JToken::ToObject<ShapeList>()
@@ -20552,7 +20462,7 @@ IL_00ec:
 		RuntimeObject * L_39 = Box(Vector3_t3722313464_il2cpp_TypeInfo_var, &L_38);
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_Log_m4051431634(NULL /*static, unused*/, L_39, /*hidden argument*/NULL);
-		(&V_6)->set_y_3((0.0f));
+		(&V_6)->set_y_3((-0.2f));
 		ShapeManager_t3761008781 * L_40 = __this->get_shapeManager_5();
 		Vector3_t3722313464  L_41 = V_6;
 		IL2CPP_RUNTIME_CLASS_INIT(Vector3_t3722313464_il2cpp_TypeInfo_var);
@@ -20565,6 +20475,16 @@ IL_00ec:
 
 IL_0133:
 	{
+		return;
+	}
+}
+// System.Void CreateMap::CreateDestination()
+extern "C" IL2CPP_METHOD_ATTR void CreateMap_CreateDestination_m741234553 (CreateMap_t442281535 * __this, const RuntimeMethod* method)
+{
+	{
+		ShapeManager_t3761008781 * L_0 = __this->get_shapeManager_5();
+		NullCheck(L_0);
+		ShapeManager_AddDestinationShape_m1662079598(L_0, /*hidden argument*/NULL);
 		return;
 	}
 }
@@ -36894,24 +36814,6 @@ extern "C" IL2CPP_METHOD_ATTR void ReadMap_LoadMap_m521434602 (ReadMap_t29011425
 		return;
 	}
 }
-// System.Collections.IEnumerator ReadMap::StartSesh()
-extern "C" IL2CPP_METHOD_ATTR RuntimeObject* ReadMap_StartSesh_m3144996065 (ReadMap_t290114252 * __this, const RuntimeMethod* method)
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_method (ReadMap_StartSesh_m3144996065_MetadataUsageId);
-		s_Il2CppMethodInitialized = true;
-	}
-	U3CStartSeshU3Ec__Iterator0_t3054984384 * V_0 = NULL;
-	{
-		U3CStartSeshU3Ec__Iterator0_t3054984384 * L_0 = (U3CStartSeshU3Ec__Iterator0_t3054984384 *)il2cpp_codegen_object_new(U3CStartSeshU3Ec__Iterator0_t3054984384_il2cpp_TypeInfo_var);
-		U3CStartSeshU3Ec__Iterator0__ctor_m2205825137(L_0, /*hidden argument*/NULL);
-		V_0 = L_0;
-		U3CStartSeshU3Ec__Iterator0_t3054984384 * L_1 = V_0;
-		return L_1;
-	}
-}
 // System.Void ReadMap::StartARKit()
 extern "C" IL2CPP_METHOD_ATTR void ReadMap_StartARKit_m1130144496 (ReadMap_t290114252 * __this, const RuntimeMethod* method)
 {
@@ -36979,14 +36881,14 @@ extern "C" IL2CPP_METHOD_ATTR void ReadMap_OnStatusChange_m762627917 (ReadMap_t2
 		int32_t L_5 = ___currStatus1;
 		if ((!(((uint32_t)L_5) == ((uint32_t)1))))
 		{
-			goto IL_0085;
+			goto IL_007b;
 		}
 	}
 	{
 		int32_t L_6 = ___prevStatus0;
 		if ((!(((uint32_t)L_6) == ((uint32_t)2))))
 		{
-			goto IL_0085;
+			goto IL_007b;
 		}
 	}
 	{
@@ -37007,51 +36909,50 @@ extern "C" IL2CPP_METHOD_ATTR void ReadMap_OnStatusChange_m762627917 (ReadMap_t2
 		JToken_t1038539247 * L_14 = ((MapMetadataSettable_t1435536628 *)L_13)->get_userdata_2();
 		NullCheck(L_11);
 		ShapeManager_LoadShapesJSON_m1728565777(L_11, L_14, /*hidden argument*/NULL);
-		Debug_Log_m4051431634(NULL /*static, unused*/, _stringLiteral2702008094, /*hidden argument*/NULL);
-		goto IL_00dd;
+		goto IL_00d3;
 	}
 
-IL_0085:
+IL_007b:
 	{
 		int32_t L_15 = ___currStatus1;
 		if ((!(((uint32_t)L_15) == ((uint32_t)1))))
 		{
-			goto IL_00a1;
+			goto IL_0097;
 		}
 	}
 	{
 		int32_t L_16 = ___prevStatus0;
 		if (L_16)
 		{
-			goto IL_00a1;
+			goto IL_0097;
 		}
 	}
 	{
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_Log_m4051431634(NULL /*static, unused*/, _stringLiteral789815547, /*hidden argument*/NULL);
-		goto IL_00dd;
+		goto IL_00d3;
 	}
 
-IL_00a1:
+IL_0097:
 	{
 		int32_t L_17 = ___currStatus1;
 		if ((!(((uint32_t)L_17) == ((uint32_t)2))))
 		{
-			goto IL_00b7;
+			goto IL_00ad;
 		}
 	}
 	{
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_Log_m4051431634(NULL /*static, unused*/, _stringLiteral559529702, /*hidden argument*/NULL);
-		goto IL_00dd;
+		goto IL_00d3;
 	}
 
-IL_00b7:
+IL_00ad:
 	{
 		int32_t L_18 = ___currStatus1;
 		if (L_18)
 		{
-			goto IL_00dd;
+			goto IL_00d3;
 		}
 	}
 	{
@@ -37062,7 +36963,7 @@ IL_00b7:
 		int32_t L_21 = List_1_get_Count_m2812834599(L_20, /*hidden argument*/List_1_get_Count_m2812834599_RuntimeMethod_var);
 		if (!L_21)
 		{
-			goto IL_00dd;
+			goto IL_00d3;
 		}
 	}
 	{
@@ -37071,7 +36972,7 @@ IL_00b7:
 		ShapeManager_ClearShapes_m538170962(L_22, /*hidden argument*/NULL);
 	}
 
-IL_00dd:
+IL_00d3:
 	{
 		return;
 	}
@@ -37164,7 +37065,7 @@ extern "C" IL2CPP_METHOD_ATTR void ReadMap_U3CLoadMapU3Em__1_m1523733024 (ReadMa
 		bool L_0 = ___completed0;
 		if (!L_0)
 		{
-			goto IL_0073;
+			goto IL_0071;
 		}
 	}
 	{
@@ -37208,20 +37109,22 @@ IL_0042:
 		NullCheck(L_7);
 		String_t* L_8 = L_7->get_placeId_0();
 		IL2CPP_RUNTIME_CLASS_INIT(String_t_il2cpp_TypeInfo_var);
-		String_t* L_9 = String_Concat_m3755062657(NULL /*static, unused*/, _stringLiteral2003289922, L_8, _stringLiteral2336323174, /*hidden argument*/NULL);
+		String_t* L_9 = String_Concat_m3755062657(NULL /*static, unused*/, _stringLiteral2003289922, L_8, _stringLiteral3014281418, /*hidden argument*/NULL);
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_Log_m4051431634(NULL /*static, unused*/, L_9, /*hidden argument*/NULL);
-		RuntimeObject* L_10 = ReadMap_StartSesh_m3144996065(__this, /*hidden argument*/NULL);
-		MonoBehaviour_StartCoroutine_m3411253000(__this, L_10, /*hidden argument*/NULL);
-		goto IL_00b8;
+		IL2CPP_RUNTIME_CLASS_INIT(LibPlacenote_t517300920_il2cpp_TypeInfo_var);
+		LibPlacenote_t517300920 * L_10 = LibPlacenote_get_Instance_m1077573840(NULL /*static, unused*/, /*hidden argument*/NULL);
+		NullCheck(L_10);
+		LibPlacenote_StartSession_m23758574(L_10, (bool)1, /*hidden argument*/NULL);
+		goto IL_00b6;
 	}
 
-IL_0073:
+IL_0071:
 	{
 		bool L_11 = ___faulted1;
 		if (!L_11)
 		{
-			goto IL_0098;
+			goto IL_0096;
 		}
 	}
 	{
@@ -37232,10 +37135,10 @@ IL_0073:
 		String_t* L_14 = String_Concat_m3937257545(NULL /*static, unused*/, _stringLiteral1691641748, L_13, /*hidden argument*/NULL);
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_Log_m4051431634(NULL /*static, unused*/, L_14, /*hidden argument*/NULL);
-		goto IL_00b8;
+		goto IL_00b6;
 	}
 
-IL_0098:
+IL_0096:
 	{
 		String_t* L_15 = Single_ToString_m3489843083((float*)(&___percentage2), _stringLiteral3451434970, /*hidden argument*/NULL);
 		IL2CPP_RUNTIME_CLASS_INIT(String_t_il2cpp_TypeInfo_var);
@@ -37244,7 +37147,7 @@ IL_0098:
 		Debug_Log_m4051431634(NULL /*static, unused*/, L_16, /*hidden argument*/NULL);
 	}
 
-IL_00b8:
+IL_00b6:
 	{
 		return;
 	}
@@ -37297,132 +37200,6 @@ IL_002a:
 IL_004a:
 	{
 		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void ReadMap/<StartSesh>c__Iterator0::.ctor()
-extern "C" IL2CPP_METHOD_ATTR void U3CStartSeshU3Ec__Iterator0__ctor_m2205825137 (U3CStartSeshU3Ec__Iterator0_t3054984384 * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m297566312(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// System.Boolean ReadMap/<StartSesh>c__Iterator0::MoveNext()
-extern "C" IL2CPP_METHOD_ATTR bool U3CStartSeshU3Ec__Iterator0_MoveNext_m130801765 (U3CStartSeshU3Ec__Iterator0_t3054984384 * __this, const RuntimeMethod* method)
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_method (U3CStartSeshU3Ec__Iterator0_MoveNext_m130801765_MetadataUsageId);
-		s_Il2CppMethodInitialized = true;
-	}
-	uint32_t V_0 = 0;
-	{
-		int32_t L_0 = __this->get_U24PC_2();
-		V_0 = L_0;
-		__this->set_U24PC_2((-1));
-		uint32_t L_1 = V_0;
-		switch (L_1)
-		{
-			case 0:
-			{
-				goto IL_0021;
-			}
-			case 1:
-			{
-				goto IL_0045;
-			}
-		}
-	}
-	{
-		goto IL_0057;
-	}
-
-IL_0021:
-	{
-		WaitForSeconds_t1699091251 * L_2 = (WaitForSeconds_t1699091251 *)il2cpp_codegen_object_new(WaitForSeconds_t1699091251_il2cpp_TypeInfo_var);
-		WaitForSeconds__ctor_m2199082655(L_2, (1.0f), /*hidden argument*/NULL);
-		__this->set_U24current_0(L_2);
-		bool L_3 = __this->get_U24disposing_1();
-		if (L_3)
-		{
-			goto IL_0040;
-		}
-	}
-	{
-		__this->set_U24PC_2(1);
-	}
-
-IL_0040:
-	{
-		goto IL_0059;
-	}
-
-IL_0045:
-	{
-		IL2CPP_RUNTIME_CLASS_INIT(LibPlacenote_t517300920_il2cpp_TypeInfo_var);
-		LibPlacenote_t517300920 * L_4 = LibPlacenote_get_Instance_m1077573840(NULL /*static, unused*/, /*hidden argument*/NULL);
-		NullCheck(L_4);
-		LibPlacenote_StartSession_m23758574(L_4, (bool)1, /*hidden argument*/NULL);
-		__this->set_U24PC_2((-1));
-	}
-
-IL_0057:
-	{
-		return (bool)0;
-	}
-
-IL_0059:
-	{
-		return (bool)1;
-	}
-}
-// System.Object ReadMap/<StartSesh>c__Iterator0::System.Collections.Generic.IEnumerator<object>.get_Current()
-extern "C" IL2CPP_METHOD_ATTR RuntimeObject * U3CStartSeshU3Ec__Iterator0_System_Collections_Generic_IEnumeratorU3CobjectU3E_get_Current_m1556519469 (U3CStartSeshU3Ec__Iterator0_t3054984384 * __this, const RuntimeMethod* method)
-{
-	{
-		RuntimeObject * L_0 = __this->get_U24current_0();
-		return L_0;
-	}
-}
-// System.Object ReadMap/<StartSesh>c__Iterator0::System.Collections.IEnumerator.get_Current()
-extern "C" IL2CPP_METHOD_ATTR RuntimeObject * U3CStartSeshU3Ec__Iterator0_System_Collections_IEnumerator_get_Current_m689552058 (U3CStartSeshU3Ec__Iterator0_t3054984384 * __this, const RuntimeMethod* method)
-{
-	{
-		RuntimeObject * L_0 = __this->get_U24current_0();
-		return L_0;
-	}
-}
-// System.Void ReadMap/<StartSesh>c__Iterator0::Dispose()
-extern "C" IL2CPP_METHOD_ATTR void U3CStartSeshU3Ec__Iterator0_Dispose_m2090069594 (U3CStartSeshU3Ec__Iterator0_t3054984384 * __this, const RuntimeMethod* method)
-{
-	{
-		__this->set_U24disposing_1((bool)1);
-		__this->set_U24PC_2((-1));
-		return;
-	}
-}
-// System.Void ReadMap/<StartSesh>c__Iterator0::Reset()
-extern "C" IL2CPP_METHOD_ATTR void U3CStartSeshU3Ec__Iterator0_Reset_m228479561 (U3CStartSeshU3Ec__Iterator0_t3054984384 * __this, const RuntimeMethod* method)
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_method (U3CStartSeshU3Ec__Iterator0_Reset_m228479561_MetadataUsageId);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		NotSupportedException_t1314879016 * L_0 = (NotSupportedException_t1314879016 *)il2cpp_codegen_object_new(NotSupportedException_t1314879016_il2cpp_TypeInfo_var);
-		NotSupportedException__ctor_m2730133172(L_0, /*hidden argument*/NULL);
-		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, NULL, U3CStartSeshU3Ec__Iterator0_Reset_m228479561_RuntimeMethod_var);
 	}
 }
 #ifdef __clang__
@@ -37587,6 +37364,51 @@ IL_000a:
 		List_1_Add_m2765963565(L_22, L_23, /*hidden argument*/List_1_Add_m2765963565_RuntimeMethod_var);
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_Log_m4051431634(NULL /*static, unused*/, _stringLiteral2850690806, /*hidden argument*/NULL);
+		return;
+	}
+}
+// System.Void ShapeManager::AddDestinationShape()
+extern "C" IL2CPP_METHOD_ATTR void ShapeManager_AddDestinationShape_m1662079598 (ShapeManager_t3761008781 * __this, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_method (ShapeManager_AddDestinationShape_m1662079598_MetadataUsageId);
+		s_Il2CppMethodInitialized = true;
+	}
+	ShapeInfo_t3821637623 * V_0 = NULL;
+	int32_t V_1 = 0;
+	GameObject_t1113636619 * V_2 = NULL;
+	{
+		List_1_t998745069 * L_0 = __this->get_shapeInfoList_5();
+		List_1_t998745069 * L_1 = __this->get_shapeInfoList_5();
+		NullCheck(L_1);
+		int32_t L_2 = List_1_get_Count_m2333381810(L_1, /*hidden argument*/List_1_get_Count_m2333381810_RuntimeMethod_var);
+		NullCheck(L_0);
+		ShapeInfo_t3821637623 * L_3 = List_1_get_Item_m375661478(L_0, ((int32_t)il2cpp_codegen_subtract((int32_t)L_2, (int32_t)1)), /*hidden argument*/List_1_get_Item_m375661478_RuntimeMethod_var);
+		V_0 = L_3;
+		ShapeInfo_t3821637623 * L_4 = V_0;
+		V_1 = 1;
+		int32_t L_5 = Int32_GetHashCode_m1876651407((int32_t*)(&V_1), /*hidden argument*/NULL);
+		NullCheck(L_4);
+		L_4->set_shapeType_7(L_5);
+		ShapeInfo_t3821637623 * L_6 = V_0;
+		GameObject_t1113636619 * L_7 = ShapeManager_ShapeFromInfo_m1696682030(__this, L_6, /*hidden argument*/NULL);
+		V_2 = L_7;
+		List_1_t2585711361 * L_8 = __this->get_shapeObjList_6();
+		List_1_t2585711361 * L_9 = __this->get_shapeObjList_6();
+		NullCheck(L_9);
+		int32_t L_10 = List_1_get_Count_m2812834599(L_9, /*hidden argument*/List_1_get_Count_m2812834599_RuntimeMethod_var);
+		NullCheck(L_8);
+		GameObject_t1113636619 * L_11 = List_1_get_Item_m3743125852(L_8, ((int32_t)il2cpp_codegen_subtract((int32_t)L_10, (int32_t)1)), /*hidden argument*/List_1_get_Item_m3743125852_RuntimeMethod_var);
+		IL2CPP_RUNTIME_CLASS_INIT(Object_t631007953_il2cpp_TypeInfo_var);
+		Object_Destroy_m565254235(NULL /*static, unused*/, L_11, /*hidden argument*/NULL);
+		List_1_t2585711361 * L_12 = __this->get_shapeObjList_6();
+		GameObject_t1113636619 * L_13 = V_2;
+		NullCheck(L_12);
+		List_1_Add_m2765963565(L_12, L_13, /*hidden argument*/List_1_Add_m2765963565_RuntimeMethod_var);
+		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
+		Debug_Log_m4051431634(NULL /*static, unused*/, _stringLiteral3694148624, /*hidden argument*/NULL);
 		return;
 	}
 }

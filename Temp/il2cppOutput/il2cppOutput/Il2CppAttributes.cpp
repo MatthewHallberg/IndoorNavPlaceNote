@@ -40389,13 +40389,6 @@ static void ReadMap_t290114252_CustomAttributesCacheGenerator_U3CU3Ef__amU24cach
 		CompilerGeneratedAttribute__ctor_m3151881902(tmp, NULL);
 	}
 }
-static void ReadMap_t290114252_CustomAttributesCacheGenerator_ReadMap_StartSesh_m3144996065(CustomAttributesCache* cache)
-{
-	{
-		DebuggerHiddenAttribute_t587553342 * tmp = (DebuggerHiddenAttribute_t587553342 *)cache->attributes[0];
-		DebuggerHiddenAttribute__ctor_m2764625696(tmp, NULL);
-	}
-}
 static void ReadMap_t290114252_CustomAttributesCacheGenerator_ReadMap_U3CFindMapU3Em__0_m3230922823(CustomAttributesCache* cache)
 {
 	{
@@ -40415,48 +40408,6 @@ static void ReadMap_t290114252_CustomAttributesCacheGenerator_ReadMap_U3CLoadMap
 	{
 		CompilerGeneratedAttribute_t23527886 * tmp = (CompilerGeneratedAttribute_t23527886 *)cache->attributes[0];
 		CompilerGeneratedAttribute__ctor_m3151881902(tmp, NULL);
-	}
-}
-static void U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator(CustomAttributesCache* cache)
-{
-	{
-		CompilerGeneratedAttribute_t23527886 * tmp = (CompilerGeneratedAttribute_t23527886 *)cache->attributes[0];
-		CompilerGeneratedAttribute__ctor_m3151881902(tmp, NULL);
-	}
-}
-static void U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0__ctor_m2205825137(CustomAttributesCache* cache)
-{
-	{
-		DebuggerHiddenAttribute_t587553342 * tmp = (DebuggerHiddenAttribute_t587553342 *)cache->attributes[0];
-		DebuggerHiddenAttribute__ctor_m2764625696(tmp, NULL);
-	}
-}
-static void U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_System_Collections_Generic_IEnumeratorU3CobjectU3E_get_Current_m1556519469(CustomAttributesCache* cache)
-{
-	{
-		DebuggerHiddenAttribute_t587553342 * tmp = (DebuggerHiddenAttribute_t587553342 *)cache->attributes[0];
-		DebuggerHiddenAttribute__ctor_m2764625696(tmp, NULL);
-	}
-}
-static void U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_System_Collections_IEnumerator_get_Current_m689552058(CustomAttributesCache* cache)
-{
-	{
-		DebuggerHiddenAttribute_t587553342 * tmp = (DebuggerHiddenAttribute_t587553342 *)cache->attributes[0];
-		DebuggerHiddenAttribute__ctor_m2764625696(tmp, NULL);
-	}
-}
-static void U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_Dispose_m2090069594(CustomAttributesCache* cache)
-{
-	{
-		DebuggerHiddenAttribute_t587553342 * tmp = (DebuggerHiddenAttribute_t587553342 *)cache->attributes[0];
-		DebuggerHiddenAttribute__ctor_m2764625696(tmp, NULL);
-	}
-}
-static void U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_Reset_m228479561(CustomAttributesCache* cache)
-{
-	{
-		DebuggerHiddenAttribute_t587553342 * tmp = (DebuggerHiddenAttribute_t587553342 *)cache->attributes[0];
-		DebuggerHiddenAttribute__ctor_m2764625696(tmp, NULL);
 	}
 }
 static void ObjectSerializationExtension_t1997214439_CustomAttributesCacheGenerator(CustomAttributesCache* cache)
@@ -41352,7 +41303,7 @@ static void U3CPrivateImplementationDetailsU3E_t3057255367_CustomAttributesCache
 		CompilerGeneratedAttribute__ctor_m3151881902(tmp, NULL);
 	}
 }
-extern const CustomAttributesCacheGenerator g_AttributeGenerators[3866] = 
+extern const CustomAttributesCacheGenerator g_AttributeGenerators[3859] = 
 {
 	NULL,
 	g_mscorlib_Assembly_CustomAttributesCacheGenerator,
@@ -45112,16 +45063,9 @@ extern const CustomAttributesCacheGenerator g_AttributeGenerators[3866] =
 	U3CSaveCurrentMapU3Ec__AnonStorey1_t2497599089_CustomAttributesCacheGenerator,
 	U3CDeleteMapsU3Ec__AnonStorey0_t4125252429_CustomAttributesCacheGenerator,
 	ReadMap_t290114252_CustomAttributesCacheGenerator_U3CU3Ef__amU24cache0,
-	ReadMap_t290114252_CustomAttributesCacheGenerator_ReadMap_StartSesh_m3144996065,
 	ReadMap_t290114252_CustomAttributesCacheGenerator_ReadMap_U3CFindMapU3Em__0_m3230922823,
 	ReadMap_t290114252_CustomAttributesCacheGenerator_ReadMap_U3CLoadMapU3Em__1_m1523733024,
 	ReadMap_t290114252_CustomAttributesCacheGenerator_ReadMap_U3CLoadMapU3Em__2_m2276003870,
-	U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator,
-	U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0__ctor_m2205825137,
-	U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_System_Collections_Generic_IEnumeratorU3CobjectU3E_get_Current_m1556519469,
-	U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_System_Collections_IEnumerator_get_Current_m689552058,
-	U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_Dispose_m2090069594,
-	U3CStartSeshU3Ec__Iterator0_t3054984384_CustomAttributesCacheGenerator_U3CStartSeshU3Ec__Iterator0_Reset_m228479561,
 	ObjectSerializationExtension_t1997214439_CustomAttributesCacheGenerator,
 	ObjectSerializationExtension_t1997214439_CustomAttributesCacheGenerator_ObjectSerializationExtension_SerializeToByteArray_m28764994,
 	ObjectSerializationExtension_t1997214439_CustomAttributesCacheGenerator_ObjectSerializationExtension_Deserialize_m3211297865,

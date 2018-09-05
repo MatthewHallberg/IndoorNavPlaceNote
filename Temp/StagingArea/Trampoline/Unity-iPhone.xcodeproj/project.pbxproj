@@ -72,6 +72,7 @@
 		7F36C11213C5C673007FBDD9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F36C10F13C5C673007FBDD9 /* CoreVideo.framework */; };
 		7F36C11313C5C673007FBDD9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F36C11013C5C673007FBDD9 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		80B646738920ED712124F820 /* Bulk_Assembly-CSharp_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ED345B39E61390677F167A8 /* Bulk_Assembly-CSharp_1.cpp */; };
+		828F43B1B6103F45611CB488 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4C44529A39ED18CB57A8D6 /* ARKit.framework */; };
 		830B5C110E5ED4C100C7819F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830B5C100E5ED4C100C7819F /* UIKit.framework */; };
 		83314367A600EAC271675E99 /* Bulk_mscorlib_9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6454283BAA769CA66316DD4 /* Bulk_mscorlib_9.cpp */; };
 		8358D1B80ED1CC3700E3A684 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8358D1B70ED1CC3700E3A684 /* AudioToolbox.framework */; };
@@ -126,6 +127,7 @@
 		9A9C492FB127DF553161A133 /* Bulk_Generics_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FB495E96719658A99312EE /* Bulk_Generics_1.cpp */; };
 		9B4A40D4B53CFD993FD635F9 /* Bulk_mscorlib_5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34404C548286EF2730D67D96 /* Bulk_mscorlib_5.cpp */; };
 		9CA74171A63DCC5B0D9E407A /* ARSessionNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = D90D4E4E860803DF01745F0A /* ARSessionNative.mm */; };
+		A1324FD6B4974C66424CA535 /* Placenote.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F8EA41C9A64F39CCDA72F741 /* Placenote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A4A34AC7AC109095D7918986 /* Il2CppGenericComDefinitions0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D08341768A101F5568B130C4 /* Il2CppGenericComDefinitions0.cpp */; };
 		A849405293BA72F2E0AEE021 /* Il2CppCompilerCalculateTypeValues_2Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2069492EA2CCDAADB6E08F23 /* Il2CppCompilerCalculateTypeValues_2Table.cpp */; };
 		A87C4D6DB7E53F7AEB2494A8 /* Bulk_UnityEngine.AudioModule_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00794ED2B1591247267FB0F1 /* Bulk_UnityEngine.AudioModule_0.cpp */; };
@@ -208,6 +210,17 @@
 			dstSubfolderSpec = 0;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8764B99A65683B8689BE8FD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A1324FD6B4974C66424CA535 /* Placenote.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -406,6 +419,7 @@
 		B7A443D691AA058541B152B1 /* Il2CppCompilerCalculateTypeValues_20Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCompilerCalculateTypeValues_20Table.cpp; path = Classes/Native/Il2CppCompilerCalculateTypeValues_20Table.cpp; sourceTree = SOURCE_ROOT; };
 		B7E04C8CBF401411FA112C4F /* Bulk_UnityEngine.UI_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_UnityEngine.UI_0.cpp; path = Classes/Native/Bulk_UnityEngine.UI_0.cpp; sourceTree = SOURCE_ROOT; };
 		BB3A49A598A749AE6D540C38 /* Il2CppInteropDataTable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppInteropDataTable.cpp; path = Classes/Native/Il2CppInteropDataTable.cpp; sourceTree = SOURCE_ROOT; };
+		BB4C44529A39ED18CB57A8D6 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		BC8746B9BD2958ACA3888833 /* Bulk_System.Core_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_System.Core_0.cpp; path = Classes/Native/Bulk_System.Core_0.cpp; sourceTree = SOURCE_ROOT; };
 		BCD34AA08C1A10CA43F90DA9 /* Bulk_UnityEngine.Physics2DModule_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_UnityEngine.Physics2DModule_0.cpp; path = Classes/Native/Bulk_UnityEngine.Physics2DModule_0.cpp; sourceTree = SOURCE_ROOT; };
 		BDC44DDAA00B358A30044DA0 /* Bulk_Generics_2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_Generics_2.cpp; path = Classes/Native/Bulk_Generics_2.cpp; sourceTree = SOURCE_ROOT; };
@@ -474,6 +488,7 @@
 				E929402C8CB8B6A3F892776B /* Placenote.framework in Frameworks */,
 				17DA4A2E9EC8B0404C38745B /* CoreFoundation.framework in Frameworks */,
 				D386454BBC807ED721DD2F79 /* Metal.framework in Frameworks */,
+				828F43B1B6103F45611CB488 /* ARKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +580,7 @@
 				ECEC4728B02A9E33B5767191 /* Placenote */,
 				C21A43CE8AAE7DB6FEECA588 /* CoreFoundation.framework */,
 				2B424CB88519236C299D376B /* Metal.framework */,
+				BB4C44529A39ED18CB57A8D6 /* ARKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -888,6 +904,7 @@
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				033966F41B18B03000ECD701 /* ShellScript */,
+				F8764B99A65683B8689BE8FD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1194,7 +1211,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = EJCCCDR9NR;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/Placenote/Plugins/iOS",
@@ -1216,6 +1233,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_GENERATE_MAP_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1261,7 +1279,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = EJCCCDR9NR;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/Placenote/Plugins/iOS",
@@ -1280,6 +1298,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_GENERATE_MAP_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1451,7 +1470,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = EJCCCDR9NR;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/Placenote/Plugins/iOS",
@@ -1470,6 +1489,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_GENERATE_MAP_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1584,7 +1604,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = EJCCCDR9NR;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/Placenote/Plugins/iOS",
@@ -1603,6 +1623,7 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_GENERATE_MAP_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

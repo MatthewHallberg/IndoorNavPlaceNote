@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{8B989C36-26F1-5FB3-F6A0-53482E421BBB}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Placenote/Examples/PlacenoteSampleView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Placenote/Examples/ShapeManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/CreateMap.cs" Line="216" Column="5" />
-      <File FileName="Assets/Scripts/ReadMap.cs" Line="49" Column="3" />
-      <File FileName="Assets/Placenote/LibPlacenote/LibPlacenote.cs" Line="442" Column="28" />
-      <File FileName="Assets/Placenote/Examples/PlacenoteSampleView.cs" Line="433" Column="38" />
+      <File FileName="Assets/Scripts/CreateMap.cs" Line="46" Column="38" />
+      <File FileName="Assets/Scripts/ReadMap.cs" Line="173" Column="48" />
+      <File FileName="Assets/Placenote/Examples/PlacenoteSampleView.cs" Line="61" Column="37" />
+      <File FileName="Assets/Placenote/LibPlacenote/LibPlacenote.cs" Line="440" Column="14" />
+      <File FileName="Assets/Placenote/Examples/ShapeManager.cs" Line="105" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

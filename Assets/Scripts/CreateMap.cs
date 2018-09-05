@@ -113,10 +113,14 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 				}
 				Vector3 pos = player.position;
 				Debug.Log (player.position);
-				pos.y = 0;
+				pos.y = -.2f;
 				shapeManager.AddShape (pos, Quaternion.Euler (Vector3.zero),false);
 			}
 		}
+	}
+
+	public void CreateDestination () {
+		shapeManager.AddDestinationShape ();
 	}
 
 	void StartSavingMap () {
