@@ -19,10 +19,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4872432487387244}
-  - component: {fileID: 114442776078180552}
+  - component: {fileID: 114848763398544908}
+  - component: {fileID: 114043457331552128}
+  - component: {fileID: 65097387241351288}
   m_Layer: 8
   m_Name: diamond
-  m_TagString: Untagged
+  m_TagString: waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889600940015092}
   m_LocalRotation: {x: 0, y: 0, z: -0.35020733, w: 0.9366723}
-  m_LocalPosition: {x: 0.75, y: -1.16, z: -0.75}
+  m_LocalPosition: {x: 0.46, y: -1.5, z: -0.75}
   m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
   m_Children: []
   m_Father: {fileID: 4872432487387244}
@@ -64,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1160887633394466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33, y: -0.08, z: 1.21}
+  m_LocalPosition: {x: 5, y: 0, z: 3.97}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4542737352643124}
@@ -113,7 +115,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889600940015092}
   m_Mesh: {fileID: 4300004, guid: 6441887ee4d024062ab5a99134bc3bb1, type: 3}
---- !u!114 &114442776078180552
+--- !u!65 &65097387241351288
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160887633394466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.009786, y: 1, z: 2.0882883}
+  m_Center: {x: -0.21466413, y: 0, z: -0.032519102}
+--- !u!114 &114043457331552128
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +135,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1160887633394466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ab1870c32e0f48e8a90897ac3053748, type: 3}
+  m_Script: {fileID: 11500000, guid: f52ea4ebd238041d38b5b00aa7e3034d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointNeighbor: {fileID: 0}
+--- !u!114 &114848763398544908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160887633394466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106cb6f19d9a745b1a2d6d51760d219b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diamond: {fileID: 1889600940015092}

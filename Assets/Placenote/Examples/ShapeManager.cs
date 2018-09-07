@@ -36,6 +36,8 @@ public class ShapeList
 
 public class ShapeManager : MonoBehaviour {
 
+	public NavController navController;
+
 	public List<GameObject> ShapePrefabs = new List<GameObject> ();
 	[HideInInspector]
     public List<ShapeInfo> shapeInfoList = new List<ShapeInfo>();
@@ -134,5 +136,8 @@ public class ShapeManager : MonoBehaviour {
                 shapeObjList.Add(shape);
             }
         }
+		if (navController != null) {
+			navController.InitializeNavigation ();
+		}
     }
 }

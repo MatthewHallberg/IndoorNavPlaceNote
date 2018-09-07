@@ -40,14 +40,15 @@ GameObject:
   m_Component:
   - component: {fileID: 4740974621041454}
   - component: {fileID: 20477165370597950}
-  - component: {fileID: 92205011384687874}
   - component: {fileID: 124027832657201274}
   - component: {fileID: 81524713713832756}
   - component: {fileID: 114384528983729326}
   - component: {fileID: 114428975530045452}
-  - component: {fileID: 114438988695418122}
   - component: {fileID: 114135137818804764}
-  m_Layer: 0
+  - component: {fileID: 114076779928647726}
+  - component: {fileID: 114482653002630684}
+  - component: {fileID: 136451711729388906}
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -114,7 +115,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
+  m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -123,13 +124,6 @@ Camera:
   m_StereoSeparation: 0.022
 --- !u!81 &81524713713832756
 AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1953550785582132}
-  m_Enabled: 1
---- !u!92 &92205011384687874
-Behaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -147,6 +141,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisableARRemote: 1
+--- !u!114 &114076779928647726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953550785582132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showMainBehavior: 1
+  showInnerGlowBehavior: 1
+  rtFormat: 0
+  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
+  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
+  selectiveRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7,
+    type: 3}
+  glowLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  glowType: 0
+  glowTint: {r: 1, g: 1, b: 1, a: 0}
+  blurSpreadInner: 1.2
+  blurIterations: 7
+  glowIntensityInner: 0.362
+  samples: 3
 --- !u!114 &114135137818804764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,21 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce437cef046e841aabd6070890e79d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114438988695418122
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1953550785582132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1cfe8be4ce60040bb3c1f3d8f38337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translateSpeed: 2
-  rotateSpeed: 90
-  randomOffset: 0.01
-  enableSimulatedHandshake: 0
 --- !u!114 &114444687120321750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,6 +243,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1876410d8b514981a4b6492316ae3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114482653002630684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953550785582132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5403d71c7a7fa426c825c78e009a8ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114906711766776928
@@ -258,3 +275,16 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1953550785582132}
   m_Enabled: 1
+--- !u!136 &136451711729388906
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953550785582132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

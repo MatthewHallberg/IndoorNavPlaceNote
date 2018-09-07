@@ -82,9 +82,12 @@
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteListener.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PNUtility.cs" />
     <Compile Include="Assets\Scripts\CreateMap.cs" />
-    <Compile Include="Assets\Scripts\DiamonBehavior.cs" />
+    <Compile Include="Assets\Scripts\DiamondBehavior.cs" />
+    <Compile Include="Assets\Scripts\NavController.cs" />
+    <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\ReadMap.cs" />
     <Compile Include="Assets\Scripts\SceneService.cs" />
+    <Compile Include="Assets\Scripts\WayPointBehavior.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitFaceTrackingRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ConnectionMessageIds.cs" />
