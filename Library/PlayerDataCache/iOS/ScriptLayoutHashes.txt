@@ -11,7 +11,6 @@ SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 a97745634b523349a1a8b9c7595e43f4 Assembly-CSharp.dll:.PointCloudParticleExample
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
-d74c6cb02991460ffbfe3eda529db44b Assembly-CSharp.dll:.WayPointBehavior
 486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 9e61f3535f3c55760a1cedfbd114f4af UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 754551afe4f2531f58476bf14c510657 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -256,7 +255,7 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
-e2ca4f328d07a4b64675f46ebd93e568 Assembly-CSharp.dll:.Node
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Node
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.NavController
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARUserAnchorComponent
 91064ee3a8aae2f5e452f1aeb0afc602 Assembly-CSharp.dll:.PlacenotePlaneMeshRender

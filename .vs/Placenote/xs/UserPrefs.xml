@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{8B989C36-26F1-5FB3-F6A0-53482E421BBB}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Placenote/Examples/ShapeManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Node.cs">
     <Files>
-      <File FileName="Assets/Scripts/NavController.cs" Line="8" Column="32" />
-      <File FileName="Assets/Scripts/ReadMap.cs" Line="173" Column="48" />
-      <File FileName="Assets/Placenote/Examples/ShapeManager.cs" Line="140" Column="42" />
+      <File FileName="Assets/Scripts/NavController.cs" Line="53" Column="52" />
+      <File FileName="Assets/Scripts/Node.cs" Line="67" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

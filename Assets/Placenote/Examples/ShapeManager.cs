@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.XR.iOS;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 /*========================================
  * Classes to hold shape information
@@ -46,6 +47,7 @@ public class ShapeManager : MonoBehaviour {
 
 	private GameObject lastShape;
 
+	private bool shapesLoaded = false;
     //-------------------------------------------------
     // All shape management functions (add shapes, save shapes to metadata etc.
     //-------------------------------------------------
@@ -68,7 +70,6 @@ public class ShapeManager : MonoBehaviour {
 
         GameObject shape = ShapeFromInfo(shapeInfo);
         shapeObjList.Add(shape);
-		Debug.Log ("ADDING NEW WAYPOINT!!!!");
     }
 
 	public void AddDestinationShape () {
@@ -76,19 +77,26 @@ public class ShapeManager : MonoBehaviour {
 		ShapeInfo lastInfo = shapeInfoList [shapeInfoList.Count - 1];
 		lastInfo.shapeType = 1.GetHashCode ();
 		GameObject shape = ShapeFromInfo(lastInfo);
+		shape.GetComponent<DiamondBehavior> ().Activate ();
 		//destroy last shape
 		Destroy (shapeObjList [shapeObjList.Count - 1]);
 		//add new shape
 		shapeObjList.Add (shape);
-		Debug.Log ("ADDING Destination!!");
 	}
 
     public GameObject ShapeFromInfo(ShapeInfo info)
     {
-		Debug.Log ("SHAPE NUMBER!!!!! " + info.shapeType);
-		GameObject shape = Instantiate(ShapePrefabs[info.shapeType]);
+		GameObject shape;
+		Vector3 position = new Vector3 (info.px, info.py, info.pz);
+		//if loading map, change waypoint to arrow
+		if (SceneManager.GetActiveScene ().name == "ReadMap" && info.shapeType == 0) {
+			shape = Instantiate (ShapePrefabs [2]);
+			shape.GetComponent<Node> ().SetPosition (position);
+		} else {
+			shape = Instantiate (ShapePrefabs [info.shapeType]);
+		}
 		shape.tag = "waypoint";
-		shape.transform.position = new Vector3(info.px, info.py, info.pz);
+		shape.transform.position = position;
 		shape.transform.rotation = new Quaternion(info.qx, info.qy, info.qz, info.qw);
 		shape.transform.localScale = new Vector3(.3f, .3f, .3f);
 
@@ -120,24 +128,24 @@ public class ShapeManager : MonoBehaviour {
 
     public void LoadShapesJSON(JToken mapMetadata)
     {
-        if (mapMetadata is JObject && mapMetadata["shapeList"] is JObject)
-        {
-            ShapeList shapeList = mapMetadata["shapeList"].ToObject<ShapeList>();
-            if (shapeList.shapes == null)
-            {
-                Debug.Log("no shapes dropped");
-                return;
-            }
-
-            foreach (var shapeInfo in shapeList.shapes)
-            {
-                shapeInfoList.Add(shapeInfo);
-                GameObject shape = ShapeFromInfo(shapeInfo);
-                shapeObjList.Add(shape);
-            }
-        }
-		if (navController != null) {
-			navController.InitializeNavigation ();
+		if (mapMetadata is JObject && mapMetadata ["shapeList"] is JObject) {
+			ShapeList shapeList = mapMetadata ["shapeList"].ToObject<ShapeList> ();
+			if (shapeList.shapes == null) {
+				Debug.Log ("no shapes dropped");
+				return;
+			}
+			if (!shapesLoaded) {
+				shapesLoaded = true;
+				Debug.Log ("SHAPES: " + shapeList.shapes.Length);
+				foreach (var shapeInfo in shapeList.shapes) {
+					shapeInfoList.Add (shapeInfo);
+					GameObject shape = ShapeFromInfo (shapeInfo);
+					shapeObjList.Add (shape);
+				}
+			}
+			if (navController != null) {
+				navController.InitializeNavigation ();
+			}
 		}
     }
 }

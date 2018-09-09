@@ -176,9 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c9f6fdeeb394a07b35cd0d68a21cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navController: {fileID: 0}
   ShapePrefabs:
   - {fileID: 1417247514451880, guid: 756520d3983b446779ee0b9bbd119c15, type: 2}
   - {fileID: 1160887633394466, guid: eedaac2fc25db4ab99371a7c1f59dd58, type: 2}
+  - {fileID: 1078755997285888, guid: f8f67d766d3ce4631a946298773ec89d, type: 2}
   shapeInfoList: []
   shapeObjList: []
 --- !u!114 &101716594

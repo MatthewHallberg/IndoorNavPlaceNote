@@ -7,6 +7,12 @@ public class NavController : MonoBehaviour {
 
 	private Transform destination;
 
+	private void Start () {
+#if UNITY_EDITOR
+		InitializeNavigation ();
+#endif
+	}
+
 	/// <summary>
 	/// Returns the closest node to the given position.
 	/// </summary>
@@ -34,23 +40,16 @@ public class NavController : MonoBehaviour {
 		}
 		//get all nodes
 		List<Transform> nodes = new List<Transform> ();
-		foreach (Node node in FindObjectsOfType<Node>())
+		foreach (Node node in FindObjectsOfType<Node> ()) {
 			nodes.Add (node.transform);
+		}
 		//find closest node to camera and activate
 		Transform closestNodeToCam = ReturnClosestTransform (nodes,transform.position);
-		closestNodeToCam.GetComponent<WayPointBehavior> ().SetState (WayPointBehavior.NavMode.NAVIGATING);
+		closestNodeToCam.GetComponent<Node> ().ActivateNeighbor ();
 	}
 
 	private void OnTriggerEnter (Collider other) {
-		if (other.CompareTag ("waypoint") && other.GetComponent<WayPointBehavior> () != null) {
-			other.GetComponent<WayPointBehavior> ().SetState (WayPointBehavior.NavMode.NAVIGATING);
-			other.GetComponent<Node> ().ActivateNeighbor ();
-		}
-	}
-
-	private void OnTriggerExit (Collider other) {
-		if (other.CompareTag ("waypoint") && other.GetComponent<WayPointBehavior> () != null) {
-			other.GetComponent<WayPointBehavior> ().SetState (WayPointBehavior.NavMode.NONE);
+		if (other.CompareTag ("waypoint")) {
 			other.GetComponent<Node> ().ActivateNeighbor ();
 		}
 	}

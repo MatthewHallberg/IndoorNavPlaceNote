@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4872432487387244}
   - component: {fileID: 114848763398544908}
-  - component: {fileID: 114043457331552128}
   - component: {fileID: 65097387241351288}
+  - component: {fileID: 114517702106885618}
   m_Layer: 8
   m_Name: diamond
   m_TagString: waypoint
@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1160887633394466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 3.97}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4542737352643124}
@@ -127,7 +127,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.009786, y: 1, z: 2.0882883}
   m_Center: {x: -0.21466413, y: 0, z: -0.032519102}
---- !u!114 &114043457331552128
+--- !u!114 &114517702106885618
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
