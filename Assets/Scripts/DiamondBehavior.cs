@@ -8,7 +8,7 @@ public class DiamondBehavior : MonoBehaviour {
 	public GameObject diamond;
 
 	private void Awake () {
-		diamond.SetActive (false);
+		Activate (false);
 	}
 
 	// Update is called once per frame
@@ -16,7 +16,7 @@ public class DiamondBehavior : MonoBehaviour {
 		transform.eulerAngles += rotate;
 	}
 
-	public void Activate () {
-		diamond.SetActive (true);
+	public void Activate (bool active) {
+		diamond.SetActive (active);
 	}
 }

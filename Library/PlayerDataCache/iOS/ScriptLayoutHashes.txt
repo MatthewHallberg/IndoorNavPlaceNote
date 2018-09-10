@@ -255,8 +255,8 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Node
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.NavController
+2b2d36c76ee13e82142eb9a933018acc Assembly-CSharp.dll:.Node
+25feef372739915a43297478201d98c9 Assembly-CSharp.dll:.NavController
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARUserAnchorComponent
 91064ee3a8aae2f5e452f1aeb0afc602 Assembly-CSharp.dll:.PlacenotePlaneMeshRender
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
@@ -264,6 +264,7 @@ a784c92783f4de6951d8e186ad2f0c81 Assembly-CSharp.dll:.PlacenoteSampleView
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 bc37d18c066df9eac5740fa10d58f723 Assembly-CSharp.dll:.ShapeManager
 7c91c13e6de38fcee13a1d9162935c4c Assembly-CSharp.dll:UnityEngine.XR.iOS.ARKitFaceTrackingRemoteConnection
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.AStar
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 ea034347a5ee20e236cc700296875b84 Assembly-CSharp.dll:.PlacenoteCameraManager

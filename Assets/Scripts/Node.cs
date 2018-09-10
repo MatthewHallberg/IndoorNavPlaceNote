@@ -5,12 +5,21 @@ using System.Linq;
 
 public class Node : MonoBehaviour {
 
-	private Transform destination;
-	private Vector3 pos;
-	private bool visited = false;
+	public Vector3 pos;
+
+	[Header("A*")]
+	public List<Node> neighbors = new List<Node> ();
+	public float FCost { get { return GCost + HCost; } }
+	public float HCost { get; set; }
+	public float GCost { get; set; }
+	public float Cost  { get; set; }
+	public Node Parent { get; set; }
+
+	//next node in navigation list
+	public Node NextInList { get; set; }
 
 	private void Awake () {
-		Activate (false);
+		transform.GetChild (0).gameObject.SetActive (false);
 #if UNITY_EDITOR
 		pos = transform.position;
 #endif
@@ -18,87 +27,16 @@ public class Node : MonoBehaviour {
 
 	public void Activate (bool active) {
 		transform.GetChild (0).gameObject.SetActive (active);
-		//if destination is not available return
-		destination = FindObjectOfType<DiamondBehavior> ().transform;
-		if (destination == null)
-			return;
-		//turn arrow to look at destination
-		if (active) {
-			Transform closest = GetNeighbor ();
-			if (closest != null) {
-				transform.LookAt (closest);
-			} else {
-				transform.LookAt (destination);
-			}
-		} 
-	}
-
-	public void SetPosition (Vector3 position) {
-		pos = position;
-	}
-
-	public bool getVisited () {
-		return visited;
-	}
-
-	public Vector3 GetPosition () {
-		return pos;
-	}
-
-	public void ActivateNeighbor () {
-		if (!visited) {
-			visited = true;
-			print ("ACtivating Neighbor: " + gameObject.name);
-			//if this is destination node return
-			if (GetComponent<DiamondBehavior> () != null)
-				return;
-			destination = FindObjectOfType<DiamondBehavior> ().transform;
-
-			Transform closest = GetNeighbor ();
-
-			//find closest neighbor to destination
-			if (closest == destination) {
-				destination.GetComponent<DiamondBehavior> ().Activate ();
-			} else if (closest != null) {
-				//activate neighbor arrow
-				closest.GetComponent<Node> ().Activate (true);
-			}
-			//activate this arrow
-			Activate (true);
+		if (NextInList != null) {
+			transform.LookAt (NextInList.transform);
 		}
 	}
 
-	Transform GetNeighbor () {
-		Transform closestArrow = null;
-		//find all neighbors
-		List<Transform> closestNeighbors = new List<Transform> ();
-		foreach (Node node in FindObjectsOfType<Node> ()) {
-			if (Vector3.Distance (node.GetPosition (), pos) < 1.2f && !node.getVisited ()) {
-				closestNeighbors.Add (node.transform);
+	public void FindNeighbors () {
+		foreach (Node node in FindObjectsOfType<Node> ()){
+			if (Vector3.Distance (node.pos, pos) < 1.2f) {
+				neighbors.Add (node);
 			}
 		}
-		//find closest neighbor to destination
-		if (closestNeighbors.Contains (destination)) {
-			closestArrow = destination;
-		} else if (closestNeighbors.Count > 0) {
-			closestArrow = ClosestNeighborToDestination (closestNeighbors);
-		}
-		return closestArrow;
-	}
-
-	Transform ClosestNeighborToDestination (List<Transform> nodes) {
-		float minDist = Mathf.Infinity;
-		Transform closestNode = null;
-		foreach (Transform node in nodes) {
-			if (node == destination) {
-				return node;
-			}
-			float dist = Vector3.Distance (node.position, destination.position);
-			if (dist < minDist) {
-				closestNode = node;
-				minDist = dist;
-			}
-		}
-		return closestNode;
 	}
 }

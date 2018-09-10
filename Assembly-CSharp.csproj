@@ -81,6 +81,7 @@
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteCameraManager.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PlacenoteListener.cs" />
     <Compile Include="Assets\Placenote\LibPlacenote\PNUtility.cs" />
+    <Compile Include="Assets\Scripts\AStar.cs" />
     <Compile Include="Assets\Scripts\CreateMap.cs" />
     <Compile Include="Assets\Scripts\DiamondBehavior.cs" />
     <Compile Include="Assets\Scripts\NavController.cs" />
