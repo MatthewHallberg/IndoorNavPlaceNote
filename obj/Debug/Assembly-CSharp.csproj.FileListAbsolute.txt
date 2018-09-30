@@ -354,7 +354,6 @@
 /Users/matthewhallberg/placenote/Temp/bin/Debug/Boo.Lang.Compiler.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.UNetWeaver.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.IvyParser.dll
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Mono.Security.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/Boo.Lang.PatternMatching.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/Boo.Lang.Useful.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.CecilTools.dll
@@ -364,11 +363,6 @@
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.xml
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.dll.mdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.xml
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.Editor.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.PackageManagerUI.Editor.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.Analytics.Android.Editor.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.CollabProxy.Editor.dll.mdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.AIModule.dll.mdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.AIModule.xml
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.ARModule.dll.mdb
@@ -513,6 +507,11 @@
 /Users/matthewhallberg/placenote/obj/Debug/Assembly-CSharp.csproj.CopyComplete
 /Users/matthewhallberg/placenote/obj/Debug/Assembly-CSharp.dll
 /Users/matthewhallberg/placenote/obj/Debug/Assembly-CSharp.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.Analytics.Android.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.PackageManagerUI.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.CollabProxy.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.pdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.UI.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.UI.dll.mdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.UI.xml

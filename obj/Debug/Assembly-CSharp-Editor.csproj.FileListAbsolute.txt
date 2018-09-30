@@ -436,11 +436,6 @@
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.xml
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.dll.mdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.xml
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.Editor.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.PackageManagerUI.Editor.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.Analytics.Android.Editor.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.CollabProxy.Editor.dll.mdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.AIModule.dll.mdb
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.AIModule.xml
 /Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEngine.ARModule.dll.mdb
@@ -611,3 +606,8 @@
 /Users/matthewhallberg/placenote/obj/Debug/Assembly-CSharp-Editor.csproj.CopyComplete
 /Users/matthewhallberg/placenote/obj/Debug/Assembly-CSharp-Editor.dll
 /Users/matthewhallberg/placenote/obj/Debug/Assembly-CSharp-Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.Analytics.Android.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.PackageManagerUI.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.CollabProxy.Editor.pdb
+/Users/matthewhallberg/placenote/Temp/bin/Debug/Unity.TextMeshPro.pdb

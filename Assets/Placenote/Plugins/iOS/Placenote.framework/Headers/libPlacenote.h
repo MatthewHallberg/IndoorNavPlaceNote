@@ -118,7 +118,7 @@ FOUNDATION_EXPORT int PNStartSession (pose_callback cb, bool extending, void* co
 FOUNDATION_EXPORT int PNStopSession ();
 FOUNDATION_EXPORT int PNStartRecordDataset(transfer_map_callback cb, void* context);
 FOUNDATION_EXPORT int PNGetMetadata (const char* mapId, result_callback cb, void* context);
-FOUNDATION_EXPORT int PNSetMetadata (const char* mapId, const char* metadataJson);
+FOUNDATION_EXPORT int PNSetMetadata (const char* mapId, const char* metadataUnvalidated, result_callback cb, void* context);
 FOUNDATION_EXPORT int PNGetPose(PNTransform* transform);
 FOUNDATION_EXPORT int PNSetIntrinsics(PNCameraInstrinsics* instrinsics);
 FOUNDATION_EXPORT int PNSetFrame(PNImagePlane* yPlane, PNImagePlane* vuPlane, PNTransform* arPose);

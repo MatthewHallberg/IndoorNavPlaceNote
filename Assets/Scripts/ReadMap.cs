@@ -169,15 +169,15 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
         Debug.Log("prevStatus: " + prevStatus.ToString() + " currStatus: " + currStatus.ToString());
         if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST) {
             Debug.Log("Localized: " + mSelectedMapInfo.metadata.userdata);
-            GetComponent<ShapeManager>().LoadShapesJSON(mSelectedMapInfo.metadata.userdata);
+            GetComponent<CustomShapeManager>().LoadShapesJSON(mSelectedMapInfo.metadata.userdata);
             FeaturesVisualizer.DisablePointcloud();
         } else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
             Debug.Log("Mapping");
         } else if (currStatus == LibPlacenote.MappingStatus.LOST) {
             Debug.Log("Searching for position lock");
         } else if (currStatus == LibPlacenote.MappingStatus.WAITING) {
-            if (GetComponent<ShapeManager>().shapeObjList.Count != 0) {
-                GetComponent<ShapeManager>().ClearShapes();
+            if (GetComponent<CustomShapeManager>().shapeObjList.Count != 0) {
+                GetComponent<CustomShapeManager>().ClearShapes();
             }
         }
     }

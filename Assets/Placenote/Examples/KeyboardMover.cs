@@ -36,15 +36,17 @@ public class KeyboardMover : MonoBehaviour {
 		if (Input.GetKey(KeyCode.F)) {
 			transform.Translate (Vector3.down * translateSpeed * Time.deltaTime);
 		}
-
+		/*
 		if (Input.GetKey(KeyCode.UpArrow)) {
 			transform.Rotate (Vector3.left * rotateSpeed * Time.deltaTime);
 		}
-		if (Input.GetKey(KeyCode.RightArrow)) {
-			transform.Rotate (Vector3.up * rotateSpeed * Time.deltaTime);
-		}
 		if (Input.GetKey(KeyCode.DownArrow))	{
 			transform.Rotate (Vector3.right * rotateSpeed * Time.deltaTime);
+		}
+		*/
+		
+		if (Input.GetKey(KeyCode.RightArrow)) {
+			transform.Rotate (Vector3.up * rotateSpeed * Time.deltaTime);
 		}
 		if (Input.GetKey(KeyCode.LeftArrow))	{
 			transform.Rotate (Vector3.down * rotateSpeed * Time.deltaTime);

@@ -9,12 +9,12 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-[RequireComponent(typeof(ShapeManager))]
+[RequireComponent(typeof(CustomShapeManager))]
 public class CreateMap : MonoBehaviour, PlacenoteListener {
 
     private const string MAP_NAME = "MattsMap";
 
-    private ShapeManager shapeManager;
+    private CustomShapeManager shapeManager;
 
     private bool shouldRecordWaypoints = false;
     private bool shouldSaveMap = true;
@@ -36,7 +36,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
     // Use this for initialization
     void Start() {
 
-        shapeManager = GetComponent<ShapeManager>();
+        shapeManager = GetComponent<CustomShapeManager>();
 
         Input.location.Start();
 
@@ -234,7 +234,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
                     JObject userdata = new JObject();
                     metadata.userdata = userdata;
 
-                    JObject shapeList = GetComponent<ShapeManager>().Shapes2JSON();
+                    JObject shapeList = GetComponent<CustomShapeManager>().Shapes2JSON();
 
                     userdata["shapeList"] = shapeList;
 
@@ -272,8 +272,8 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
         } else if (currStatus == LibPlacenote.MappingStatus.LOST) {
             Debug.Log("Searching for position lock");
         } else if (currStatus == LibPlacenote.MappingStatus.WAITING) {
-            if (GetComponent<ShapeManager>().shapeObjList.Count != 0) {
-                GetComponent<ShapeManager>().ClearShapes();
+            if (GetComponent<CustomShapeManager>().shapeObjList.Count != 0) {
+                GetComponent<CustomShapeManager>().ClearShapes();
             }
         }
     }

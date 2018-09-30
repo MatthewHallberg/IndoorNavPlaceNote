@@ -271,6 +271,10 @@ public class LibPlacenote : MonoBehaviour
 		/// Arbitrary user data, in JSON form.
 		/// </summary>
 		public JToken userdata;
+
+		#if UNITY_EDITOR
+		public SimCameraPoses simulatedMap;
+		#endif
 	}
 
 	private static DateTime EPOCH = new DateTime(1970, 1, 1);
@@ -314,7 +318,7 @@ public class LibPlacenote : MonoBehaviour
 	/// Class as a container for the JSON that contains information for a list of maps
 	/// </summary>
 	[System.Serializable]
-	private class MapList
+	public class MapList
 	{
 		public MapInfo[] places = null;
 	}
@@ -378,7 +382,7 @@ public class LibPlacenote : MonoBehaviour
 	/// Unity camera poses.
 	/// </summary>
 	[System.Serializable]
-	private struct SimCameraPoses
+	public struct SimCameraPoses
 	{
 		public List<PNTransformUnity> cameraPoses;
 	}
@@ -496,6 +500,23 @@ public class LibPlacenote : MonoBehaviour
 		PNInitialize (ref initParams, OnInitialized, IntPtr.Zero);
 		#endif
 	}
+
+
+	/// <summary>
+	/// Shutdown the Placenote SDK, especially all mapping threads
+	/// </summary>
+	public void Shutdown ()
+	{
+		#if UNITY_EDITOR
+		mInitialized = false;
+		StopSession();
+		#endif
+
+		#if !UNITY_EDITOR
+		PNShutdown();
+		#endif
+	}
+
 
 	/// <summary>
 	/// Indicates whether the LibPlacenote SDK is successful
@@ -883,8 +904,53 @@ public class LibPlacenote : MonoBehaviour
 		IntPtr cSharpContext = GCHandle.ToIntPtr (GCHandle.Alloc (metadataCb));
 		return PNGetMetadata (mapId, OnGetMetadata, cSharpContext) == 0;
 		#else
-		return true;
+
+		/// If the file does not exist
+		if (!File.Exists(Application.dataPath + simMapFileName)) {
+			Debug.Log("There are no maps. Please create a new map to setMetadata.");
+		} else {
+			/// Reads maps from file as JSON
+			string mapData = File.ReadAllText(Application.dataPath + simMapFileName);
+			MapInfo[] mapList = JsonConvert.DeserializeObject<MapInfo[]> (mapData);
+			foreach (var mapInfo in mapList) {
+				if (mapInfo.placeId == mapId) {
+					metadataCb(mapInfo.metadata);
+					return true;
+				}
+			}
+		}
+
+		metadataCb(null);
+		return false;
 		#endif
+	}
+
+
+	/// <summary>
+	/// Callback to indicate success of a <see cref="SetMetadata"/> function call.
+	/// </summary>
+	/// <param name="result">
+	/// Result that contains a boolean that indicates if SetMetadata call is successful.
+	/// If not successful, it returns the error message via <see cref="PNCallbackResultUnity"/>
+	/// </param>
+	/// <param name="context">Context.</param>
+	[MonoPInvokeCallback (typeof(PNResultCallback))]
+	static void OnSetMetadata (ref PNCallbackResultUnity result, IntPtr context)
+	{
+		GCHandle handle = GCHandle.FromIntPtr (context);
+		Action<bool> metadataSavedCb = handle.Target as Action<bool>;
+
+		PNCallbackResultUnity resultClone = result;
+		MainThreadTaskQueue.InvokeOnMainThread (() => {
+			if (resultClone.success) {
+				metadataSavedCb (true);
+			} else {
+				Debug.LogError ("Failed to fetch map list, error: " + resultClone.msg);
+				metadataSavedCb (false);
+			}
+
+			handle.Free ();
+		});
 	}
 
 	/// <summary>
@@ -893,12 +959,38 @@ public class LibPlacenote : MonoBehaviour
 	/// </summary>
 	/// <param name="mapId">ID of the map</param>
 	/// <param name="metadata">Map metadata</param>
-	public bool SetMetadata (string mapId, MapMetadataSettable metadata)
+	public bool SetMetadata (string mapId, MapMetadataSettable metadata, Action<bool> metaDataSavedCb = null)
 	{
 		#if !UNITY_EDITOR
-		return PNSetMetadata (mapId, JsonConvert.SerializeObject (metadata)) == 0;
+		IntPtr cSharpContext = GCHandle.ToIntPtr (GCHandle.Alloc (metaDataSavedCb));
+		int retCode = PNSetMetadata (mapId, JsonConvert.SerializeObject (metadata), OnSetMetadata, cSharpContext);
+		return retCode == 0;
 		#else
-		return true;
+
+		/// If the file does not exist
+		if (!File.Exists(Application.dataPath + simMapFileName)) {
+			Debug.Log("There are no maps. Please create a new map to setMetadata.");
+		} else {
+			/// Reads maps from file as JSON
+			string mapData = File.ReadAllText(Application.dataPath + simMapFileName);
+			MapInfo[] mapList = JsonConvert.DeserializeObject<MapInfo[]> (mapData);
+			foreach (var mapInfo in mapList) {
+				if (mapInfo.placeId == mapId) {
+
+					mapInfo.metadata.location = metadata.location;
+					mapInfo.metadata.name = metadata.name;
+					mapInfo.metadata.userdata = metadata.userdata;
+
+					var convertedJson = JsonConvert.SerializeObject(mapList);
+					File.WriteAllText(Application.dataPath + simMapFileName, convertedJson );
+					metaDataSavedCb(true);
+					return true;
+				}
+			}
+		}
+
+		metaDataSavedCb(false);
+		return false;
 		#endif
 	}
 
@@ -1133,7 +1225,7 @@ public class LibPlacenote : MonoBehaviour
 		/// Setting map Id
 		simMap.placeId =  Guid.NewGuid().ToString();
 		/// Setting saved camera poses
-		simMap.metadata.userdata = JsonConvert.SerializeObject(simCameraPoses.cameraPoses);
+		simMap.metadata.simulatedMap = simCameraPoses;
 		string jsonMap = JsonConvert.SerializeObject(simMap);
 
 		/// The file does not exist yet OR The file exists but does not contain '[]'
@@ -1209,9 +1301,11 @@ public class LibPlacenote : MonoBehaviour
 			if (mapId == mapList[i].placeId)
 				simMap = mapList[i];
 		}
-		simCameraPoses.cameraPoses = JsonConvert.DeserializeObject<List<PNTransformUnity>> (simMap.metadata.userdata.ToString() );
+
+		simCameraPoses = simMap.metadata.simulatedMap;
 		loadProgressCb (true, false, 1.0f);
 		#endif
+
 	}
 
 
@@ -1271,6 +1365,7 @@ public class LibPlacenote : MonoBehaviour
 					break;
 				}
 			}
+
 			/// Resaving map
 			var convertedJson = JsonConvert.SerializeObject(mapList);
 			File.WriteAllText(Application.dataPath + simMapFileName, convertedJson);
@@ -1290,18 +1385,18 @@ public class LibPlacenote : MonoBehaviour
 	/// </returns>
 	public PNFeaturePointUnity[] GetMap ()
 	{
-		int lmSize = 0;
+		
 		PNFeaturePointUnity[] map = new PNFeaturePointUnity [1];
+
 		#if !UNITY_EDITOR
+		int lmSize = 0;
 		lmSize = PNGetAllLandmarks (map, 0);
-		#endif
 
 		if (lmSize == 0) {
 			Debug.Log ("Empty landmarks, probably tried to fail");
 			return null;
 		}
 
-		#if !UNITY_EDITOR
 		Array.Resize (ref map, lmSize);
 		PNGetAllLandmarks (map, lmSize);
 		#endif
@@ -1410,5 +1505,9 @@ public class LibPlacenote : MonoBehaviour
 
 	[DllImport ("__Internal")]
 	[return: MarshalAs (UnmanagedType.I4)]
-	private static extern int PNSetMetadata (string mapId, string metadataJson);
+	private static extern int PNSetMetadata (string mapId, string metadataJson, PNResultCallback cb, IntPtr context);
+
+	[DllImport ("__Internal")]
+	[return: MarshalAs (UnmanagedType.I4)]
+	private static extern int PNShutdown ();
 }

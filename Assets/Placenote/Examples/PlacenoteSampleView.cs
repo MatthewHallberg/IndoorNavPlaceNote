@@ -14,6 +14,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	[SerializeField] GameObject mMapSelectedPanel;
 	[SerializeField] GameObject mInitButtonPanel;
 	[SerializeField] GameObject mMappingButtonPanel;
+	[SerializeField] GameObject mSimulatorAddShapeButton;
 	[SerializeField] GameObject mMapListPanel;
 	[SerializeField] GameObject mExitButton;
 	[SerializeField] GameObject mListElement;
@@ -31,6 +32,9 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	private UnityARImageFrameData mImage = null;
 	private UnityARCamera mARCamera;
 	private bool mARKitInit = false;
+
+	//private List<ShapeInfo> shapeInfoList = new List<ShapeInfo> ();
+	//private List<GameObject> shapeObjList = new List<GameObject> ();
 	
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
 
@@ -44,9 +48,11 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	}
 	private string mSaveMapId = null;
 
+
 	private BoxCollider mBoxColliderDummy;
 	private SphereCollider mSphereColliderDummy;
 	private CapsuleCollider mCapColliderDummy;
+
 
 	// Use this for initialization
 	void Start ()
@@ -61,6 +67,13 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 		FeaturesVisualizer.EnablePointcloud ();
 		LibPlacenote.Instance.RegisterListener (this);
 		ResetSlider ();
+
+		// for simulator
+		#if UNITY_EDITOR
+		mSimulatorAddShapeButton.SetActive(true);
+		mPlaneDetectionToggle.SetActive(false);
+		#endif
+
 	}
 
 
@@ -123,7 +136,6 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	{
 		if (!LibPlacenote.Instance.Initialized()) {
 			Debug.Log ("SDK not yet initialized");
-			ToastManager.ShowToast ("SDK not yet initialized", 2f);
 			return;
 		}
 
@@ -188,7 +200,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	{
 		mInitButtonPanel.SetActive (true);
 		mExitButton.SetActive (false);
-		mPlaneDetectionToggle.SetActive (false);
+		//mPlaneDetectionToggle.SetActive (false);
 		mMappingButtonPanel.SetActive (false);
 
 		//clear all existing planes
@@ -223,7 +235,6 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 
 		if (!LibPlacenote.Instance.Initialized()) {
 			Debug.Log ("SDK not yet initialized");
-			ToastManager.ShowToast ("SDK not yet initialized", 2f);
 			return;
 		}
 
@@ -237,7 +248,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 					mInitButtonPanel.SetActive (false);
 					mMappingButtonPanel.SetActive(true);
 					mExitButton.SetActive (true);
-					mPlaneDetectionToggle.SetActive(true);
+					//mPlaneDetectionToggle.SetActive(true);
 
 					LibPlacenote.Instance.StartSession (true);
 
@@ -270,7 +281,6 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	{
 		if (!LibPlacenote.Instance.Initialized()) {
 			Debug.Log ("SDK not yet initialized");
-			ToastManager.ShowToast ("SDK not yet initialized", 2f);
 			return;
 		}
 
@@ -299,7 +309,9 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 
 		mInitButtonPanel.SetActive (false);
 		mMappingButtonPanel.SetActive (true);
-		mPlaneDetectionToggle.SetActive (true);
+
+		//mPlaneDetectionToggle.SetActive (true);
+
 		Debug.Log ("Started Session");
 		LibPlacenote.Instance.StartSession ();
 
@@ -325,9 +337,11 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 
 	private void StartARKit ()
 	{
+		#if !UNITY_EDITOR
 		mLabelText.text = "Initializing ARKit";
 		Application.targetFrameRate = 60;
 		ConfigureSession (false);
+		#endif
 	}
 
 
@@ -361,7 +375,6 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	{
 		if (!LibPlacenote.Instance.Initialized()) {
 			Debug.Log ("SDK not yet initialized");
-			ToastManager.ShowToast ("SDK not yet initialized", 2f);
 			return;
 		}
 
@@ -376,7 +389,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 				mInitButtonPanel.SetActive (true);
 				mMappingButtonPanel.SetActive (false);
 				mExitButton.SetActive(false);
-				mPlaneDetectionToggle.SetActive (false);
+				//mPlaneDetectionToggle.SetActive (false);
 
 				//clear all existing planes
 				mPNPlaneManager.ClearPlanes ();
@@ -399,7 +412,13 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 					metadata.location.longitude = locationInfo.longitude;
 					metadata.location.altitude = locationInfo.altitude;
 				}
-				LibPlacenote.Instance.SetMetadata (mapId, metadata);
+				LibPlacenote.Instance.SetMetadata (mapId, metadata, (success) => {
+					if (success) {
+						Debug.Log("Meta data successfully saved");
+					} else {
+						Debug.Log("Meta data failed to save");
+					}
+				});
 				mCurrMapDetails = metadata;
 			},
 			(completed, faulted, percentage) => {
@@ -433,5 +452,10 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
                 GetComponent<ShapeManager>().ClearShapes ();
 			}
 		}
+	}
+
+	void OnApplicationQuit()
+	{
+		LibPlacenote.Instance.Shutdown();
 	}
 }
