@@ -19,11 +19,14 @@ public class Node : MonoBehaviour {
     public Node NextInList { get; set; }
 
     private Vector3 scale;
+    private bool isDestination = false;
 
     private void Awake() {
         transform.GetChild(0).gameObject.SetActive(false);
         //save scale
         scale = transform.localScale;
+        //check if destination
+        if (GetComponent<DiamondBehavior>() != null) isDestination = true;
 #if UNITY_EDITOR
         pos = transform.position;
 #endif
@@ -31,16 +34,15 @@ public class Node : MonoBehaviour {
 
     public void Activate(bool active) {
         transform.GetChild(0).gameObject.SetActive(active);
-        transform.localScale = Vector3.zero;
         if (NextInList != null) {
             transform.LookAt(NextInList.transform);
         }
     }
 
     void Update() {
-        if (transform.localScale != scale) {
-            transform.localScale = Vector3.Lerp(transform.localScale, scale, Time.deltaTime * 6f);
-        }
+        //make pulsate
+        if (!isDestination)
+            transform.localScale = scale * (1 + Mathf.Sin(Mathf.PI * Time.time) * .2f); 
     }
 
     public void FindNeighbors() {

@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 [RequireComponent(typeof(CustomShapeManager))]
 public class CreateMap : MonoBehaviour, PlacenoteListener {
 
-    private const string MAP_NAME = "MattsMap";
+    private const string MAP_NAME = "GenericMap";
 
     private CustomShapeManager shapeManager;
 
@@ -266,7 +266,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
         Debug.Log("prevStatus: " + prevStatus.ToString() + " currStatus: " + currStatus.ToString());
         if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST) {
             Debug.Log("Localized");
-            //			GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
+//			GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
         } else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
             Debug.Log("Mapping");
         } else if (currStatus == LibPlacenote.MappingStatus.LOST) {

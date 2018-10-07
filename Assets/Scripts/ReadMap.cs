@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 public class ReadMap : MonoBehaviour, PlacenoteListener {
 
-    private const string MAP_NAME = "MattsMap";
+    private const string MAP_NAME = "GenericMap";
 
     private UnityARSessionNativeInterface mSession;
     private bool mFrameUpdated = false;
