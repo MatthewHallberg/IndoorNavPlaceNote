@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{5E713DDB-FC78-D7FE-4B14-7CC0EACA6FBE}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AStar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NavController.cs">
     <Files>
-      <File FileName="Assets/Scripts/NavController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Node.cs" Line="29" Column="75" />
-      <File FileName="Assets/Scripts/AStar.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ReadMap.cs" Line="107" Column="31" />
+      <File FileName="Assets/Scripts/NavController.cs" Line="78" Column="14" />
+      <File FileName="Assets/Placenote/Examples/CustomShapeManager.cs" Line="128" Column="40" />
+      <File FileName="Assets/Scripts/Node.cs" Line="50" Column="70" />
+      <File FileName="Assets/Scripts/AStar.cs" Line="46" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

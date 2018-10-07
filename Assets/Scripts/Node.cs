@@ -45,9 +45,9 @@ public class Node : MonoBehaviour {
             transform.localScale = scale * (1 + Mathf.Sin(Mathf.PI * Time.time) * .2f); 
     }
 
-    public void FindNeighbors() {
+    public void FindNeighbors(float maxDistance) {
         foreach (Node node in FindObjectsOfType<Node>()) {
-            if (Vector3.Distance(node.pos, pos) < 1.2f) {
+            if (Vector3.Distance(node.pos, this.pos) < maxDistance) {
                 neighbors.Add(node);
             }
         }

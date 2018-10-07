@@ -72,6 +72,7 @@ public class CustomShapeManager : MonoBehaviour {
 		}
 		if (shape.GetComponent<Node> () != null) {
 			shape.GetComponent<Node> ().pos = position;
+            Debug.Log(position);
 		}
 		shape.tag = "waypoint";
 		shape.transform.position = position;
@@ -83,6 +84,7 @@ public class CustomShapeManager : MonoBehaviour {
 
     public void ClearShapes()
     {
+        Debug.Log("CLEARING SHAPES!!!!!!!");
         foreach (var obj in shapeObjList)
         {
             Destroy(obj);
@@ -108,6 +110,7 @@ public class CustomShapeManager : MonoBehaviour {
     {
 		if (!shapesLoaded) {
 			shapesLoaded = true;
+            Debug.Log("LOADING SHAPES>>>");
 			if (mapMetadata is JObject && mapMetadata ["shapeList"] is JObject) {
 				ShapeList shapeList = mapMetadata ["shapeList"].ToObject<ShapeList> ();
 				if (shapeList.shapes == null) {

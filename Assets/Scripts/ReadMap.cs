@@ -168,7 +168,7 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
     public void OnStatusChange(LibPlacenote.MappingStatus prevStatus, LibPlacenote.MappingStatus currStatus) {
         Debug.Log("prevStatus: " + prevStatus.ToString() + " currStatus: " + currStatus.ToString());
         if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST) {
-            Debug.Log("Localized: " + mSelectedMapInfo.metadata.userdata);
+            Debug.Log("Localized: " + mSelectedMapInfo.metadata.name);
             GetComponent<CustomShapeManager>().LoadShapesJSON(mSelectedMapInfo.metadata.userdata);
             FeaturesVisualizer.DisablePointcloud();
         } else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
@@ -177,7 +177,7 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
             Debug.Log("Searching for position lock");
         } else if (currStatus == LibPlacenote.MappingStatus.WAITING) {
             if (GetComponent<CustomShapeManager>().shapeObjList.Count != 0) {
-                GetComponent<CustomShapeManager>().ClearShapes();
+                //GetComponent<CustomShapeManager>().ClearShapes();
             }
         }
     }

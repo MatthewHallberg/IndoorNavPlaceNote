@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 [RequireComponent(typeof(CustomShapeManager))]
 public class CreateMap : MonoBehaviour, PlacenoteListener {
 
+    public Text debugText;
+
     private const string MAP_NAME = "GenericMap";
 
     private CustomShapeManager shapeManager;
@@ -189,24 +191,26 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
             ToastManager.ShowToast("SDK not yet initialized", 2f);
             return;
         }
-        //delete all maps
+        //delete mAP
         LibPlacenote.Instance.SearchMaps(MAP_NAME, (LibPlacenote.MapInfo[] obj) => {
+            bool foundMap = false;
             foreach (LibPlacenote.MapInfo map in obj) {
                 if (map.metadata.name == MAP_NAME) {
+                    foundMap = true;
                     LibPlacenote.Instance.DeleteMap(map.placeId, (deleted, errMsg) => {
                         if (deleted) {
                             Debug.Log("Deleted ID: " + map.placeId);
                             SaveCurrentMap();
-                            return;
                         } else {
                             Debug.Log("Failed to delete ID: " + map.placeId);
-                            return;
                         }
                     });
                 }
             }
+            if (!foundMap) {
+                SaveCurrentMap();
+            }
         });
-        SaveCurrentMap();
     }
 
     void SaveCurrentMap() {
@@ -223,6 +227,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
             LocationInfo locationInfo = Input.location.lastData;
 
             Debug.Log("Saving...");
+            debugText.text = "uploading...";
             LibPlacenote.Instance.SaveMap(
                 (mapId) => {
                     LibPlacenote.Instance.StopSession();
@@ -250,6 +255,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
                 (completed, faulted, percentage) => {
                     if (completed) {
                         Debug.Log("Upload Complete:" + mCurrMapDetails.name);
+                        debugText.text = "upload complete!!";
                     } else if (faulted) {
                         Debug.Log("Upload of Map Named: " + mCurrMapDetails.name + "faulted");
                     } else {
@@ -266,7 +272,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
         Debug.Log("prevStatus: " + prevStatus.ToString() + " currStatus: " + currStatus.ToString());
         if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST) {
             Debug.Log("Localized");
-//			GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
+            //			GetComponent<ShapeManager> ().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
         } else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
             Debug.Log("Mapping");
         } else if (currStatus == LibPlacenote.MappingStatus.LOST) {

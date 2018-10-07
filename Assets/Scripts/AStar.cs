@@ -23,6 +23,7 @@ public class AStar : MonoBehaviour {
             closedSet.Add(currentNode);
 
             if (currentNode == targetNode) {
+                Debug.Log("RETURNING CORRECT NODE!!");
                 return RetracePath(startNode, targetNode);
             }
 
@@ -42,7 +43,7 @@ public class AStar : MonoBehaviour {
                 }
             }
         }
-
+        Debug.Log("RETURNING NULL");
         return null;
     }
 
