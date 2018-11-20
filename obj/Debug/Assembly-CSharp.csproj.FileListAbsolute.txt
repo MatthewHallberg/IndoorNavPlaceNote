@@ -614,9 +614,3 @@
 /Users/matthewhallberg/placenote/Temp/bin/Debug/System.Xml.XmlSerializer.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/System.Xml.XPath.dll
 /Users/matthewhallberg/placenote/Temp/bin/Debug/System.Xml.XPath.XDocument.dll
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Boo.Lang.Parser.dll
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Boo.Lang.Compiler.dll
-/Users/matthewhallberg/placenote/Temp/bin/Debug/Boo.Lang.dll
-/Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.UI.dll
-/Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.UI.dll.mdb
-/Users/matthewhallberg/placenote/Temp/bin/Debug/UnityEditor.UI.xml
