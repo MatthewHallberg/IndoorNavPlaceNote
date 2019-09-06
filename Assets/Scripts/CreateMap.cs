@@ -22,12 +22,9 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
     private bool shouldSaveMap = true;
 
     private UnityARSessionNativeInterface mSession;
-    private bool mARKitInit = false;
 
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
-
-    private bool mReportDebug = false;
-
+    
     private BoxCollider mBoxColliderDummy;
     private SphereCollider mSphereColliderDummy;
     private CapsuleCollider mCapColliderDummy;
@@ -82,20 +79,6 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
         Debug.Log("Started Session");
         LibPlacenote.Instance.StartSession();
-
-        if (mReportDebug) {
-            LibPlacenote.Instance.StartRecordDataset(
-                (completed, faulted, percentage) => {
-                    if (completed) {
-                        Debug.Log("Dataset Upload Complete");
-                    } else if (faulted) {
-                        Debug.Log("Dataset Upload Faulted");
-                    } else {
-                        Debug.Log("Dataset Upload: (" + percentage.ToString("F2") + "/1.0)");
-                    }
-                });
-            Debug.Log("Started Debug Report");
-        }
     }
 
     private void StartARKit() {
@@ -126,6 +109,8 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
         //start drop waypoints
         Debug.Log("Dropping Waypoints!!");
         shouldRecordWaypoints = true;
+
+        StartSavingMap();
     }
 
     public void OnSaveMapClick() {
@@ -135,10 +120,10 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
     void DeleteMaps() {
         if (!LibPlacenote.Instance.Initialized()) {
             Debug.Log("SDK not yet initialized");
-            ToastManager.ShowToast("SDK not yet initialized", 2f);
             return;
         }
-        //delete mAP
+
+        //delete map
         LibPlacenote.Instance.SearchMaps(MAP_NAME, (LibPlacenote.MapInfo[] obj) => {
             bool foundMap = false;
             foreach (LibPlacenote.MapInfo map in obj) {
@@ -166,7 +151,6 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
             if (!LibPlacenote.Instance.Initialized()) {
                 Debug.Log("SDK not yet initialized");
-                ToastManager.ShowToast("SDK not yet initialized", 2f);
                 return;
             }
 

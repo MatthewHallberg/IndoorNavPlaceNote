@@ -66,25 +66,9 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
         LibPlacenote.Instance.LoadMap(mSelectedMapInfo.placeId,
             (completed, faulted, percentage) => {
                 if (completed) {
-
-                    if (mReportDebug) {
-                        LibPlacenote.Instance.StartRecordDataset(
-                            (datasetCompleted, datasetFaulted, datasetPercentage) => {
-
-                                if (datasetCompleted) {
-                                    Debug.Log("Dataset Upload Complete");
-                                } else if (datasetFaulted) {
-                                    Debug.Log("Dataset Upload Faulted");
-                                } else {
-                                    Debug.Log("Dataset Upload: " + datasetPercentage.ToString("F2") + "/1.0");
-                                }
-                            });
-                        Debug.Log("Started Debug Report");
-                    }
-
                     Debug.Log("Loaded ID: " + mSelectedMapInfo.placeId + "...Starting session");
 
-                    LibPlacenote.Instance.StartSession(true);
+                    LibPlacenote.Instance.StartSession();
 
                 } else if (faulted) {
                     Debug.Log("Failed to load ID: " + mSelectedMapInfo.placeId);
