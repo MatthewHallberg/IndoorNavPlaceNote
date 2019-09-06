@@ -37,6 +37,9 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
         StartARKit();
         FeaturesVisualizer.EnablePointcloud();
         LibPlacenote.Instance.RegisterListener(this);
+
+        // Load Map
+        FindMap();
     }
 
     void OnDisable() {
