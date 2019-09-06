@@ -22,9 +22,6 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
     private bool shouldSaveMap = true;
 
     private UnityARSessionNativeInterface mSession;
-    private bool mFrameUpdated = false;
-    private UnityARImageFrameData mImage = null;
-    private UnityARCamera mARCamera;
     private bool mARKitInit = false;
 
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
@@ -43,81 +40,31 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
         Input.location.Start();
 
         mSession = UnityARSessionNativeInterface.GetARSessionNativeInterface();
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent += ARFrameUpdated;
         StartARKit();
         FeaturesVisualizer.EnablePointcloud();
         LibPlacenote.Instance.RegisterListener(this);
     }
 
     void OnDisable() {
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
-    }
-
-    private void ARFrameUpdated(UnityARCamera camera) {
-        mFrameUpdated = true;
-        mARCamera = camera;
-    }
-
-
-    private void InitARFrameBuffer() {
-        mImage = new UnityARImageFrameData();
-
-        int yBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yHeight;
-        mImage.y.data = Marshal.AllocHGlobal(yBufSize);
-        mImage.y.width = (ulong)mARCamera.videoParams.yWidth;
-        mImage.y.height = (ulong)mARCamera.videoParams.yHeight;
-        mImage.y.stride = (ulong)mARCamera.videoParams.yWidth;
-
-        // This does assume the YUV_NV21 format
-        int vuBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yWidth / 2;
-        mImage.vu.data = Marshal.AllocHGlobal(vuBufSize);
-        mImage.vu.width = (ulong)mARCamera.videoParams.yWidth / 2;
-        mImage.vu.height = (ulong)mARCamera.videoParams.yHeight / 2;
-        mImage.vu.stride = (ulong)mARCamera.videoParams.yWidth;
-
-        mSession.SetCapturePixelData(true, mImage.y.data, mImage.vu.data);
     }
 
     // Update is called once per frame
     void Update() {
-        if (mFrameUpdated) {
-            mFrameUpdated = false;
-            if (mImage == null) {
-                InitARFrameBuffer();
-            }
-
-            if (mARCamera.trackingState == ARTrackingState.ARTrackingStateNotAvailable) {
-                // ARKit pose is not yet initialized
-                return;
-            } else if (!mARKitInit && LibPlacenote.Instance.Initialized()) {
-                mARKitInit = true;
-                Debug.Log("ARKit + placenote Initialized");
-                StartSavingMap();
-            }
-
-            Matrix4x4 matrix = mSession.GetCameraPose();
-
-            Vector3 arkitPosition = PNUtility.MatrixOps.GetPosition(matrix);
-            Quaternion arkitQuat = PNUtility.MatrixOps.GetRotation(matrix);
-
-            LibPlacenote.Instance.SendARFrame(mImage, arkitPosition, arkitQuat, mARCamera.videoParams.screenOrientation);
-
-            if (shouldRecordWaypoints) {
-                Transform player = Camera.main.transform;
-                //create waypoints if there are none around
-                Collider[] hitColliders = Physics.OverlapSphere(player.position, 1f);
-                int i = 0;
-                while (i < hitColliders.Length) {
-                    if (hitColliders[i].CompareTag("waypoint")) {
-                        return;
-                    }
-                    i++;
+        if (shouldRecordWaypoints) {
+            Transform player = Camera.main.transform;
+            //create waypoints if there are none around
+            Collider[] hitColliders = Physics.OverlapSphere(player.position, 1f);
+            int i = 0;
+            while (i < hitColliders.Length) {
+                if (hitColliders[i].CompareTag("waypoint")) {
+                    return;
                 }
-                Vector3 pos = player.position;
-                Debug.Log(player.position);
-                pos.y = -.5f;
-                shapeManager.AddShape(pos, Quaternion.Euler(Vector3.zero), false);
+                i++;
             }
+            Vector3 pos = player.position;
+            Debug.Log(player.position);
+            pos.y = -.5f;
+            shapeManager.AddShape(pos, Quaternion.Euler(Vector3.zero), false);
         }
     }
 

@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshFilter: {fileID: 33944727969295592}
   lineRenderer: {fileID: 120946215887499020}
+  placenoteMaterial: {fileID: 2100000, guid: 521192d2276bb42d983cdcd9f61d8202, type: 2}
 --- !u!120 &120946215887499020
 LineRenderer:
   m_ObjectHideFlags: 1

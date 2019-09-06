@@ -6,12 +6,11 @@ using UnityEngine.XR.iOS;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-/*========================================
- * Main Class for Managing Markers
-======================================== */
+ // Classes to hold shape information
 
 [System.Serializable]
-public class ShapeInfo {
+public class ShapeInfo
+{
     public float px;
     public float py;
     public float pz;
@@ -20,28 +19,33 @@ public class ShapeInfo {
     public float qz;
     public float qw;
     public int shapeType;
+    public int colorType;
 }
 
+
 [System.Serializable]
-public class ShapeList {
+public class ShapeList
+{
     public ShapeInfo[] shapes;
 }
+
+
+
+ // Main Class for Managing Markers
 
 public class ShapeManager : MonoBehaviour {
 
     public List<ShapeInfo> shapeInfoList = new List<ShapeInfo>();
     public List<GameObject> shapeObjList = new List<GameObject>();
     public Material mShapeMaterial;
-
+    private Color[] colorTypeOptions = {Color.cyan, Color.red, Color.yellow};
 
 	// Use this for initialization
 	void Start () {
 
 	}
 
-    //-----------------------------------
     // The HitTest to Add a Marker
-    //-----------------------------------
 
     bool HitTestWithResultType(ARPoint point, ARHitTestResultType resultTypes)
     {
@@ -75,15 +79,12 @@ public class ShapeManager : MonoBehaviour {
     }
 
 
-    //-----------------------------------
     // Update function checks for hittest
-    //-----------------------------------
 
     void Update()
     {
 
         // Check if the screen is touched
-        //-----------------------------------
 
         if (Input.touchCount > 0)
         {
@@ -134,14 +135,15 @@ public class ShapeManager : MonoBehaviour {
 
 	}
 
-    //-------------------------------------------------
+
     // All shape management functions (add shapes, save shapes to metadata etc.
-    //-------------------------------------------------
 
     public void AddShape(Vector3 shapePosition, Quaternion shapeRotation)
     {
         System.Random rnd = new System.Random();
-        PrimitiveType type = (PrimitiveType)rnd.Next(0, 3);
+        PrimitiveType type = (PrimitiveType)rnd.Next(0, 4);
+
+        int colorType =  rnd.Next(0, 3);
 
         ShapeInfo shapeInfo = new ShapeInfo();
         shapeInfo.px = shapePosition.x;
@@ -152,6 +154,7 @@ public class ShapeManager : MonoBehaviour {
         shapeInfo.qz = shapeRotation.z;
         shapeInfo.qw = shapeRotation.w;
         shapeInfo.shapeType = type.GetHashCode();
+        shapeInfo.colorType = colorType;
         shapeInfoList.Add(shapeInfo);
 
         GameObject shape = ShapeFromInfo(shapeInfo);
@@ -166,7 +169,7 @@ public class ShapeManager : MonoBehaviour {
         shape.transform.rotation = new Quaternion(info.qx, info.qy, info.qz, info.qw);
         shape.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         shape.GetComponent<MeshRenderer>().material = mShapeMaterial;
-		shape.GetComponent<MeshRenderer> ().material.color = Color.yellow;
+        shape.GetComponent<MeshRenderer>().material.color = colorTypeOptions[info.colorType];
         return shape;
     }
 
