@@ -14,11 +14,9 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
     private const string MAP_NAME = "GenericMap";
 
     private UnityARSessionNativeInterface mSession;
-    private bool mARKitInit = false;
+    private bool mARInit = false;
 
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
-
-    private bool mReportDebug = false;
 
     string currMapID = String.Empty;
 
@@ -37,9 +35,6 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
         StartARKit();
         FeaturesVisualizer.EnablePointcloud();
         LibPlacenote.Instance.RegisterListener(this);
-
-        // Load Map
-        FindMap();
     }
 
     void OnDisable() {
@@ -47,6 +42,14 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
 
     // Update is called once per frame
     void Update() {
+        if (!mARInit && LibPlacenote.Instance.Initialized())
+        {
+            Debug.Log("Ready to Start!");
+            mARInit = true;
+
+            // Load Map
+            FindMap();
+        }
     }
 
     void FindMap() {
