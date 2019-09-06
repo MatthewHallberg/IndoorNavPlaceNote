@@ -20,6 +20,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
     private bool shouldRecordWaypoints = false;
     private bool shouldSaveMap = true;
+    private bool mARInit = false;
 
     private UnityARSessionNativeInterface mSession;
 
@@ -47,6 +48,14 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
     // Update is called once per frame
     void Update() {
+        if (!mARInit && LibPlacenote.Instance.Initialized())
+        {
+            Debug.Log("Ready To Start!");
+            mARInit = true;
+
+            return;
+        }
+
         if (shouldRecordWaypoints) {
             Transform player = Camera.main.transform;
             //create waypoints if there are none around
@@ -67,18 +76,6 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
     public void CreateDestination() {
         shapeManager.AddDestinationShape();
-    }
-
-    void StartSavingMap() {
-        ConfigureSession();
-
-        if (!LibPlacenote.Instance.Initialized()) {
-            Debug.Log("SDK not yet initialized");
-            return;
-        }
-
-        Debug.Log("Started Session");
-        LibPlacenote.Instance.StartSession();
     }
 
     private void StartARKit() {
@@ -105,25 +102,35 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 #endif
     }
 
-    public void OnStartNewClick() {
+    public void OnStartNewClick()
+    {
+        ConfigureSession();
+
+        if (!LibPlacenote.Instance.Initialized())
+        {
+            Debug.Log("SDK not yet initialized");
+            return;
+        }
+
+        Debug.Log("Started Session");
+        LibPlacenote.Instance.StartSession();
+
         //start drop waypoints
         Debug.Log("Dropping Waypoints!!");
         shouldRecordWaypoints = true;
-
-        StartSavingMap();
     }
 
     public void OnSaveMapClick() {
-        DeleteMaps();
+        OverwriteExistingMap();
     }
 
-    void DeleteMaps() {
+    void OverwriteExistingMap() {
         if (!LibPlacenote.Instance.Initialized()) {
             Debug.Log("SDK not yet initialized");
             return;
         }
 
-        //delete map
+        // Overwrite map if it exists.
         LibPlacenote.Instance.SearchMaps(MAP_NAME, (LibPlacenote.MapInfo[] obj) => {
             bool foundMap = false;
             foreach (LibPlacenote.MapInfo map in obj) {
@@ -139,6 +146,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
                     });
                 }
             }
+
             if (!foundMap) {
                 SaveCurrentMap();
             }
