@@ -353,10 +353,10 @@ public class LibPlacenote : MonoBehaviour
 		/// Filter maps based on this query, which is run via json-query:
 		/// https://www.npmjs.com/package/json-query
 		/// The filter will match if the query return a valid.
-		/// 
+		///
 		/// For a simple example, to match only maps that have a 'shapeList'
 		/// in the userdata object, simply pass 'shapeList'.
-		/// 
+		///
 		/// For other help, contact us on Slack.
 		/// </summary>
 		public string userdataQuery;
@@ -419,6 +419,13 @@ public class LibPlacenote : MonoBehaviour
 	// Fill in API Key here
 	public String apiKey;
 
+	// Variables to send frames to Placenote
+	private bool mFrameUpdated = false;
+	private UnityARImageFrameData mImage = null;
+	private UnityARCamera mARCamera;
+	private UnityARSessionNativeInterface mSession;
+	private bool libPlacenoteSessionRunning = false;
+
 	/// <summary>
 	/// Get accessor for the LibPlacenote singleton
 	/// </summary>
@@ -432,10 +439,70 @@ public class LibPlacenote : MonoBehaviour
 
 	public void Awake () {
 		sInstance = this;
-
 		Init ();
 	}
 
+	public void Start()
+	{
+        mSession = UnityARSessionNativeInterface.GetARSessionNativeInterface();
+        UnityARSessionNativeInterface.ARFrameUpdatedEvent += ARFrameUpdated;
+	}
+
+	// Function is called when each frame from ARKit becomes available
+	private void ARFrameUpdated (UnityARCamera camera)
+	{
+		mFrameUpdated = true;
+		mARCamera = camera;
+	}
+
+	// Update function sends a camera frame from Arkit to Placenote
+	void Update () {
+
+		if (mFrameUpdated && libPlacenoteSessionRunning) {
+			mFrameUpdated = false;
+			if (mImage == null) {
+				InitARFrameBuffer ();
+			}
+
+			if (mARCamera.trackingState == ARTrackingState.ARTrackingStateNotAvailable) {
+				// ARKit pose is not yet initialized
+				return;
+			}
+
+			Matrix4x4 matrix = mSession.GetCameraPose ();
+			Vector3 arkitPosition = PNUtility.MatrixOps.GetPosition (matrix);
+			Quaternion arkitQuat = PNUtility.MatrixOps.GetRotation (matrix);
+
+            // send image frame to placenote for processing
+			SendARFrame (mImage, arkitPosition, arkitQuat, mARCamera.videoParams.screenOrientation);
+		}
+	}
+
+	// Function to actually copy the frame buffer and make it available for Placenote
+	private void InitARFrameBuffer ()
+	{
+		mImage = new UnityARImageFrameData ();
+
+		mImage.y.width = (ulong)mARCamera.videoParams.yWidth;
+		mImage.y.height = (ulong)mARCamera.videoParams.yHeight;
+		mImage.y.stride = (ulong)(mARCamera.videoParams.yWidth == 1440? 1472 : mARCamera.videoParams.yWidth);
+		ulong yBufSize = mImage.y.stride * mImage.y.height;
+		mImage.y.data = Marshal.AllocHGlobal ((int)yBufSize);
+		Debug.Log (String.Format("yWidth {0} yHeight {1} yStride {2} totalSize {3}",
+			mImage.y.width, mImage.y.height, mImage.y.stride, yBufSize));
+
+		// This does assume the YUV_NV21 format
+		mImage.vu.width = mImage.y.width/2;
+		mImage.vu.height = mImage.y.height/2;
+		mImage.vu.stride = mImage.y.stride;
+		mImage.vu.stride = (ulong)(mARCamera.videoParams.yWidth == 1440? 1472 : mARCamera.videoParams.yWidth);
+		ulong vuBufSize = mImage.vu.stride * mImage.vu.height;
+		mImage.vu.data = Marshal.AllocHGlobal ((int)vuBufSize);
+		Debug.Log (String.Format("vuWidth {0} vuHeight {1} yStride {2} totalSize {3}",
+			mImage.vu.width, mImage.vu.height, mImage.vu.stride, vuBufSize));
+
+		mSession.SetCapturePixelData (true, mImage.y.data, mImage.vu.data);
+	}
 
 	/// <summary>
 	/// Register a listener to events published by LibPlacenote
@@ -505,7 +572,7 @@ public class LibPlacenote : MonoBehaviour
 	/// <summary>
 	/// Shutdown the Placenote SDK, especially all mapping threads
 	/// </summary>
-	public void Shutdown ()
+	private void Shutdown ()
 	{
 		#if UNITY_EDITOR
 		mInitialized = false;
@@ -697,6 +764,7 @@ public class LibPlacenote : MonoBehaviour
 	{
 		#if !UNITY_EDITOR
 		PNStartSession (OnPose, extend, IntPtr.Zero);
+		libPlacenoteSessionRunning = true;
 		#else
 
 		if(mLocalization) {
@@ -808,6 +876,7 @@ public class LibPlacenote : MonoBehaviour
 		mCurrentTransform = null; //transform is again, meaningless
 		#if !UNITY_EDITOR
 		PNStopSession ();
+		libPlacenoteSessionRunning = false;
 		#else
 		/// Stops the current OnPose coroutine
 		StopCoroutine(OnPoseInvokeRepeat());
@@ -1059,7 +1128,7 @@ public class LibPlacenote : MonoBehaviour
 		ms.name = name;
 		SearchMaps (ms, listCb);
 	}
-		
+
 	/// <summary>
 	/// Fetch a list of maps in the given location.
 	/// </summary>
@@ -1287,26 +1356,36 @@ public class LibPlacenote : MonoBehaviour
 	/// <param name="loadProgressCb">
 	/// Callback to publish map download progress event to listeners registered.
 	/// </param>
-	public void LoadMap (String mapId, Action<bool, bool, float> loadProgressCb)
-	{
-		#if !UNITY_EDITOR
-		IntPtr cSharpContext = GCHandle.ToIntPtr (GCHandle.Alloc (loadProgressCb));
-		PNLoadMap (mapId, OnMapLoaded, cSharpContext);
-		#else
-		mLocalization = true;
-		// Reads maps from file as JSON
-		string mapData = File.ReadAllText(Application.dataPath + simMapFileName);
-		MapInfo[] mapList = JsonConvert.DeserializeObject<MapInfo[]> (mapData);
-		for(int i = 0; i < mapList.Length; i++){
-			if (mapId == mapList[i].placeId)
-				simMap = mapList[i];
-		}
-
-		simCameraPoses = simMap.metadata.simulatedMap;
-		loadProgressCb (true, false, 1.0f);
-		#endif
-
-	}
+    public void LoadMap(String mapId, Action<bool, bool, float> loadProgressCb)
+    {
+        #if !UNITY_EDITOR
+        IntPtr cSharpContext = GCHandle.ToIntPtr (GCHandle.Alloc (loadProgressCb));
+        PNLoadMap (mapId, OnMapLoaded, cSharpContext);
+        #else
+        mLocalization = true;
+        // Reads maps from file as JSON
+        bool foundMap = false;
+        string mapData = File.ReadAllText(Application.dataPath + simMapFileName);
+        MapInfo[] mapList = JsonConvert.DeserializeObject<MapInfo[]>(mapData);
+        for (int i = 0; i < mapList.Length; i++)
+        {
+            if (mapId == mapList[i].placeId)
+            {
+                simMap = mapList[i];
+                foundMap = true;
+            }
+        }
+        if (foundMap)
+        {
+            simCameraPoses = simMap.metadata.simulatedMap;
+            loadProgressCb(true, false, 1f);
+        }
+        else
+        {
+            loadProgressCb(false, true, 0);
+        }
+        #endif
+    }
 
 
 	/// <summary>
@@ -1328,7 +1407,7 @@ public class LibPlacenote : MonoBehaviour
 			if (deleted) {
 				deletedCb (true, "Success");
 			} else {
-				deletedCb (true, "Failed to delete, error: " + errorMsg);
+				deletedCb (false, "Failed to delete, error: " + errorMsg);
 			}
 
 			handle.Free ();
@@ -1385,7 +1464,7 @@ public class LibPlacenote : MonoBehaviour
 	/// </returns>
 	public PNFeaturePointUnity[] GetMap ()
 	{
-		
+
 		PNFeaturePointUnity[] map = new PNFeaturePointUnity [1];
 
 		#if !UNITY_EDITOR
@@ -1404,6 +1483,11 @@ public class LibPlacenote : MonoBehaviour
 		return map;
 	}
 
+	// Shutdown all placenote functions when application quits
+	void OnApplicationQuit()
+	{
+		Shutdown();
+	}
 
 	/// <summary>
 	/// Return an array of feature points measured by the mapping/localization session.

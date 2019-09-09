@@ -20,21 +20,15 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	[SerializeField] GameObject mListElement;
 	[SerializeField] RectTransform mListContentParent;
 	[SerializeField] ToggleGroup mToggleGroup;
-	[SerializeField] GameObject mPlaneDetectionToggle;
 	[SerializeField] Text mLabelText;
-	[SerializeField] PlacenoteARGeneratePlane mPNPlaneManager;
 	[SerializeField] Slider mRadiusSlider;
 	[SerializeField] float mMaxRadiusSearch;
 	[SerializeField] Text mRadiusLabel;
 
 	private UnityARSessionNativeInterface mSession;
-	private bool mFrameUpdated = false;
-	private UnityARImageFrameData mImage = null;
-	private UnityARCamera mARCamera;
-	private bool mARKitInit = false;
 
-	//private List<ShapeInfo> shapeInfoList = new List<ShapeInfo> ();
-	//private List<GameObject> shapeObjList = new List<GameObject> ();
+	private bool mARInit = false;
+
 	
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
 
@@ -62,7 +56,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 		mMapListPanel.SetActive (false);
 
 		mSession = UnityARSessionNativeInterface.GetARSessionNativeInterface ();
-		UnityARSessionNativeInterface.ARFrameUpdatedEvent += ARFrameUpdated;
+
 		StartARKit ();
 		FeaturesVisualizer.EnablePointcloud ();
 		LibPlacenote.Instance.RegisterListener (this);
@@ -71,66 +65,16 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 		// for simulator
 		#if UNITY_EDITOR
 		mSimulatorAddShapeButton.SetActive(true);
-		mPlaneDetectionToggle.SetActive(false);
 		#endif
-
 	}
-
-
-	private void ARFrameUpdated (UnityARCamera camera)
-	{
-		mFrameUpdated = true;
-		mARCamera = camera;
-	}
-
-
-	private void InitARFrameBuffer ()
-	{
-		mImage = new UnityARImageFrameData ();
-
-		int yBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yHeight;
-		mImage.y.data = Marshal.AllocHGlobal (yBufSize);
-		mImage.y.width = (ulong)mARCamera.videoParams.yWidth;
-		mImage.y.height = (ulong)mARCamera.videoParams.yHeight;
-		mImage.y.stride = (ulong)mARCamera.videoParams.yWidth;
-
-		// This does assume the YUV_NV21 format
-		int vuBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yWidth/2;
-		mImage.vu.data = Marshal.AllocHGlobal (vuBufSize);
-		mImage.vu.width = (ulong)mARCamera.videoParams.yWidth/2;
-		mImage.vu.height = (ulong)mARCamera.videoParams.yHeight/2;
-		mImage.vu.stride = (ulong)mARCamera.videoParams.yWidth;
-
-		mSession.SetCapturePixelData (true, mImage.y.data, mImage.vu.data);
-	}
-
-
-	// Update is called once per frame
+		
 	void Update ()
 	{
-		if (mFrameUpdated) {
-			mFrameUpdated = false;
-			if (mImage == null) {
-				InitARFrameBuffer ();
-			}
-
-			if (mARCamera.trackingState == ARTrackingState.ARTrackingStateNotAvailable) {
-				// ARKit pose is not yet initialized
-				return;
-			} else if (!mARKitInit && LibPlacenote.Instance.Initialized()) {
-				mARKitInit = true;
-				mLabelText.text = "ARKit Initialized";
-			}
-
-			Matrix4x4 matrix = mSession.GetCameraPose ();
-
-			Vector3 arkitPosition = PNUtility.MatrixOps.GetPosition (matrix);
-			Quaternion arkitQuat = PNUtility.MatrixOps.GetRotation (matrix);
-
-			LibPlacenote.Instance.SendARFrame (mImage, arkitPosition, arkitQuat, mARCamera.videoParams.screenOrientation);
+		if (!mARInit && LibPlacenote.Instance.Initialized()) {
+			mARInit = true;
+			mLabelText.text = "Ready to Start!";
 		}
 	}
-
 
 	public void OnListMapClick ()
 	{
@@ -149,11 +93,11 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 		mRadiusSlider.gameObject.SetActive (true);
 		LibPlacenote.Instance.ListMaps ((mapList) => {
 			// render the map list!
-			foreach (LibPlacenote.MapInfo mapId in mapList) {
-				if (mapId.metadata.userdata != null) {
-					Debug.Log(mapId.metadata.userdata.ToString (Formatting.None));
+			foreach (LibPlacenote.MapInfo mapInfoItem in mapList) {
+                if (mapInfoItem.metadata.userdata != null) {
+                    Debug.Log(mapInfoItem.metadata.userdata.ToString (Formatting.None));
 				}
-				AddMapToList (mapId);
+                AddMapToList (mapInfoItem);
 			}
 		});
 	}
@@ -161,6 +105,8 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	public void OnRadiusSelect ()
 	{
 		Debug.Log ("Map search:" + mRadiusSlider.value.ToString("F2"));
+        mLabelText.text = "Filtering maps by GPS location";
+
 		LocationInfo locationInfo = Input.location.lastData;
 
 
@@ -179,6 +125,8 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 				}
 				AddMapToList (mapId);
 			}
+
+            mLabelText.text = "Map List Complete";
 		});
 	}
 
@@ -200,14 +148,12 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 	{
 		mInitButtonPanel.SetActive (true);
 		mExitButton.SetActive (false);
-		//mPlaneDetectionToggle.SetActive (false);
 		mMappingButtonPanel.SetActive (false);
 
-		//clear all existing planes
-		mPNPlaneManager.ClearPlanes ();
-		mPlaneDetectionToggle.GetComponent<Toggle>().isOn = false;
-
 		LibPlacenote.Instance.StopSession ();
+        FeaturesVisualizer.clearPointcloud();
+        GetComponent<ShapeManager>().ClearShapes();
+
 	}
 
 
@@ -231,7 +177,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 
 	public void OnLoadMapClicked ()
 	{
-		ConfigureSession (false);
+		ConfigureSession ();
 
 		if (!LibPlacenote.Instance.Initialized()) {
 			Debug.Log ("SDK not yet initialized");
@@ -246,11 +192,10 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 					mMapSelectedPanel.SetActive (false);
 					mMapListPanel.SetActive (false);
 					mInitButtonPanel.SetActive (false);
-					mMappingButtonPanel.SetActive(true);
+					mMappingButtonPanel.SetActive(false);
 					mExitButton.SetActive (true);
-					//mPlaneDetectionToggle.SetActive(true);
 
-					LibPlacenote.Instance.StartSession (true);
+					LibPlacenote.Instance.StartSession ();
 
 					if (mReportDebug) {
 						LibPlacenote.Instance.StartRecordDataset (
@@ -300,7 +245,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 
 	public void OnNewMapClick ()
 	{
-		ConfigureSession (false);
+		ConfigureSession ();
 
 		if (!LibPlacenote.Instance.Initialized()) {
 			Debug.Log ("SDK not yet initialized");
@@ -309,8 +254,6 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 
 		mInitButtonPanel.SetActive (false);
 		mMappingButtonPanel.SetActive (true);
-
-		//mPlaneDetectionToggle.SetActive (true);
 
 		Debug.Log ("Started Session");
 		LibPlacenote.Instance.StartSession ();
@@ -331,41 +274,23 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 
 	}
 
-	public void OnTogglePlaneDetection() {
-		ConfigureSession (true);
-	}
-
 	private void StartARKit ()
 	{
 		#if !UNITY_EDITOR
 		mLabelText.text = "Initializing ARKit";
 		Application.targetFrameRate = 60;
-		ConfigureSession (false);
+		ConfigureSession ();
 		#endif
 	}
 
 
-	private void ConfigureSession(bool clearPlanes) {
+	private void ConfigureSession() {
  		#if !UNITY_EDITOR
 		ARKitWorldTrackingSessionConfiguration config = new ARKitWorldTrackingSessionConfiguration ();
-
-		if (mPlaneDetectionToggle.GetComponent<Toggle>().isOn) {
-			if (UnityARSessionNativeInterface.IsARKit_1_5_Supported ()) {
-				config.planeDetection = UnityARPlaneDetection.HorizontalAndVertical;
-			} else {
-				config.planeDetection = UnityARPlaneDetection.Horizontal;
-			}
-			mPNPlaneManager.StartPlaneDetection ();
-		} else {
-			config.planeDetection = UnityARPlaneDetection.None;
-			if (clearPlanes) {
-				mPNPlaneManager.ClearPlanes ();
-			}
-		}
-
 		config.alignment = UnityARAlignment.UnityARAlignmentGravity;
 		config.getPointCloudData = true;
 		config.enableLightEstimation = true;
+        config.planeDetection = UnityARPlaneDetection.Horizontal;
 		mSession.RunWithConfig (config);
  		#endif
 	}
@@ -385,15 +310,12 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 		LibPlacenote.Instance.SaveMap (
 			(mapId) => {
 				LibPlacenote.Instance.StopSession ();
+                FeaturesVisualizer.clearPointcloud();
+
 				mSaveMapId = mapId;
 				mInitButtonPanel.SetActive (true);
 				mMappingButtonPanel.SetActive (false);
 				mExitButton.SetActive(false);
-				//mPlaneDetectionToggle.SetActive (false);
-
-				//clear all existing planes
-				mPNPlaneManager.ClearPlanes ();
-				mPlaneDetectionToggle.GetComponent<Toggle>().isOn = false;
 
 				LibPlacenote.MapMetadataSettable metadata = new LibPlacenote.MapMetadataSettable();
 				metadata.name = RandomName.Get ();
@@ -405,6 +327,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
                 JObject shapeList = GetComponent<ShapeManager>().Shapes2JSON();
 
 				userdata["shapeList"] = shapeList;
+                GetComponent<ShapeManager>().ClearShapes();
 
 				if (useLocation) {
 					metadata.location = new LibPlacenote.MapLocation();
@@ -444,7 +367,7 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
 			mLabelText.text = "Localized";
             GetComponent<ShapeManager>().LoadShapesJSON (mSelectedMapInfo.metadata.userdata);
 		} else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING) {
-			mLabelText.text = "Mapping";
+			mLabelText.text = "Mapping: Tap to add Shapes";
 		} else if (currStatus == LibPlacenote.MappingStatus.LOST) {
 			mLabelText.text = "Searching for position lock";
 		} else if (currStatus == LibPlacenote.MappingStatus.WAITING) {
@@ -452,10 +375,5 @@ public class PlacenoteSampleView : MonoBehaviour, PlacenoteListener
                 GetComponent<ShapeManager>().ClearShapes ();
 			}
 		}
-	}
-
-	void OnApplicationQuit()
-	{
-		LibPlacenote.Instance.Shutdown();
 	}
 }

@@ -14,14 +14,9 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
     private const string MAP_NAME = "GenericMap";
 
     private UnityARSessionNativeInterface mSession;
-    private bool mFrameUpdated = false;
-    private UnityARImageFrameData mImage = null;
-    private UnityARCamera mARCamera;
-    private bool mARKitInit = false;
+    private bool mARInit = false;
 
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
-
-    private bool mReportDebug = false;
 
     string currMapID = String.Empty;
 
@@ -37,63 +32,23 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
         Input.location.Start();
 
         mSession = UnityARSessionNativeInterface.GetARSessionNativeInterface();
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent += ARFrameUpdated;
         StartARKit();
         FeaturesVisualizer.EnablePointcloud();
         LibPlacenote.Instance.RegisterListener(this);
     }
 
     void OnDisable() {
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
-    }
-
-    private void ARFrameUpdated(UnityARCamera camera) {
-        mFrameUpdated = true;
-        mARCamera = camera;
-    }
-
-    private void InitARFrameBuffer() {
-        mImage = new UnityARImageFrameData();
-
-        int yBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yHeight;
-        mImage.y.data = Marshal.AllocHGlobal(yBufSize);
-        mImage.y.width = (ulong)mARCamera.videoParams.yWidth;
-        mImage.y.height = (ulong)mARCamera.videoParams.yHeight;
-        mImage.y.stride = (ulong)mARCamera.videoParams.yWidth;
-
-        // This does assume the YUV_NV21 format
-        int vuBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yWidth / 2;
-        mImage.vu.data = Marshal.AllocHGlobal(vuBufSize);
-        mImage.vu.width = (ulong)mARCamera.videoParams.yWidth / 2;
-        mImage.vu.height = (ulong)mARCamera.videoParams.yHeight / 2;
-        mImage.vu.stride = (ulong)mARCamera.videoParams.yWidth;
-
-        mSession.SetCapturePixelData(true, mImage.y.data, mImage.vu.data);
     }
 
     // Update is called once per frame
     void Update() {
-        if (mFrameUpdated) {
-            mFrameUpdated = false;
-            if (mImage == null) {
-                InitARFrameBuffer();
-            }
+        if (!mARInit && LibPlacenote.Instance.Initialized())
+        {
+            Debug.Log("Ready to Start!");
+            mARInit = true;
 
-            if (mARCamera.trackingState == ARTrackingState.ARTrackingStateNotAvailable) {
-                // ARKit pose is not yet initialized
-                return;
-            } else if (!mARKitInit && LibPlacenote.Instance.Initialized()) {
-                mARKitInit = true;
-                Debug.Log("ARKit Initialized: LOADING MAP!!!!!");
-                FindMap();
-            }
-
-            Matrix4x4 matrix = mSession.GetCameraPose();
-
-            Vector3 arkitPosition = PNUtility.MatrixOps.GetPosition(matrix);
-            Quaternion arkitQuat = PNUtility.MatrixOps.GetRotation(matrix);
-
-            LibPlacenote.Instance.SendARFrame(mImage, arkitPosition, arkitQuat, mARCamera.videoParams.screenOrientation);
+            // Load Map
+            FindMap();
         }
     }
 
@@ -117,25 +72,9 @@ public class ReadMap : MonoBehaviour, PlacenoteListener {
         LibPlacenote.Instance.LoadMap(mSelectedMapInfo.placeId,
             (completed, faulted, percentage) => {
                 if (completed) {
-
-                    if (mReportDebug) {
-                        LibPlacenote.Instance.StartRecordDataset(
-                            (datasetCompleted, datasetFaulted, datasetPercentage) => {
-
-                                if (datasetCompleted) {
-                                    Debug.Log("Dataset Upload Complete");
-                                } else if (datasetFaulted) {
-                                    Debug.Log("Dataset Upload Faulted");
-                                } else {
-                                    Debug.Log("Dataset Upload: " + datasetPercentage.ToString("F2") + "/1.0");
-                                }
-                            });
-                        Debug.Log("Started Debug Report");
-                    }
-
                     Debug.Log("Loaded ID: " + mSelectedMapInfo.placeId + "...Starting session");
 
-                    LibPlacenote.Instance.StartSession(true);
+                    LibPlacenote.Instance.StartSession();
 
                 } else if (faulted) {
                     Debug.Log("Failed to load ID: " + mSelectedMapInfo.placeId);

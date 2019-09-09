@@ -20,17 +20,12 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
     private bool shouldRecordWaypoints = false;
     private bool shouldSaveMap = true;
+    private bool mARInit = false;
 
     private UnityARSessionNativeInterface mSession;
-    private bool mFrameUpdated = false;
-    private UnityARImageFrameData mImage = null;
-    private UnityARCamera mARCamera;
-    private bool mARKitInit = false;
 
     private LibPlacenote.MapMetadataSettable mCurrMapDetails;
-
-    private bool mReportDebug = false;
-
+    
     private BoxCollider mBoxColliderDummy;
     private SphereCollider mSphereColliderDummy;
     private CapsuleCollider mCapColliderDummy;
@@ -43,112 +38,44 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
         Input.location.Start();
 
         mSession = UnityARSessionNativeInterface.GetARSessionNativeInterface();
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent += ARFrameUpdated;
         StartARKit();
         FeaturesVisualizer.EnablePointcloud();
         LibPlacenote.Instance.RegisterListener(this);
     }
 
     void OnDisable() {
-        UnityARSessionNativeInterface.ARFrameUpdatedEvent -= ARFrameUpdated;
-    }
-
-    private void ARFrameUpdated(UnityARCamera camera) {
-        mFrameUpdated = true;
-        mARCamera = camera;
-    }
-
-
-    private void InitARFrameBuffer() {
-        mImage = new UnityARImageFrameData();
-
-        int yBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yHeight;
-        mImage.y.data = Marshal.AllocHGlobal(yBufSize);
-        mImage.y.width = (ulong)mARCamera.videoParams.yWidth;
-        mImage.y.height = (ulong)mARCamera.videoParams.yHeight;
-        mImage.y.stride = (ulong)mARCamera.videoParams.yWidth;
-
-        // This does assume the YUV_NV21 format
-        int vuBufSize = mARCamera.videoParams.yWidth * mARCamera.videoParams.yWidth / 2;
-        mImage.vu.data = Marshal.AllocHGlobal(vuBufSize);
-        mImage.vu.width = (ulong)mARCamera.videoParams.yWidth / 2;
-        mImage.vu.height = (ulong)mARCamera.videoParams.yHeight / 2;
-        mImage.vu.stride = (ulong)mARCamera.videoParams.yWidth;
-
-        mSession.SetCapturePixelData(true, mImage.y.data, mImage.vu.data);
     }
 
     // Update is called once per frame
     void Update() {
-        if (mFrameUpdated) {
-            mFrameUpdated = false;
-            if (mImage == null) {
-                InitARFrameBuffer();
-            }
+        if (!mARInit && LibPlacenote.Instance.Initialized())
+        {
+            Debug.Log("Ready To Start!");
+            mARInit = true;
 
-            if (mARCamera.trackingState == ARTrackingState.ARTrackingStateNotAvailable) {
-                // ARKit pose is not yet initialized
-                return;
-            } else if (!mARKitInit && LibPlacenote.Instance.Initialized()) {
-                mARKitInit = true;
-                Debug.Log("ARKit + placenote Initialized");
-                StartSavingMap();
-            }
+            return;
+        }
 
-            Matrix4x4 matrix = mSession.GetCameraPose();
-
-            Vector3 arkitPosition = PNUtility.MatrixOps.GetPosition(matrix);
-            Quaternion arkitQuat = PNUtility.MatrixOps.GetRotation(matrix);
-
-            LibPlacenote.Instance.SendARFrame(mImage, arkitPosition, arkitQuat, mARCamera.videoParams.screenOrientation);
-
-            if (shouldRecordWaypoints) {
-                Transform player = Camera.main.transform;
-                //create waypoints if there are none around
-                Collider[] hitColliders = Physics.OverlapSphere(player.position, 1f);
-                int i = 0;
-                while (i < hitColliders.Length) {
-                    if (hitColliders[i].CompareTag("waypoint")) {
-                        return;
-                    }
-                    i++;
+        if (shouldRecordWaypoints) {
+            Transform player = Camera.main.transform;
+            //create waypoints if there are none around
+            Collider[] hitColliders = Physics.OverlapSphere(player.position, 1f);
+            int i = 0;
+            while (i < hitColliders.Length) {
+                if (hitColliders[i].CompareTag("waypoint")) {
+                    return;
                 }
-                Vector3 pos = player.position;
-                Debug.Log(player.position);
-                pos.y = -.5f;
-                shapeManager.AddShape(pos, Quaternion.Euler(Vector3.zero), false);
+                i++;
             }
+            Vector3 pos = player.position;
+            Debug.Log(player.position);
+            pos.y = -.5f;
+            shapeManager.AddShape(pos, Quaternion.Euler(Vector3.zero), false);
         }
     }
 
     public void CreateDestination() {
         shapeManager.AddDestinationShape();
-    }
-
-    void StartSavingMap() {
-        ConfigureSession();
-
-        if (!LibPlacenote.Instance.Initialized()) {
-            Debug.Log("SDK not yet initialized");
-            return;
-        }
-
-        Debug.Log("Started Session");
-        LibPlacenote.Instance.StartSession();
-
-        if (mReportDebug) {
-            LibPlacenote.Instance.StartRecordDataset(
-                (completed, faulted, percentage) => {
-                    if (completed) {
-                        Debug.Log("Dataset Upload Complete");
-                    } else if (faulted) {
-                        Debug.Log("Dataset Upload Faulted");
-                    } else {
-                        Debug.Log("Dataset Upload: (" + percentage.ToString("F2") + "/1.0)");
-                    }
-                });
-            Debug.Log("Started Debug Report");
-        }
     }
 
     private void StartARKit() {
@@ -175,23 +102,35 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 #endif
     }
 
-    public void OnStartNewClick() {
+    public void OnStartNewClick()
+    {
+        ConfigureSession();
+
+        if (!LibPlacenote.Instance.Initialized())
+        {
+            Debug.Log("SDK not yet initialized");
+            return;
+        }
+
+        Debug.Log("Started Session");
+        LibPlacenote.Instance.StartSession();
+
         //start drop waypoints
         Debug.Log("Dropping Waypoints!!");
         shouldRecordWaypoints = true;
     }
 
     public void OnSaveMapClick() {
-        DeleteMaps();
+        OverwriteExistingMap();
     }
 
-    void DeleteMaps() {
+    void OverwriteExistingMap() {
         if (!LibPlacenote.Instance.Initialized()) {
             Debug.Log("SDK not yet initialized");
-            ToastManager.ShowToast("SDK not yet initialized", 2f);
             return;
         }
-        //delete mAP
+
+        // Overwrite map if it exists.
         LibPlacenote.Instance.SearchMaps(MAP_NAME, (LibPlacenote.MapInfo[] obj) => {
             bool foundMap = false;
             foreach (LibPlacenote.MapInfo map in obj) {
@@ -207,6 +146,7 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
                     });
                 }
             }
+
             if (!foundMap) {
                 SaveCurrentMap();
             }
@@ -219,7 +159,6 @@ public class CreateMap : MonoBehaviour, PlacenoteListener {
 
             if (!LibPlacenote.Instance.Initialized()) {
                 Debug.Log("SDK not yet initialized");
-                ToastManager.ShowToast("SDK not yet initialized", 2f);
                 return;
             }
 

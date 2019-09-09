@@ -98,7 +98,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 10
+  far clip plane: 15
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1cfe8be4ce60040bb3c1f3d8f38337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translateSpeed: 2
-  rotateSpeed: 90
+  translateSpeed: 3
+  rotateSpeed: 40
   randomOffset: 0.01
   enableSimulatedHandshake: 0
 --- !u!114 &114444687120321750

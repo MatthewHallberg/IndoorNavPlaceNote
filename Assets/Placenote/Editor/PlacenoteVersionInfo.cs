@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class PlacenoteVersionInfo : EditorWindow
 {
-	private string versionString = "v1.6.7";
+	private string versionString = "v1.6.12";
 
 	//Add a menu item to version output
 	[MenuItem("Placenote/About Placenote...")]

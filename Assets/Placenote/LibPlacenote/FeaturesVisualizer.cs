@@ -82,6 +82,7 @@ public class FeaturesVisualizer : MonoBehaviour, PlacenoteListener
 		}
 
 		LibPlacenote.PNFeaturePointUnity[] map = LibPlacenote.Instance.GetMap ();
+
 		if (map == null) {
 			return;
 		}
@@ -111,22 +112,55 @@ public class FeaturesVisualizer : MonoBehaviour, PlacenoteListener
 		}
 
 		// Create GameObject container with mesh components for the loaded mesh.
-		Mesh mesh = new Mesh ();
-		mesh.vertices = points;
-		mesh.colors = colors;
-		mesh.SetIndices (indices, MeshTopology.Points, 0);
-
 		MeshFilter mf = mMap.GetComponent<MeshFilter> ();
 		if (mf == null) {
 			mf = mMap.AddComponent<MeshFilter> ();
-		} 
-		mf.mesh = mesh;
+			mf.mesh = new Mesh ();
+		}
+		mf.mesh.Clear ();
+		mf.mesh.vertices = points;
+		mf.mesh.colors = colors;
+		mf.mesh.SetIndices (indices, MeshTopology.Points, 0);
 
 		MeshRenderer mr = mMap.GetComponent<MeshRenderer> ();
 		if (mr == null) {
 			mr = mMap.AddComponent<MeshRenderer> ();
 		} 
-
 		mr.material = mPtCloudMat;
 	}
+
+	#if UNITY_EDITOR 
+	public static void DrawMapEditor(SpatialCapture.PNLandmark[] map, Transform parent) {
+	//public static void DrawMapEditor(UnityEngine.XR.iOS.SpatialCapture.PNLandmark[] map, Transform parent) {
+		GameObject[] points = new GameObject[map.Length];
+		CombineInstance[] combinedPoints = new CombineInstance[map.Length];
+
+		Vector3 scale = new Vector3 (0.01f, 0.01f, 0.01f);
+
+		for (int i = 0; i < map.Length; ++i) {
+			if (map [i].measCount > 4) {
+				Vector3 position = new Vector3 (map [i].point.x, map [i].point.y, -map [i].point.z);
+				points [i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+				points [i].transform.position = position;
+				points [i].transform.localScale = scale;
+				if (parent != null) {
+					points [i].transform.SetParent (parent);
+				}
+
+				Renderer point_rend = points [i].GetComponent<Renderer> ();
+				var tempMaterial = new Material(point_rend.sharedMaterial);
+
+
+				Color ptColor = new Color ();
+				ptColor.r = 1 - map [i].measCount / 10f;
+				ptColor.b = 0;
+				ptColor.g = map [i].measCount / 10f;
+
+				tempMaterial.color = ptColor;
+				point_rend.sharedMaterial = tempMaterial;
+			}
+		}
+	}
+	#endif
+
 }
